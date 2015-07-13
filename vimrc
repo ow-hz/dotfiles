@@ -1,14 +1,16 @@
 " Environment {
-    
+
     " Basics {
         set nocompatible
         set encoding=utf-8
+        set listchars=tab:>-,trail:-
+        set list
         let mapleader=","
     " }
 
     " Identify platforms {
         silent function! OSX()
-            return has('macunix')    
+            return has('macunix')
         endfunction
         silent function! LINUX()
             return has('unix') && !has('macunix') && !has('win32unix')
@@ -17,13 +19,13 @@
             return (has('win16') || has('win32') || has('win64'))
         endfunction
     " }
-	
-	" Vim path on Windows {
-	    if WINDOWS()
-		    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+
+    " Vim path on Windows {
+        if WINDOWS()
+            set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
         endif
-	" }
-    
+    " }
+
     " Allow to toggle background {
         function! ToggleBG()
             let s:tbg = &background
@@ -44,7 +46,7 @@
 
 " Vundle installation {
 
-    " Unix platform {
+    " Unix platforms {
         if OSX() || LINUX()
             " Setting up Vundle - the Vim plug-in bundle
             let iCanHazVundle=1
@@ -65,7 +67,7 @@
         endif
     " }
 
-    " Windows platform {
+    " Windows platforms {
     " }
 
     " Let Vundle manage Vundle
@@ -74,7 +76,7 @@
 
 " Bundle management for Vundle {
 
-	" Bundle repos {
+    " Bundle repos {
         " Vim UI {
             Bundle 'altercation/vim-colors-solarized'
 
@@ -82,7 +84,7 @@
             let g:airline_powerline_fonts=1
             let g:airline#extensions#tabline#enabled=1
         " }
-        
+
         " Files search and management for Vim {
             Bundle 'scrooloose/nerdtree'
 
@@ -90,15 +92,15 @@
             Bundle 'kien/ctrlp.vim'
             let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
         " }
-        
+
         " Motion for Vim {
             Bundle 'Lokaltog/vim-easymotion'
         " }
-        
+
         " Completion for Vim {
             Bundle 'valloric/YouCompleteMe'
         " }
-        
+
         " Vim-gitgutter
         Bundle 'airblade/vim-gitgutter'
 
@@ -118,42 +120,42 @@
 
         " Vim-virtualenv
         Bundle 'jmcantrell/vim-virtualenv'
-        let g:virtualenv_stl_format='[%n]'   
-	" }
+        let g:virtualenv_stl_format='[%n]'
+    " }
 
-	" Install plug-ins the first time Vim runs {
-		if iCanHazVundle == 0
-		    echo "Installing Bundles, please ignore key map error messages"
-		    echo ""
-		    :BundleInstall
-		endif
-	" }
+    " Install plug-ins the first time Vim runs {
+        if iCanHazVundle == 0
+            echo "Installing Bundles, please ignore key map error messages"
+            echo ""
+            :BundleInstall
+        endif
+    " }
 " }
 
 " Vim UI {
 
-    colorscheme solarized		" Set color scheme
+    colorscheme solarized       " Set color scheme
     if has('gui_running')
         set guifont=Monaco\ for\ Powerline
     endif
     set background=light
     highlight clear SignColumn
     set cursorline              " Highlight the current line
-	set laststatus=2            " Always show status bar
+    set laststatus=2            " Always show status bar
     set spell                   " Set spell checking on
 
-	" Tabs and spaces handling
-	set expandtab
-	set tabstop=4
-	set softtabstop=4
-	set shiftwidth=4
-	
-	set incsearch               " Incremental search
-	set hlsearch                " Highlighted search results
-	
-	syntax on                   " Syntax highlight on
-	
-	set number                  " Show line numbers
+    " Tabs and spaces handling
+    set expandtab
+    set tabstop=4
+    set softtabstop=4
+    set shiftwidth=4
+
+    set incsearch               " Incremental search
+    set hlsearch                " Highlighted search results
+
+    syntax on                   " Syntax highlight on
+
+    set number                  " Show line numbers
 
     " Backspace for dummies
     set backspace=indent,eol,start
@@ -161,16 +163,16 @@
     set showmatch               " Show matching brackets/parenthesis
     set ignorecase              " Case insensitive search
     set wildmenu                " Show list instead of just completing
-    
+
     " Command <Tab> completion, list matches, then longest common part, all
-    set wildmode=list:longest,full    
-    
+    set wildmode=list:longest,full
+
     " Backspace and cursor keys wrap
     set whichwrap=b,s,h,l,<,>,[,]
 " }
 
 " Storage setting {
-   
+
     " Better backup, swap and redo storage
     set directory=~/.vim/dirs/tmp
     " Make backup files
