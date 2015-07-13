@@ -6,7 +6,7 @@
         let mapleader=","
     " }
 
-	" Identify platforms {
+    " Identify platforms {
         silent function! OSX()
             return has('macunix')    
         endfunction
@@ -17,6 +17,12 @@
             return (has('win16') || has('win32') || has('win64'))
         endfunction
     " }
+	
+	" Vim path on Windows {
+	    if WINDOWS()
+		    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+        endif
+	" }
     
     " Allow to toggle background {
         function! ToggleBG()
@@ -38,7 +44,7 @@
 
 " Vundle installation {
 
-    " Unix {
+    " Unix platform {
         if OSX() || LINUX()
             " Setting up Vundle - the Vim plug-in bundle
             let iCanHazVundle=1
@@ -56,10 +62,14 @@
             set rtp+=~/.vim/bundle/vundle/
             call vundle#rc()
 
-            " Let Vundle manage Vundle
-            Bundle 'gmarik/vundle'
         endif
     " }
+
+    " Windows platform {
+    " }
+
+    " Let Vundle manage Vundle
+    Bundle 'gmarik/vundle'
 " }
 
 " Bundle management for Vundle {
