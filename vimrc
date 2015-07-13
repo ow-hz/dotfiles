@@ -17,7 +17,7 @@
             return (has('win16') || has('win32') || has('win64'))
         endfunction
     " }
-
+    
     " Allow to toggle background {
         function! ToggleBG()
             let s:tbg = &background
@@ -31,8 +31,6 @@
         noremap <leader>bg :call ToggleBG()<CR>
     " }
 
-    "
-    
     " Automatically detect file types
     filetype plugin on
     filetype indent on
@@ -40,24 +38,28 @@
 
 " Vundle installation {
 
-	" Setting up Vundle - the Vim plug-in bundle
-	let iCanHazVundle=1
-	let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-	if !filereadable(vundle_readme)
-	    echo "Installing Vundle..."
-	    echo ""
-	    silent !mkdir -p ~/.vim/bundle
-	    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-	    let iCanHazVundle=0
-	endif
+    " Unix {
+        if OSX() || LINUX()
+            " Setting up Vundle - the Vim plug-in bundle
+            let iCanHazVundle=1
+            let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+            if !filereadable(vundle_readme)
+                echo "Installing Vundle..."
+                echo ""
+                silent !mkdir -p ~/.vim/bundle
+                silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+                let iCanHazVundle=0
+            endif
 
-	filetype off
+            filetype off
 
-	set rtp+=~/.vim/bundle/vundle/
-	call vundle#rc()
+            set rtp+=~/.vim/bundle/vundle/
+            call vundle#rc()
 
-	" Let Vundle manage Vundle
-	Bundle 'gmarik/vundle'
+            " Let Vundle manage Vundle
+            Bundle 'gmarik/vundle'
+        endif
+    " }
 " }
 
 " Bundle management for Vundle {
