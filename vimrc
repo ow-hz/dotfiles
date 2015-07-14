@@ -2,7 +2,8 @@
 
     " Basics {
         set nocompatible
-        set encoding=utf-8,gbk
+        set encoding=utf-8
+        set fileencodings=utf-8,gbk
         set listchars=tab:>-,trail:-
         set list
         let mapleader=","
