@@ -2,7 +2,7 @@
 
     " Basics {
         set nocompatible
-        set encoding=utf-8
+        set encoding=utf-8,gbk
         set listchars=tab:>-,trail:-
         set list
         let mapleader=","
@@ -47,7 +47,6 @@
 " Vundle installation {
 
     " Unix platforms {
-        if OSX() || LINUX()
             " Setting up Vundle - the Vim plug-in bundle
             let iCanHazVundle=1
             let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
@@ -64,7 +63,6 @@
             set rtp+=~/.vim/bundle/vundle/
             call vundle#rc()
 
-        endif
     " }
 
     " Windows platforms {
@@ -136,7 +134,7 @@
 
     colorscheme solarized       " Set color scheme
     if has('gui_running')
-        set guifont=Monaco\ for\ Powerline
+        set guifont=Source\ Code\ Pro for\ Powerline
     endif
     set background=light
     highlight clear SignColumn
