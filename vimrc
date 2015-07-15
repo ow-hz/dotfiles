@@ -51,26 +51,21 @@
 
 " Vundle installation {
 
-    " Unix platforms {
-            " Setting up Vundle - the Vim plug-in bundle
-            let iCanHazVundle=1
-            let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-            if !filereadable(vundle_readme)
-                echo "Installing Vundle..."
-                echo ""
-                silent !mkdir -p ~/.vim/bundle
-                silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-                let iCanHazVundle=0
-            endif
+    " Setting up Vundle - the Vim plug-in bundle
+    let iCanHazVundle=1
+    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+    if !filereadable(vundle_readme)
+        echo "Installing Vundle..."
+        echo ""
+        silent !mkdir -p ~/.vim/bundle
+        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+        let iCanHazVundle=0
+    endif
 
-            filetype off
+    filetype off
 
-            set rtp+=~/.vim/bundle/vundle/
-            call vundle#rc()
-    " }
-
-    " Windows platforms {
-    " }
+    set rtp+=~/.vim/bundle/vundle/
+    call vundle#rc()
 
     " Let Vundle manage Vundle
     Bundle 'gmarik/vundle'
