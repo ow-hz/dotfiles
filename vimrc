@@ -27,7 +27,7 @@
             source $VIMRUNTIME/delmenu.vim
             source $VIMRUNTIME/menu.vim
             language messages en_US.UTF-8
-            set guifont=Source_Code_Pro_for_Powerline
+            set guifont=Consolas for Powerline FixedD:h9
         endif
     " }
 
