@@ -24,6 +24,10 @@
     " Vim path on Windows {
         if WINDOWS()
             set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+            source $VIMRUNTIME/delmenu.vim
+            source $VIMRUNTIME/menu.vim
+            language messages en_US.UTF-8
+            set guifont=Source_Code_Pro_for_Powerline
         endif
     " }
 
@@ -63,7 +67,6 @@
 
             set rtp+=~/.vim/bundle/vundle/
             call vundle#rc()
-
     " }
 
     " Windows platforms {
@@ -106,6 +109,10 @@
             Bundle 'valloric/YouCompleteMe'
         " }
 
+        " Vim-fugitive {
+            Bundle 'tpope/vim-fugitive'
+        " }
+
         " Vim-gitgutter
         Bundle 'airblade/vim-gitgutter'
 
@@ -141,7 +148,6 @@
 
     colorscheme solarized       " Set color scheme
     if has('gui_running')
-        set guifont=Source\ Code\ Pro for\ Powerline
     endif
     set background=light
     highlight clear SignColumn
