@@ -50,7 +50,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm tmux gem pip pyenv)
+plugins=(git brew npm tmux gem pip pyenv tmuxinator osx)
 
 # User configuration
 

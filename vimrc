@@ -73,20 +73,18 @@
 
 " Bundle management for Vundle {
 
+    "Pymode
+    Bundle 'klen/python-mode'
+    let g:pymode_rope=0
+
     " Bundle repos {
         " Vim UI {
             Bundle 'altercation/vim-colors-solarized'
 
             Bundle 'bling/vim-airline'
             let g:airline_powerline_fonts=1
-            let g:airline#extensions#tabline#enabled=1
+            "let g:airline#extensions#tabline#enabled=1
         " }
-
-        " Vim-bufferline {
-            Bundle 'bling/vim-bufferline'
-            let g:bufferline_echo=0
-        " }
-
 
         " Files search and management for Vim {
             Bundle 'scrooloose/nerdtree'
