@@ -73,7 +73,7 @@
 
 " Bundle management for Vundle {
 
-    "Pymode
+    " Pymode
     Bundle 'klen/python-mode'
     let g:pymode_rope=0
 
