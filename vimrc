@@ -21,7 +21,7 @@
         endfunction
     " }
 
-    " Vim path on Windows {
+    " Vim basic settings on Windows {
         if WINDOWS()
             set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
             source $VIMRUNTIME/delmenu.vim
