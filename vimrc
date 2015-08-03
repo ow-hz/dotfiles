@@ -1,6 +1,6 @@
 " Environment {
 
-    " Basics {
+    " Basics settings {
         set nocompatible
         set encoding=utf-8
         set fileencodings=utf-8,gbk
@@ -200,4 +200,9 @@
 
 " Key mapping {
 
+" }
+
+" Auto command {
+
+    autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 " }
