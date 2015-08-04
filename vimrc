@@ -27,7 +27,6 @@
             source $VIMRUNTIME/delmenu.vim
             source $VIMRUNTIME/menu.vim
             language messages en_US.UTF-8
-            set guifont=Consolas for Powerline FixedD:h9
         endif
     " }
 
@@ -83,7 +82,6 @@
 
             Bundle 'bling/vim-airline'
             let g:airline_powerline_fonts=1
-            "let g:airline#extensions#tabline#enabled=1
         " }
 
         " Files search and management for Vim {
@@ -199,7 +197,10 @@
 " }
 
 " Key mapping {
-
+    noremap <Up>    <NOP>
+    noremap <Down>  <NOP>
+    noremap <Left>  <NOP>
+    noremap <Right> <NOP>
 " }
 
 " Auto command {
