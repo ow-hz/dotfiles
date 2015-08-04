@@ -52,9 +52,7 @@
 
     " Setting up Vundle - the Vim plug-in bundle
     let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
     if !filereadable(vundle_readme)
-        echo "Installing Vundle..."
         echo ""
         silent !mkdir -p ~/.vim/bundle
         silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
@@ -94,6 +92,8 @@
 
         " Motion for Vim {
             Bundle 'Lokaltog/vim-easymotion'
+            " Multiple-cursors
+            Bundle 'terryma/vim-multiple-cursors'
         " }
 
         " Completion for Vim {
@@ -201,6 +201,24 @@
     noremap <Down>  <NOP>
     noremap <Left>  <NOP>
     noremap <Right> <NOP>
+
+    " Keep the current visual block selection active after changing indent
+    vmap > >gv
+    vmap < <gv
+
+    " In insert mode, delete from the current cursor to end-of-line
+    inoremap <C-Del> <C-\><C-O>D
+
+    " Highlight text on the screen matching that under the cursor: Press Ctrl-k to start; each subsequent Ctrl-l matches one more character.
+    map <C-k> mx
+    map <C-l> lmy"zy`x/<C-r>z<CR>`y
+
+    nnoremap / /\v
+    vnoremap / /\v
+    nnoremap <leader><space> :noh<cr>
+
+    " Customized key for programming {
+    " }
 " }
 
 " Auto command {
