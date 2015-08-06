@@ -198,7 +198,7 @@
     endif
 " }
 
-" Key map {
+" Key mapping {
     noremap <Up>    <NOP>
     noremap <Down>  <NOP>
     noremap <Left>  <NOP>
