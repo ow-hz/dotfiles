@@ -126,6 +126,9 @@
         " Vim-virtualenv
         Bundle 'jmcantrell/vim-virtualenv'
         let g:virtualenv_stl_format='[%n]'
+
+        " Common Lisp
+        Bundle 'kovisoft/slimv'
     " }
 
     " Install plug-ins the first time Vim runs {
@@ -226,4 +229,10 @@
 " Auto command {
 
     autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
+" }
+
+" Settings for Common Lisp {
+    if WINDOWS()
+         let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
+    endif
 " }
