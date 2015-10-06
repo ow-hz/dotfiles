@@ -127,6 +127,8 @@
         Bundle 'jmcantrell/vim-virtualenv'
         let g:virtualenv_stl_format='[%n]'
 
+        Bundle 'gotchacode/vim-tomorrow-theme'
+
         " Common Lisp
         Bundle 'kovisoft/slimv'
     " }
