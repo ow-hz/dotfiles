@@ -77,6 +77,7 @@
     let g:pymode_rope=0
 
     " Bundle repos {
+        Bundle 'rizzatti/dash.vim'
         " Vim UI {
             Bundle 'altercation/vim-colors-solarized'
 
