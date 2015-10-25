@@ -1,241 +1,155 @@
-" Environment {
+"不兼容vi
+set nocompatible
+"Set the character encoding used inside Vim.
+set encoding=utf-8
+"Used for existed file.
+set fileencodings=utf-8,gbk
+"Set leader key.
+let mapleader=","
+"Use plugin.
+filetype plugin indent on
+" Always show status bar.
+set laststatus=2
 
-    " Basics settings {
-        set nocompatible
-        set encoding=utf-8
-        set fileencodings=utf-8,gbk
-        set listchars=tab:>-,trail:-
-        set list
-        let mapleader=","
-    " }
 
-    " Identify platforms {
-        silent function! OSX()
-            return has('macunix')
-        endfunction
-        silent function! LINUX()
-            return has('unix') && !has('macunix') && !has('win32unix')
-        endfunction
-        silent function! WINDOWS()
-            return (has('win16') || has('win32') || has('win64'))
-        endfunction
-    " }
 
-    " Vim basic settings on Windows {
-        if WINDOWS()
-            set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
-            source $VIMRUNTIME/delmenu.vim
-            source $VIMRUNTIME/menu.vim
-            language messages en_US.UTF-8
-        endif
-    " }
+"Identify platforms.
+silent function! OSX()
+    return has('macunix')
+endfunction
+silent function! LINUX()
+    return has('unix') && !has('macunix') && !has('win32unix')
+endfunction
+silent function! WINDOWS()
+    return (has('win16') || has('win32') || has('win64'))
+endfunction
 
-    " Allow to toggle background {
-        function! ToggleBG()
-            let s:tbg = &background
-            " Inversion
-            if s:tbg == "dark"
-                set background=light
-            else
-                set background=dark
-            endif
-        endfunction
-        noremap <leader>bg :call ToggleBG()<CR>
-    " }
 
-    " Automatically detect file types
-    filetype plugin on
-    filetype indent on
-" }
 
-" Vundle installation {
-
-    " Setting up Vundle - the Vim plug-in bundle
-    let iCanHazVundle=1
-    let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-    if !filereadable(vundle_readme)
-        echo "Installing Vundle..."
-        echo ""
-        silent !mkdir -p ~/.vim/bundle
-        silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-        let iCanHazVundle=0
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
     endif
+endfunction
+noremap <leader>bg :call ToggleBG()<CR>
 
-    filetype off
 
-    set rtp+=~/.vim/bundle/vundle/
-    call vundle#rc()
 
-    " Let Vundle manage Vundle
-    Bundle 'gmarik/vundle'
-" }
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Setting up Vundle - the Vim plug-in bundle
+let iCanHazVundle=1
+let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
+if !filereadable(vundle_readme)
+    echo "Installing Vundle..."
+    echo ""
+    silent !mkdir -p ~/.vim/bundle
+    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
+    let iCanHazVundle=0
+endif
 
-" Bundle management for Vundle {
+filetype off
 
-    " Pymode
-    Bundle 'klen/python-mode'
-    let g:pymode_rope=0
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
 
-    " Bundle repos {
-        Bundle 'rizzatti/dash.vim'
-        " Vim UI {
-            Bundle 'altercation/vim-colors-solarized'
+Bundle 'gmarik/vundle'
 
-            Bundle 'bling/vim-airline'
-            let g:airline_powerline_fonts=1
-        " }
+if iCanHazVundle == 0
+    echo "Installing Bundles, please ignore key map error messages"
+    echo ""
+    :BundleInstall
+endif
 
-        " Files search and management for Vim {
-            Bundle 'scrooloose/nerdtree'
+Bundle 'rizzatti/dash.vim'
+Bundle 'gotchacode/vim-tomorrow-theme'
+Bundle 'Valloric/YouCompleteMe'
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-            " Code and files fuzzy finder
-            Bundle 'kien/ctrlp.vim'
-            let g:ctrlp_cache_dir = $HOME.'/.vim/cache/ctrlp'
-        " }
 
-        " Motion for Vim {
-            Bundle 'Lokaltog/vim-easymotion'
-            " Multiple-cursors
-            Bundle 'terryma/vim-multiple-cursors'
-        " }
 
-        " Completion for Vim {
-            Bundle 'valloric/YouCompleteMe'
-        " }
+"Set color scheme.
+colorscheme tomorrow
 
-        " Vim-fugitive {
-            Bundle 'tpope/vim-fugitive'
-        " }
+if has('gui_running')
+endif
+set background=light
+highlight clear SignColumn
+set cursorline              " Highlight the current line
 
-        " Vim-gitgutter
-        Bundle 'airblade/vim-gitgutter'
+" Tabs and spaces handling
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
-        " Extension to ctrlp, to have a command palette like sublime text 2
-        Bundle 'fisadev/vim-ctrlp-cmdpalette'
+set incsearch               " Incremental search
+set hlsearch                " Highlighted search results
 
-        " Syntax check {
-            Bundle 'scrooloose/syntastic'
-        " }
+syntax on                   " Syntax highlight on
 
-        " Show a diff via Vim sign column
-        Bundle 'mhinz/vim-signify'
+set number                  " Show line numbers
 
-        " Debug for Vim {
-            Bundle 'jaredly/vim-debug'
-        " }
+" Backspace for dummies
+set backspace=indent,eol,start
+set linespace=0             " No extra spaces between rows
+set showmatch               " Show matching brackets/parenthesis
+set ignorecase              " Case insensitive search
+set wildmenu                " Show list instead of just completing
 
-        " Vim-virtualenv
-        Bundle 'jmcantrell/vim-virtualenv'
-        let g:virtualenv_stl_format='[%n]'
+" Command <Tab> completion, list matches, then longest common part, all
+set wildmode=list:longest,full
 
-        Bundle 'gotchacode/vim-tomorrow-theme'
+" Backspace and cursor keys to wrap.
+set whichwrap=b,s,h,l,<,>,[,]
 
-        " Common Lisp
-        Bundle 'kovisoft/slimv'
-    " }
 
-    " Install plug-ins the first time Vim runs {
-        if iCanHazVundle == 0
-            echo "Installing Bundles, please ignore key map error messages"
-            echo ""
-            :BundleInstall
-        endif
-    " }
-" }
 
-" Vim UI {
+"better backup, swap and redo storage
+set directory=~/.vim/dirs/tmp
+" Make backup files
+set backup
+set backupdir=~/.vim/dirs/backups
+set undofile
+set undodir=~/.vim/dirs/undos
+set viminfo+=n~/.vim/dirs/viminfo
 
-    colorscheme solarized       " Set color scheme
-    if has('gui_running')
-    endif
-    set background=light
-    highlight clear SignColumn
-    set cursorline              " Highlight the current line
-    set laststatus=2            " Always show status bar
-    set spell                   " Set spell checking on
+" Create needed directories
+if !isdirectory(&backupdir)
+    call mkdir(&backupdir, "p")
+endif
+if !isdirectory(&directory)
+    call mkdir(&directory, "p")
+endif
+if !isdirectory(&undodir)
+    call mkdir(&undodir, "p")
+endif
 
-    " Tabs and spaces handling
-    set expandtab
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
 
-    set incsearch               " Incremental search
-    set hlsearch                " Highlighted search results
 
-    syntax on                   " Syntax highlight on
+"unmap arrow keys
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
 
-    set number                  " Show line numbers
+"Keep the current visual block selection active after changing indent.
+vmap > >gv
+vmap < <gv
 
-    " Backspace for dummies
-    set backspace=indent,eol,start
-    set linespace=0             " No extra spaces between rows
-    set showmatch               " Show matching brackets/parenthesis
-    set ignorecase              " Case insensitive search
-    set wildmenu                " Show list instead of just completing
+" In insert mode, delete from the current cursor to end-of-line
+inoremap <C-Del> <C-\><C-O>D
 
-    " Command <Tab> completion, list matches, then longest common part, all
-    set wildmode=list:longest,full
+nnoremap <leader><space> :noh<cr>
 
-    " Backspace and cursor keys wrap
-    set whichwrap=b,s,h,l,<,>,[,]
-" }
 
-" Storage setting {
+"auto commands
+autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 
-    " Better backup, swap and redo storage
-    set directory=~/.vim/dirs/tmp
-    " Make backup files
-    set backup
-    set backupdir=~/.vim/dirs/backups
-    set undofile
-    set undodir=~/.vim/dirs/undos
-    set viminfo+=n~/.vim/dirs/viminfo
-
-    " Create needed directories
-    if !isdirectory(&backupdir)
-        call mkdir(&backupdir, "p")
-    endif
-    if !isdirectory(&directory)
-        call mkdir(&directory, "p")
-    endif
-    if !isdirectory(&undodir)
-        call mkdir(&undodir, "p")
-    endif
-" }
-
-" Key map {
-    noremap <Up>    <NOP>
-    noremap <Down>  <NOP>
-    noremap <Left>  <NOP>
-    noremap <Right> <NOP>
-
-    " Keep the current visual block selection active after changing indent
-    vmap > >gv
-    vmap < <gv
-
-    " In insert mode, delete from the current cursor to end-of-line
-    inoremap <C-Del> <C-\><C-O>D
-
-    " Highlight text on the screen matching that under the cursor: Press Ctrl-k to start; each subsequent Ctrl-l matches one more character.
-    map <C-k> mx
-    map <C-l> lmy"zy`x/<C-r>z<CR>`y
-
-    nnoremap / /\v
-    vnoremap / /\v
-    nnoremap <leader><space> :noh<cr>
-
-    " Customized key for programming {
-    " }
-" }
-
-" Auto command {
-
-    autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
-" }
-
-" Settings for Common Lisp {
-    if WINDOWS()
-         let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
-    endif
-" }
+"Settings for Common Lisp {
+if WINDOWS()
+    let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
+endif
