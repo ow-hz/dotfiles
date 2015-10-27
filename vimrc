@@ -72,6 +72,16 @@ endif
 
 
 
+"Set menu for Windows.
+if WINDOWS()
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+    language messages en_US.UTF-8
+endif
+
+
+
 "save as sudo
 ca w!! w !sudo tee "%"
 
@@ -110,7 +120,7 @@ set cursorline              " Highlight the current line
     " Command <Tab> completion, list matches, then longest common part, all
     set wildmode=full
 
-" Backspace and cursor keys to wrap.
+"Backspace and cursor keys to wrap.
 set whichwrap=b,s,h,l,<,>,[,]
 
 " Storage setting {
