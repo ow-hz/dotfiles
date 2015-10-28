@@ -39,6 +39,16 @@ noremap <leader>bg :call ToggleBG()<CR>
 
 
 
+"Set runtime path and fix menu display for Windows.
+if WINDOWS()
+    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+    source $VIMRUNTIME/delmenu.vim
+    source $VIMRUNTIME/menu.vim
+    language messages en_US.UTF-8
+endif
+
+
+
 "=======================================================================================
 " Setting up Vundle - the Vim plug-in bundle
 let iCanHazVundle=1
@@ -69,16 +79,6 @@ if iCanHazVundle == 0
     :BundleInstall
 endif
 "=======================================================================================
-
-
-
-"Set menu for Windows.
-if WINDOWS()
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-    language messages en_US.UTF-8
-endif
 
 
 
