@@ -1,19 +1,19 @@
-"不兼容vi
+" 不兼容vi
 set nocompatible
-"Set the character encoding used inside Vim.
+" Set the character encoding used inside Vim.
 set encoding=utf-8
-"Used for existed file.
+" Used for existed file.
 set fileencodings=utf-8,gbk
-"Set leader key.
+" Set leader key.
 let mapleader=","
-"Use plugin.
+" Use plugin.
 filetype plugin indent on
 " Always show status bar.
 set laststatus=2
 
 
 
-"Identify platforms.
+" Identify platforms.
 silent function! OSX()
     return has('macunix')
 endfunction
@@ -39,7 +39,7 @@ noremap <leader>bg :call ToggleBG()<CR>
 
 
 
-"Set runtime path and fix menu display for Windows.
+" Set runtime path and fix menu display for Windows.
 if WINDOWS()
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
     source $VIMRUNTIME/delmenu.vim
@@ -72,7 +72,7 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-commentary'
-"git plugins
+" git plugins
 Bundle 'airblade/vim-gitgutter'
 
 if iCanHazVundle == 0
@@ -84,13 +84,13 @@ endif
 
 
 
-"save as sudo
+" save as sudo
 ca w!! w !sudo tee "%"
 
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
-"Set color scheme.
+" Set color scheme.
 colorscheme tomorrow
 
 if has('gui_running')
@@ -126,7 +126,7 @@ set cursorline              " Highlight the current line
     " Command <Tab> completion, list matches, then longest common part, all
     set wildmode=full
 
-"Backspace and cursor keys to wrap.
+" Backspace and cursor keys to wrap.
 set whichwrap=b,s,h,l,<,>,[,]
 
 " Storage setting {
@@ -160,7 +160,7 @@ noremap <Down>  <NOP>
 noremap <Left>  <NOP>
 noremap <Right> <NOP>
 
-"Keep the current visual block selection active after changing indent.
+" Keep the current visual block selection active after changing indent.
 vmap > >gv
 vmap < <gv
 
@@ -168,7 +168,7 @@ vmap < <gv
 inoremap <C-Del> <C-\><C-O>D
 
 nnoremap <leader><space> :noh<cr>
-"mapping for gitgutter
+" mapping for gitgutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
@@ -177,7 +177,7 @@ nmap [h <Plug>GitGutterPrevHunk
 "auto commands
 autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 
-"Settings for Common Lisp {
+" Settings for Common Lisp {
 if WINDOWS()
  let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
