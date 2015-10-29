@@ -72,6 +72,8 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-surround'
+Bundle 'bling/vim-airline'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 
@@ -94,7 +96,10 @@ set scrolloff=3
 colorscheme tomorrow
 
 if has('gui_running')
-    if has("gui_macvim")
+    if has("gui_gtk2")
+        set guifont=Inconsolata\ 12
+    elseif has("gui_macvim")
+        set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
     endif
