@@ -72,6 +72,8 @@ Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
 Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-commentary'
+"git plugins
+Bundle 'airblade/vim-gitgutter'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -92,6 +94,10 @@ set scrolloff=3
 colorscheme tomorrow
 
 if has('gui_running')
+    if has("gui_macvim")
+    elseif has("gui_win32")
+        set guifont=Consolas:h11:cANSI
+    endif
 endif
 set background=light
 highlight clear SignColumn
@@ -146,19 +152,26 @@ set whichwrap=b,s,h,l,<,>,[,]
     endif
 " }
 
-    noremap <Up>    <NOP>
-    noremap <Down>  <NOP>
-    noremap <Left>  <NOP>
-    noremap <Right> <NOP>
 
-    "Keep the current visual block selection active after changing indent.
-    vmap > >gv
-    vmap < <gv
 
-    " In insert mode, delete from the current cursor to end-of-line
-    inoremap <C-Del> <C-\><C-O>D
+" customized mapping
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
 
-    nnoremap <leader><space> :noh<cr>
+"Keep the current visual block selection active after changing indent.
+vmap > >gv
+vmap < <gv
+
+" In insert mode, delete from the current cursor to end-of-line
+inoremap <C-Del> <C-\><C-O>D
+
+nnoremap <leader><space> :noh<cr>
+"mapping for gitgutter
+nmap ]h <Plug>GitGutterNextHunk
+nmap [h <Plug>GitGutterPrevHunk
+
 
 
 "auto commands
