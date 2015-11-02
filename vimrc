@@ -75,6 +75,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 
