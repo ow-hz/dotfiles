@@ -161,6 +161,12 @@ set whichwrap=b,s,h,l,<,>,[,]
 
 
 
+" plugin settings
+" NERDTree
+let g:NERDTreeWinPos="right"
+
+
+
 " customized mapping
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
