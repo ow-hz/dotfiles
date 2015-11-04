@@ -70,12 +70,16 @@ Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
-Bundle 'Valloric/YouCompleteMe'
+if OSX() || LINUX()
+    Bundle 'Valloric/YouCompleteMe'
+endif
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
+" syntax
+Bundle 'scrooloose/syntastic'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 
