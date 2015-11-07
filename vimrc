@@ -95,7 +95,7 @@ ca w!! w !sudo tee "%"
 set scrolloff=3
 
 " Set color scheme.
-colorscheme tomorrow
+colorscheme Tomorrow
 
 if has('gui_running')
     if has("gui_gtk2")
