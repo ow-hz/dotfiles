@@ -70,8 +70,8 @@ Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
-Bundle 'davidhalter/jedi-vim'
-" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'davidhalter/jedi-vim'
+Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
@@ -196,8 +196,6 @@ nnoremap <leader><space> :noh<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
-" jedi mapping
-let g:jedi#completions_command = "<C-N>"
 
 
 "auto commands
