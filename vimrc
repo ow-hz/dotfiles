@@ -70,7 +70,8 @@ Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
-Bundle 'Valloric/YouCompleteMe'
+Bundle 'davidhalter/jedi-vim'
+" Bundle 'Valloric/YouCompleteMe'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
@@ -159,6 +160,8 @@ set whichwrap=b,s,h,l,<,>,[,]
     endif
 " }
 
+" ctrlp cache dir
+let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 
 " plugin settings
@@ -166,8 +169,9 @@ set whichwrap=b,s,h,l,<,>,[,]
 let g:NERDTreeWinPos="right"
 
 
-
+"
 " customized mapping
+"
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
 noremap <Left>  <NOP>
@@ -185,11 +189,15 @@ vmap < <gv
 " In insert mode, delete from the current cursor to end-of-line
 inoremap <C-Del> <C-\><C-O>D
 
+" no highlight
 nnoremap <leader><space> :noh<cr>
+
 " mapping for gitgutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
+" jedi mapping
+let g:jedi#completions_command = "<C-N>"
 
 
 "auto commands
