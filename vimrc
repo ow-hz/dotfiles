@@ -73,6 +73,7 @@ Bundle 'gotchacode/vim-tomorrow-theme'
 if OSX() || LINUX()
     Bundle 'Valloric/YouCompleteMe'
 endif
+" Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
@@ -99,7 +100,7 @@ ca w!! w !sudo tee "%"
 set scrolloff=3
 
 " Set color scheme.
-colorscheme tomorrow
+colorscheme Tomorrow
 
 if has('gui_running')
     if has("gui_gtk2")
@@ -163,6 +164,8 @@ set whichwrap=b,s,h,l,<,>,[,]
     endif
 " }
 
+" ctrlp cache dir
+let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 
 " plugin settings
@@ -170,13 +173,19 @@ set whichwrap=b,s,h,l,<,>,[,]
 let g:NERDTreeWinPos="right"
 
 
-
+"
 " customized mapping
+"
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
 noremap <Left>  <NOP>
 noremap <Right> <NOP>
 
+" buffer move
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 " Keep the current visual block selection active after changing indent.
 vmap > >gv
 vmap < <gv
@@ -184,7 +193,9 @@ vmap < <gv
 " In insert mode, delete from the current cursor to end-of-line
 inoremap <C-Del> <C-\><C-O>D
 
+" no highlight
 nnoremap <leader><space> :noh<cr>
+
 " mapping for gitgutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk

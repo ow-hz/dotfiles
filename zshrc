@@ -4,7 +4,7 @@ export LC_ALL=en_US.UTF-8
 export EDITOR="vim"
 
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/owen/.oh-my-zsh
+export ZSH=~/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -58,6 +58,7 @@ plugins=(git brew npm tmux gem pip pyenv tmuxinator osx)
 export PATH="/Users/owen/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export GEM_HOME="/Volumes/MacStoreroom/RubyGems"
 export PATH=$PATH:"$GEM_HOME/bin"
+export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
