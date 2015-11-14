@@ -59,6 +59,8 @@ export PATH="/Users/owen/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/us
 export GEM_HOME="/Volumes/MacStoreroom/RubyGems"
 export PATH=$PATH:"$GEM_HOME/bin"
 export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
+export CLASSPATH=$JAVA_HOME/lib
+export PATH=$JAVA_HOME/bin:$PATH
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
