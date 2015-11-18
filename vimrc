@@ -79,6 +79,7 @@ Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
+Bundle 'godlygeek/tabular'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -200,6 +201,13 @@ nnoremap <leader><space> :noh<cr>
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
+" Using <space> for folding toggle
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
 
 
 "auto commands
