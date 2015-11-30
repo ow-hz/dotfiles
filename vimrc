@@ -1,4 +1,4 @@
-" 不兼容vi
+" No compatible with vim.
 set nocompatible
 " Set the character encoding used inside Vim.
 set encoding=utf-8
