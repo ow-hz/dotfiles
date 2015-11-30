@@ -71,15 +71,16 @@ Bundle 'gmarik/vundle'
 Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
 if OSX() || LINUX()
-    Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'Valloric/YouCompleteMe'
 endif
-" Bundle 'davidhalter/jedi-vim'
+Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'mattn/emmet-vim'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -116,28 +117,28 @@ set background=light
 highlight clear SignColumn
 set cursorline              " Highlight the current line
 
-    " Tabs and spaces handling
-    set expandtab
-    set tabstop=4
-    set softtabstop=4
-    set shiftwidth=4
+" Tabs and spaces handling
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
-    set incsearch               " Incremental search
-    set hlsearch                " Highlighted search results
+set incsearch               " Incremental search
+set hlsearch                " Highlighted search results
 
-    syntax on                   " Syntax highlight on
+syntax on                   " Syntax highlight on
 
-    set number                  " Show line numbers
+set number                  " Show line numbers
 
-    " Backspace for dummies
-    set backspace=indent,eol,start
-    set linespace=0             " No extra spaces between rows
-    set showmatch               " Show matching brackets/parenthesis
-    set ignorecase              " Case insensitive search
-    set wildmenu                " Show list instead of just completing
+" Backspace for dummies
+set backspace=indent,eol,start
+set linespace=0             " No extra spaces between rows
+set showmatch               " Show matching brackets/parenthesis
+set ignorecase              " Case insensitive search
+set wildmenu                " Show list instead of just completing
 
-    " Command <Tab> completion, list matches, then longest common part, all
-    set wildmode=full
+" Command <Tab> completion, list matches, then longest common part, all
+set wildmode=full
 
 " Backspace and cursor keys to wrap.
 set whichwrap=b,s,h,l,<,>,[,]
@@ -171,7 +172,7 @@ let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 " plugin settings
 " NERDTree
-let g:NERDTreeWinPos="right"
+let g:NERDTreeWinPos="left"
 
 
 "
@@ -213,7 +214,7 @@ noremap <c-l> <c-w>l
 "auto commands
 autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 
-" Settings for Common Lisp {
+" Settings for Common Lisp.
 if WINDOWS()
  let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
