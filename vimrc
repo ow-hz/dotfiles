@@ -70,8 +70,9 @@ Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
 Bundle 'gotchacode/vim-tomorrow-theme'
+Bundle 'davidhalter/jedi-vim'
 if OSX() || LINUX()
-    Bundle 'Valloric/YouCompleteMe'
+    " Bundle 'Valloric/YouCompleteMe'
 endif
 " Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-commentary'
@@ -80,6 +81,7 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
+Bundle 'terryma/vim-multiple-cursors'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -110,7 +112,11 @@ if has('gui_running')
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
         set guifont=Consolas:h11:cANSI
+    else
+        set guifont=Monaco\ for\ Powerline\ Regular:h11
     endif
+else
+    set guifont=Monaco_for_Powerline:h11
 endif
 set background=light
 highlight clear SignColumn
@@ -217,3 +223,5 @@ autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 if WINDOWS()
  let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
+
+let g:jedi#completions_command = "<C-Space>"
