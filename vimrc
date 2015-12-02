@@ -1,8 +1,8 @@
-" No compatible with vim.
+" Not compatible with vim.
 set nocompatible
 " Set the character encoding used inside Vim.
 set encoding=utf-8
-" Used for existed file.
+" Used for opening existed file.
 set fileencodings=utf-8,gbk
 " Set leader key.
 let mapleader=","
