@@ -82,10 +82,13 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
+Bundle 'majutsushi/tagbar'
+Bundle 'easymotion/vim-easymotion'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
+Bundle 'tpope/vim-fugitive'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -200,7 +203,7 @@ vmap < <gv
 " In insert mode, delete from the current cursor to end-of-line
 inoremap <C-Del> <C-\><C-O>D
 
-" no highlight
+" No highlight search
 nnoremap <leader><space> :noh<cr>
 
 " mapping for gitgutter
@@ -223,3 +226,6 @@ autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 if WINDOWS()
  let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
+
+" Tabularize
+nnoremap <leader>a : Tabularize /
