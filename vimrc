@@ -74,7 +74,6 @@ Bundle 'davidhalter/jedi-vim'
 if OSX() || LINUX()
     " Bundle 'Valloric/YouCompleteMe'
 endif
-Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
