@@ -90,6 +90,9 @@ Bundle 'scrooloose/syntastic'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
+" c# plugins
+" Bundle 'tpope/vim-dispatch'
+" Bundle 'omniSharp/omnisharp-vim'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
