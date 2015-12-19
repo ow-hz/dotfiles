@@ -78,6 +78,7 @@ Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
+Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'kien/ctrlp.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'terryma/vim-multiple-cursors'
@@ -233,3 +234,7 @@ endif
 
 " Tabularize
 nnoremap <leader>a : Tabularize /
+
+
+" NERDTree
+let NERDTreeIgnore=['\.vim$', '\.pyc$']
