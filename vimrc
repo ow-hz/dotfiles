@@ -69,7 +69,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
-Bundle 'gotchacode/vim-tomorrow-theme'
 Bundle 'davidhalter/jedi-vim'
 if OSX() || LINUX()
     " Bundle 'Valloric/YouCompleteMe'
