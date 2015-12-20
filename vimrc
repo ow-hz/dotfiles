@@ -84,6 +84,7 @@ Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'easymotion/vim-easymotion'
+Bundle 'vim-scripts/bufexplorer.zip'
 " Bundle 'jaredly/vim-debug'
 " syntax
 Bundle 'scrooloose/syntastic'
