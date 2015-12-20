@@ -123,7 +123,7 @@ if has('gui_running')
         set guifont=Monaco\ for\ Powerline\ Regular:h11
     endif
 else
-    set guifont=Monaco_for_Powerline:h11
+    set guifont=Monaco\ for\ Powerline:h11
 endif
 set background=light
 highlight clear SignColumn
@@ -237,3 +237,11 @@ nnoremap <leader>a : Tabularize /
 
 " NERDTree
 let NERDTreeIgnore=['\.vim$', '\.pyc$']
+
+
+
+" Vim-airline
+let g:airline_powerline_fonts = 1
+
+autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
+
