@@ -62,7 +62,7 @@ export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 export CLASSPATH=$JAVA_HOME/lib
 export PATH=$JAVA_HOME/bin:$PATH
 source $ZSH/oh-my-zsh.sh
-
+source dnvm.sh
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
