@@ -115,11 +115,11 @@ colorscheme Tomorrow
 
 if has('gui_running')
     if has("gui_gtk2")
-        set guifont=Inconsolata\ 12
+        set guifont=Inconsolata\ 11
     elseif has("gui_macvim")
         set guifont=Menlo\ Regular:h14
     elseif has("gui_win32")
-        set guifont=Consolas:h11:cANSI
+        set guifont=Consolas:h10:cANSI
     else
         set guifont=Monaco\ for\ Powerline\ Regular:h11
     endif
@@ -188,6 +188,7 @@ let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 let g:NERDTreeWinPos="left"
 
 
+
 "
 " customized mapping
 "
@@ -211,7 +212,7 @@ inoremap <C-Del> <C-\><C-O>D
 " No highlight search
 nnoremap <leader><space> :noh<cr>
 
-" mapping for gitgutter
+" Mapping for gitgutter
 nmap ]h <Plug>GitGutterNextHunk
 nmap [h <Plug>GitGutterPrevHunk
 
@@ -224,7 +225,8 @@ noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 
 
-"auto commands
+
+" Auto commands
 autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 
 " Settings for Common Lisp.
@@ -236,6 +238,7 @@ endif
 nnoremap <leader>a : Tabularize /
 
 
+
 " NERDTree
 let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
@@ -245,4 +248,3 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 let g:airline_powerline_fonts = 1
 
 autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
-
