@@ -1,4 +1,5 @@
-" Not compatible with vim.
+"=======================================================================================
+" Not compatible with vi.
 set nocompatible
 " Set the character encoding used inside Vim.
 set encoding=utf-8
@@ -13,6 +14,7 @@ set laststatus=2
 
 
 
+"=======================================================================================
 " Identify platforms.
 silent function! OSX()
     return has('macunix')
@@ -26,22 +28,23 @@ endfunction
 
 
 
-function! ToggleBG()
-    let s:tbg = &background
-    " Inversion
-    if s:tbg == "dark"
-        set background=light
-    else
-        set background=dark
-    endif
-endfunction
-noremap <leader>bg :call ToggleBG()<CR>
+" function! ToggleBG()
+"     let s:tbg = &background
+"     " Inversion
+"     if s:tbg == "dark"
+"         set background=light
+"     else
+"         set background=dark
+"     endif
+" endfunction
+" noremap <leader>bg :call ToggleBG()<CR>
 
 
 
-" Set runtime path and fix menu display for Windows.
 if WINDOWS()
+    " Set runtime path for Windows.
     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+    "Fix menu display for Windows.
     source $VIMRUNTIME/delmenu.vim
     source $VIMRUNTIME/menu.vim
     language messages en_US.UTF-8
@@ -100,10 +103,10 @@ if iCanHazVundle == 0
     echo ""
     :BundleInstall
 endif
+
+
+
 "=======================================================================================
-
-
-
 " save as sudo
 ca w!! w !sudo tee "%"
 
@@ -189,15 +192,15 @@ let g:NERDTreeWinPos="left"
 
 
 
-"
-" customized mapping
+"=======================================================================================
+" Customized Mapping
 "
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
 noremap <Left>  <NOP>
 noremap <Right> <NOP>
 
-" buffer move
+" Buffer Move
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
@@ -247,4 +250,14 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 " Vim-airline
 let g:airline_powerline_fonts = 1
 
+
+
+" Bufexplorer
+nnoremap <silent> <F11> :BufExplorer<CR>
+nnoremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
+nnoremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
+
+
+
+"=======================================================================================
 autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
