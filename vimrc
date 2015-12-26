@@ -88,7 +88,8 @@ Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'vim-scripts/bufexplorer.zip'
-" Bundle 'jaredly/vim-debug'
+Bundle 'snipmate'
+Bundle 'AutoClose'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -97,6 +98,7 @@ Bundle 'tpope/vim-fugitive'
 " c# plugins
 Bundle 'tpope/vim-dispatch'
 Bundle 'omniSharp/omnisharp-vim'
+Bundle 'OrangeT/vim-csharp'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -238,7 +240,7 @@ if WINDOWS()
 endif
 
 " Tabularize
-nnoremap <leader>a : Tabularize /
+nnoremap <leader>t : Tabularize /
 
 
 
