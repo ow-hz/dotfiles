@@ -95,8 +95,8 @@ Bundle 'scrooloose/syntastic'
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 " c# plugins
-" Bundle 'tpope/vim-dispatch'
-" Bundle 'omniSharp/omnisharp-vim'
+Bundle 'tpope/vim-dispatch'
+Bundle 'omniSharp/omnisharp-vim'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -120,14 +120,14 @@ if has('gui_running')
     if has("gui_gtk2")
         set guifont=Inconsolata\ 11
     elseif has("gui_macvim")
-        set guifont=Menlo\ Regular:h14
+        set guifont=Monaco\ for\ Powerline:h12
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     else
         set guifont=Monaco\ for\ Powerline\ Regular:h11
     endif
 else
-    set guifont=Monaco\ for\ Powerline:h11
+    set guifont=Monaco\ for\ Powerline:h12
 endif
 set background=light
 highlight clear SignColumn
