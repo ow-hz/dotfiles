@@ -120,14 +120,14 @@ if has('gui_running')
     if has("gui_gtk2")
         set guifont=Inconsolata\ 11
     elseif has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline:h12
+        set guifont=Monaco\ for\ Powerline:h11
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     else
         set guifont=Monaco\ for\ Powerline\ Regular:h11
     endif
 else
-    set guifont=Monaco\ for\ Powerline:h12
+    set guifont=Monaco\ for\ Powerline:h11
 endif
 set background=light
 highlight clear SignColumn
