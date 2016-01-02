@@ -28,16 +28,16 @@ endfunction
 
 
 
-" function! ToggleBG()
-"     let s:tbg = &background
-"     " Inversion
-"     if s:tbg == "dark"
-"         set background=light
-"     else
-"         set background=dark
-"     endif
-" endfunction
-" noremap <leader>bg :call ToggleBG()<CR>
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+noremap <leader>bg :call ToggleBG()<CR>
 
 
 
@@ -88,6 +88,7 @@ Bundle 'mattn/emmet-vim'
 Bundle 'majutsushi/tagbar'
 Bundle 'easymotion/vim-easymotion'
 Bundle 'vim-scripts/bufexplorer.zip'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'snipmate'
 Bundle 'AutoClose'
 " syntax
@@ -116,7 +117,8 @@ ca w!! w !sudo tee "%"
 set scrolloff=3
 
 " Set color scheme.
-colorscheme Tomorrow
+set background=dark
+colorscheme solarized
 
 if has('gui_running')
     if has("gui_gtk2")
