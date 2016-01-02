@@ -120,7 +120,12 @@ set scrolloff=3
 
 "=======================================================================================
 " Colorscheme
-colorscheme Tomorrow
+if has('gui_running')
+    colorscheme solarized
+    set background=dark
+else
+    colorscheme Tomorrow
+endif
 
 if has('gui_running')
     if has("gui_gtk2")
