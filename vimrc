@@ -116,9 +116,11 @@ ca w!! w !sudo tee "%"
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
-" Set color scheme.
-set background=dark
-colorscheme solarized
+
+
+"=======================================================================================
+" Colorscheme
+colorscheme Tomorrow
 
 if has('gui_running')
     if has("gui_gtk2")
@@ -133,7 +135,7 @@ if has('gui_running')
 else
     set guifont=Monaco\ for\ Powerline:h11
 endif
-set background=light
+
 highlight clear SignColumn
 set cursorline              " Highlight the current line
 

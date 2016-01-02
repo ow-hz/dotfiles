@@ -1,3 +1,4 @@
+export TERM=xterm-256color
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -89,3 +90,5 @@ source $ZSH/oh-my-zsh.sh
  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
 [ -s "/Users/owen/.dnx/dnvm/dnvm.sh" ] && . "/Users/owen/.dnx/dnvm/dnvm.sh" # Load dnvm
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
