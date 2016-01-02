@@ -190,7 +190,7 @@ let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 " plugin settings
 " NERDTree
-let g:NERDTreeWinPos="left"
+let g:NERDTreeWinPos="right"
 
 
 
