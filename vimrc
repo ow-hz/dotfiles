@@ -91,6 +91,7 @@ Bundle 'vim-scripts/bufexplorer.zip'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'snipmate'
 Bundle 'AutoClose'
+Bundle 'klen/python-mode'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -122,7 +123,7 @@ set scrolloff=3
 " Colorscheme
 if has('gui_running')
     colorscheme solarized
-    set background=dark
+    set background=light
 else
     colorscheme Tomorrow
 endif
@@ -233,20 +234,18 @@ nmap [h <Plug>GitGutterPrevHunk
 " Using <space> for folding toggle
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
+" disable arrow keys
 noremap <c-k> <c-w>k
 noremap <c-j> <c-w>j
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 
-
-
-" Auto commands
-autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
-
 " Settings for Common Lisp.
 if WINDOWS()
  let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
+
+
 
 " Tabularize
 nnoremap <leader>t : Tabularize /
@@ -255,6 +254,14 @@ nnoremap <leader>t : Tabularize /
 
 " NERDTree
 let NERDTreeIgnore=['\.vim$', '\.pyc$']
+
+
+
+" Python-mode
+" let g:pymode_run_bind = '<leader>r'
+let g:pymode_motion=0
+let g:pymode_rope = 0
+let g:pymode_rope_completion = 0
 
 
 
@@ -271,4 +278,21 @@ nnoremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
 
 
 "=======================================================================================
+" Autocmd
+autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
+" autocmd FileType javascript nnoremap <buffer><localleader>c I//<esc>
+" autocmd FileType python nnoremap <buffer><localleader>c I#<esc>
+" autocmd BufWrite * :sleep 2000m
+
+
+
+"=======================================================================================
+"onoremap ih :<c-u> execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<CR>
+" Vimscript file settings{{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim setlocal foldmethod=marker
+
+augroup END
+"}}}
