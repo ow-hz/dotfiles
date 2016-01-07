@@ -89,6 +89,4 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
 
-[ -s "/Users/owen/.dnx/dnvm/dnvm.sh" ] && . "/Users/owen/.dnx/dnvm/dnvm.sh" # Load dnvm
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+# [ -s "/Users/owen/.dnx/dnvm/dnvm.sh" ] && . "/Users/owen/.dnx/dnvm/dnvm.sh" # Load dnvm
