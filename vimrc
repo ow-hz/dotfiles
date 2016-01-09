@@ -92,6 +92,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'snipmate'
 Bundle 'AutoClose'
 Bundle 'klen/python-mode'
+Bundle 'unterzicht/vim-virtualenv'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -129,6 +130,7 @@ else
 endif
 
 if has('gui_running')
+    set autochdir
     if has("gui_gtk2")
         set guifont=Inconsolata\ 11
     elseif has("gui_macvim")
