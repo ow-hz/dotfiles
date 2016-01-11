@@ -92,6 +92,7 @@ Bundle 'altercation/vim-colors-solarized'
 Bundle 'snipmate'
 Bundle 'AutoClose'
 Bundle 'klen/python-mode'
+Bundle 'unterzicht/vim-virtualenv'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -129,6 +130,7 @@ else
 endif
 
 if has('gui_running')
+    set autochdir
     if has("gui_gtk2")
         set guifont=Inconsolata\ 11
     elseif has("gui_macvim")
@@ -265,7 +267,7 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 let g:pymode_motion=0
 let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
-let g:pymode_doc = 1
+let g:pymode_doc = 0
 " Refactoring mapping
 let g:pymode_rope_goto_definition_bind = '<leader>d'
 let g:pymode_rope_rename_bind = '<leader>r'
