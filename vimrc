@@ -201,7 +201,10 @@ let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 " plugin settings
 " NERDTree
 let g:NERDTreeWinPos="right"
-
+" let g:NERDTreeHighlightCursorline = 1
+" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 "=======================================================================================
@@ -260,13 +263,33 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 " Python-mode
 " let g:pymode_run_bind = '<leader>r'
 let g:pymode_motion=0
-let g:pymode_rope = 0
+let g:pymode_rope = 1
 let g:pymode_rope_completion = 0
+let g:pymode_doc = 1
+" Refactoring mapping
+let g:pymode_rope_goto_definition_bind = '<leader>d'
+let g:pymode_rope_rename_bind = '<leader>r'
+let g:pymode_rope_rename_module_bind = '<leader>rm'
+let g:pymode_run = 0
+let g:pymode_lint = 0
+
+
+
+" Jedi-vim
+let g:jedi#goto_command = ''
+let g:jedi#rename_command = ''
+let g:jedi#show_call_signatures = 2
 
 
 
 " Vim-airline
 let g:airline_powerline_fonts = 1
+
+
+
+" Syntastic
+let g:syntastic_python_checkers = ['flake8', 'mccabe']
+let g:syntastic_always_populate_loc_list = 1
 
 
 
