@@ -93,6 +93,7 @@ Bundle 'snipmate'
 Bundle 'AutoClose'
 Bundle 'klen/python-mode'
 Bundle 'unterzicht/vim-virtualenv'
+Bundle 'mbbill/undotree'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
@@ -264,23 +265,24 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
 " Python-mode
 " let g:pymode_run_bind = '<leader>r'
-let g:pymode_motion=0
-let g:pymode_rope = 1
+let g:pymode_motion          = 0
+let g:pymode_rope            = 1
 let g:pymode_rope_completion = 0
-let g:pymode_doc = 0
+let g:pymode_doc             = 0
 " Refactoring mapping
 let g:pymode_rope_goto_definition_bind = '<leader>d'
-let g:pymode_rope_rename_bind = '<leader>r'
-let g:pymode_rope_rename_module_bind = '<leader>rm'
-let g:pymode_run = 0
-let g:pymode_lint = 0
+let g:pymode_rope_rename_bind          = '<leader>r'
+let g:pymode_rope_rename_module_bind   = '<leader>rm'
+let g:pymode_run                       = 0
+let g:pymode_lint                      = 0
 
 
 
 " Jedi-vim
-let g:jedi#goto_command = ''
-let g:jedi#rename_command = ''
-let g:jedi#show_call_signatures = 2
+let g:jedi#goto_command             = ''
+let g:jedi#goto_assignments_command = ''
+let g:jedi#rename_command           = ''
+let g:jedi#show_call_signatures     = 2
 
 
 
@@ -296,9 +298,9 @@ let g:syntastic_always_populate_loc_list = 1
 
 
 " Bufexplorer
-nnoremap <silent> <F11> :BufExplorer<CR>
-nnoremap <silent> <m-F11> :BufExplorerHorizontalSplit<CR>
-nnoremap <silent> <c-F11> :BufExplorerVerticalSplit<CR>
+nnoremap <silent> <F11>   : BufExplorer<CR>
+nnoremap <silent> <m-F11> : BufExplorerHorizontalSplit<CR>
+nnoremap <silent> <c-F11> : BufExplorerVerticalSplit<CR>
 
 
 
