@@ -78,7 +78,8 @@ if OSX() || LINUX()
 endif
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
-Bundle 'bling/vim-airline'
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
 Bundle 'kien/ctrlp.vim'
