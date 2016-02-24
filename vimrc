@@ -95,6 +95,7 @@ Bundle 'AutoClose'
 Bundle 'klen/python-mode'
 Bundle 'unterzicht/vim-virtualenv'
 Bundle 'mbbill/undotree'
+Bundle 'plasticboy/vim-markdown'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
