@@ -135,16 +135,16 @@ endif
 if has('gui_running')
     set autochdir
     if has("gui_gtk2")
-        set guifont=Inconsolata\ 11
+        set guifont=Inconsolata\ 10
     elseif has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline:h11
+        set guifont=Monaco\ for\ Powerline:h10
     elseif has("gui_win32")
         set guifont=Consolas:h10:cANSI
     else
-        set guifont=Monaco\ for\ Powerline\ Regular:h11
+        set guifont=Monaco\ for\ Powerline\ Regular:h10
     endif
 else
-    set guifont=Monaco\ for\ Powerline:h11
+    set guifont=Monaco\ for\ Powerline:h10
 endif
 
 highlight clear SignColumn
