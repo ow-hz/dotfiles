@@ -72,10 +72,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 Bundle 'rizzatti/dash.vim'
-Bundle 'davidhalter/jedi-vim'
-if OSX() || LINUX()
-    " Bundle 'Valloric/YouCompleteMe'
-endif
 Bundle 'tpope/vim-commentary'
 Bundle 'tpope/vim-surround'
 Bundle 'vim-airline/vim-airline'
@@ -96,15 +92,16 @@ Bundle 'klen/python-mode'
 Bundle 'unterzicht/vim-virtualenv'
 Bundle 'mbbill/undotree'
 Bundle 'plasticboy/vim-markdown'
+Bundle 'Valloric/YouCompleteMe'
 " syntax
 Bundle 'scrooloose/syntastic'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
 " c# plugins
-Bundle 'tpope/vim-dispatch'
-Bundle 'omniSharp/omnisharp-vim'
-Bundle 'OrangeT/vim-csharp'
+" Bundle 'tpope/vim-dispatch'
+" Bundle 'omniSharp/omnisharp-vim'
+" Bundle 'OrangeT/vim-csharp'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -268,23 +265,23 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 " Python-mode
 " let g:pymode_run_bind = '<leader>r'
 let g:pymode_motion          = 0
-let g:pymode_rope            = 1
+let g:pymode_rope            = 0
 let g:pymode_rope_completion = 0
 let g:pymode_doc             = 0
 " Refactoring mapping
-let g:pymode_rope_goto_definition_bind = '<leader>d'
-let g:pymode_rope_rename_bind          = '<leader>r'
-let g:pymode_rope_rename_module_bind   = '<leader>rm'
-let g:pymode_run                       = 0
-let g:pymode_lint                      = 0
+" let g:pymode_rope_goto_definition_bind = '<leader>d'
+" let g:pymode_rope_rename_bind          = '<leader>r'
+" let g:pymode_rope_rename_module_bind   = '<leader>rm'
+" let g:pymode_run                       = 0
+" let g:pymode_lint                      = 0
 
 
 
-" Jedi-vim
-let g:jedi#goto_command             = ''
-let g:jedi#goto_assignments_command = ''
-let g:jedi#rename_command           = ''
-let g:jedi#show_call_signatures     = 2
+" " Jedi-vim
+" let g:jedi#goto_command             = ''
+" let g:jedi#goto_assignments_command = ''
+" let g:jedi#rename_command           = ''
+" let g:jedi#show_call_signatures     = 2
 
 
 
