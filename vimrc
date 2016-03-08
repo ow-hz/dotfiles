@@ -78,7 +78,7 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'vim-airline/vim-airline-themes'
 Bundle 'scrooloose/nerdtree'
 Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'kien/ctrlp.vim'
+Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'godlygeek/tabular'
 Bundle 'terryma/vim-multiple-cursors'
 Bundle 'mattn/emmet-vim'
@@ -102,6 +102,7 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-dispatch'
 " Bundle 'omniSharp/omnisharp-vim'
 " Bundle 'OrangeT/vim-csharp'
+Bundle 'ryanoasis/vim-devicons'
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -129,16 +130,14 @@ else
     colorscheme Tomorrow
 endif
 
+set autochdir
+
 if has('gui_running')
-    set autochdir
-    if has("gui_gtk2")
-        set guifont=Inconsolata\ 10
-    elseif has("gui_macvim")
+    if has("gui_macvim")
         set guifont=Monaco\ for\ Powerline:h10
     elseif has("gui_win32")
-        set guifont=Consolas:h10:cANSI
-    else
-        set guifont=Monaco\ for\ Powerline\ Regular:h10
+        " set guifont=Consolas\ for\ Powerline\ FixedD:h10
+        set guifont=Consolas:h10
     endif
 else
     set guifont=Monaco\ for\ Powerline:h10
@@ -263,17 +262,17 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
 
 " Python-mode
-" let g:pymode_run_bind = '<leader>r'
+" let g:pymode_run_bind      = '<leader>r'
 let g:pymode_motion          = 0
 let g:pymode_rope            = 0
 let g:pymode_rope_completion = 0
 let g:pymode_doc             = 0
+let g:pymode_run             = 0
+let g:pymode_lint            = 0
 " Refactoring mapping
 " let g:pymode_rope_goto_definition_bind = '<leader>d'
 " let g:pymode_rope_rename_bind          = '<leader>r'
 " let g:pymode_rope_rename_module_bind   = '<leader>rm'
-" let g:pymode_run                       = 0
-" let g:pymode_lint                      = 0
 
 
 
