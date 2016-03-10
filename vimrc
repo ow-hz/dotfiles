@@ -102,7 +102,10 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'tpope/vim-dispatch'
 " Bundle 'omniSharp/omnisharp-vim'
 " Bundle 'OrangeT/vim-csharp'
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Shougo/vimshell.vim'
 Bundle 'ryanoasis/vim-devicons'
+
 
 if iCanHazVundle == 0
     echo "Installing Bundles, please ignore key map error messages"
@@ -136,7 +139,6 @@ if has('gui_running')
     if has("gui_macvim")
         set guifont=Monaco\ for\ Powerline:h10
     elseif has("gui_win32")
-        " set guifont=Consolas\ for\ Powerline\ FixedD:h10
         set guifont=Consolas:h10
     endif
 else
@@ -251,11 +253,6 @@ endif
 
 
 
-" Tabularize
-nnoremap <leader>t : Tabularize /
-
-
-
 " NERDTree
 let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
@@ -281,6 +278,10 @@ let g:pymode_lint            = 0
 " let g:jedi#goto_assignments_command = ''
 " let g:jedi#rename_command           = ''
 " let g:jedi#show_call_signatures     = 2
+
+
+
+" Youcompleteme
 
 
 
@@ -313,7 +314,7 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 
 
 "=======================================================================================
-"onoremap ih :<c-u> execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<CR>
+" onoremap ih :<c-u> execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<CR>
 " Vimscript file settings{{{
 augroup filetype_vim
     autocmd!
@@ -321,3 +322,11 @@ augroup filetype_vim
 
 augroup END
 "}}}
+
+
+
+"=======================================================================================
+" key mappings
+nnoremap <leader>t :Tabularize /
+nnoremap <leader>gd :YcmCompleter GoTo<CR>
+nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
