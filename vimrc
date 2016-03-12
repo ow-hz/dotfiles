@@ -127,7 +127,7 @@ set scrolloff=3
 "=======================================================================================
 " Colorscheme
 colorscheme solarized
-set background=light
+set background=dark
 
 if has('gui_running')
     if has("gui_macvim")
@@ -135,8 +135,6 @@ if has('gui_running')
     elseif has("gui_win32")
         set guifont=Consolas:h10
     endif
-else
-    set guifont=Monaco\ for\ Powerline:h10
 endif
 
 highlight clear SignColumn
