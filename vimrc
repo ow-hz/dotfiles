@@ -126,14 +126,8 @@ set scrolloff=3
 
 "=======================================================================================
 " Colorscheme
-if has('gui_running')
-    colorscheme solarized
-    set background=light
-else
-    colorscheme Tomorrow
-endif
-
-set autochdir
+colorscheme solarized
+set background=light
 
 if has('gui_running')
     if has("gui_macvim")
@@ -270,6 +264,11 @@ let g:pymode_lint            = 0
 " let g:pymode_rope_goto_definition_bind = '<leader>d'
 " let g:pymode_rope_rename_bind          = '<leader>r'
 " let g:pymode_rope_rename_module_bind   = '<leader>rm'
+
+
+
+" Solarized
+" let g:solarized_termcolors=256
 
 
 
