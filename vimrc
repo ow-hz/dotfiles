@@ -104,6 +104,7 @@ Bundle 'tpope/vim-fugitive'
 " Bundle 'OrangeT/vim-csharp'
 Bundle 'Shougo/vimproc.vim'
 Bundle 'Shougo/vimshell.vim'
+Bundle 'kshenoy/vim-signature'
 Bundle 'ryanoasis/vim-devicons'
 
 
