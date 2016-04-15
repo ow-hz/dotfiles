@@ -98,6 +98,8 @@ Bundle 'scrooloose/syntastic'
 " git plugins
 Bundle 'airblade/vim-gitgutter'
 Bundle 'tpope/vim-fugitive'
+" javascript plugins
+Bundle 'ternjs/tern_for_vim'
 " c# plugins
 " Bundle 'tpope/vim-dispatch'
 " Bundle 'omniSharp/omnisharp-vim'
