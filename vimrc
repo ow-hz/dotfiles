@@ -134,7 +134,7 @@ set background=dark
 
 if has('gui_running')
     if has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline:h10
+        set guifont=Monaco\ for\ Powerline:h11
     elseif has("gui_win32")
         set guifont=Consolas:h10
     endif
