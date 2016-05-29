@@ -178,7 +178,6 @@ set whichwrap=b,s,h,l,<,>,[,]
     set backupdir=~/.vim/dirs/backups
     set undofile
     set undodir=~/.vim/dirs/undos
-    set viminfo+=n~/.vim/dirs/viminfo
 
     " Create needed directories
     if !isdirectory(&backupdir)
@@ -282,7 +281,7 @@ let g:pymode_lint            = 0
 
 
 " Youcompleteme
-
+  let g:ycm_auto_trigger = 0
 
 
 " Vim-airline
@@ -330,3 +329,5 @@ augroup END
 nnoremap <leader>t :Tabularize /
 nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+
+au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
