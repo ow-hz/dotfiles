@@ -2,7 +2,7 @@
 " Not compatible with vi.
 set nocompatible
 " Set the character encoding used inside Vim.
-set encoding=utf-8
+" set encoding=utf-8
 " Used for opening existed file.
 set fileencodings=utf-8,gbk
 " Set leader key.
@@ -52,68 +52,63 @@ endif
 
 
 
-"=======================================================================================
-" Setting up Vundle - the Vim plug-in bundle
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/vundle/README.md')
-if !filereadable(vundle_readme)
-    echo "Installing Vundle..."
+let iCanHazPlug=1
+let plug_readme=expand('~/.vim/autoload/plug.vim')
+if !filereadable(plug_readme)
+    echo "Installing vim-plug..."
     echo ""
-    silent !mkdir -p ~/.vim/bundle
-    silent !git clone https://github.com/gmarik/vundle ~/.vim/bundle/vundle
-    let iCanHazVundle=0
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let iCanHazPlug=0
 endif
 
-filetype off
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+call plug#begin('~/.vim/bundle')
 
-Bundle 'gmarik/vundle'
-
-Bundle 'rizzatti/dash.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-surround'
-Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
-Bundle 'scrooloose/nerdtree'
-Bundle 'Xuyuanp/nerdtree-git-plugin'
-Bundle 'ctrlpvim/ctrlp.vim'
-Bundle 'godlygeek/tabular'
-Bundle 'terryma/vim-multiple-cursors'
-Bundle 'mattn/emmet-vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'vim-scripts/bufexplorer.zip'
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'snipmate'
-Bundle 'AutoClose'
-Bundle 'klen/python-mode'
-Bundle 'unterzicht/vim-virtualenv'
-Bundle 'mbbill/undotree'
-Bundle 'plasticboy/vim-markdown'
-Bundle 'Valloric/YouCompleteMe'
+Plug  'rizzatti/dash.vim'
+Plug  'tpope/vim-commentary'
+Plug  'tpope/vim-surround'
+Plug  'vim-airline/vim-airline'
+Plug  'vim-airline/vim-airline-themes'
+Plug  'scrooloose/nerdtree'
+Plug  'Xuyuanp/nerdtree-git-plugin'
+Plug  'ctrlpvim/ctrlp.vim'
+Plug  'godlygeek/tabular'
+Plug  'terryma/vim-multiple-cursors'
+Plug  'mattn/emmet-vim'
+Plug  'majutsushi/tagbar'
+Plug  'easymotion/vim-easymotion'
+Plug  'vim-scripts/bufexplorer.zip'
+Plug  'altercation/vim-colors-solarized'
+Plug  'snipmate'
+Plug  'AutoClose'
+Plug  'klen/python-mode'
+Plug  'unterzicht/vim-virtualenv'
+Plug  'mbbill/undotree'
+Plug  'plasticboy/vim-markdown'
+Plug  'Valloric/YouCompleteMe'
 " syntax
-Bundle 'scrooloose/syntastic'
+Plug  'scrooloose/syntastic'
 " git plugins
-Bundle 'airblade/vim-gitgutter'
-Bundle 'tpope/vim-fugitive'
+Plug  'airblade/vim-gitgutter'
+Plug  'tpope/vim-fugitive'
 " javascript plugins
-Bundle 'ternjs/tern_for_vim'
+Plug  'ternjs/tern_for_vim'
 " c# plugins
-" Bundle 'tpope/vim-dispatch'
-" Bundle 'omniSharp/omnisharp-vim'
-" Bundle 'OrangeT/vim-csharp'
-Bundle 'Shougo/vimproc.vim'
-Bundle 'Shougo/vimshell.vim'
-Bundle 'kshenoy/vim-signature'
-Bundle 'ryanoasis/vim-devicons'
+" Plug  'tpope/vim-dispatch'
+" Plug  'omniSharp/omnisharp-vim'
+" Plug  'OrangeT/vim-csharp'
+Plug  'Shougo/vimproc.vim'
+Plug  'Shougo/vimshell.vim'
+Plug  'kshenoy/vim-signature'
+Plug  'ryanoasis/vim-devicons'
+
+call plug#end()
 
 
-if iCanHazVundle == 0
-    echo "Installing Bundles, please ignore key map error messages"
+if iCanHazPlug == 0
+    echo "Installing vim plugins..."
     echo ""
-    :BundleInstall
+    :PlugInstall
 endif
 
 
