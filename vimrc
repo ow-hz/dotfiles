@@ -94,8 +94,8 @@ Plug  'tpope/vim-fugitive'
 " javascript plugins
 Plug  'ternjs/tern_for_vim'
 " c# plugins
+" Plug 'OmniSharp/Omnisharp-vim'
 " Plug  'tpope/vim-dispatch'
-" Plug  'omniSharp/omnisharp-vim'
 " Plug  'OrangeT/vim-csharp'
 " Plug  'Shougo/vimproc.vim'
 " Plug  'Shougo/vimshell.vim'

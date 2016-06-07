@@ -57,6 +57,7 @@ plugins=(git brew npm tmux gem pip pyenv tmuxinator osx)
 
 # export MANPATH="/usr/local/man:$MANPATH"
 export PATH="/Users/owen/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH=$PATH:"/usr/local/share/dotnet"
 export GEM_HOME="/Volumes/MacStoreroom/RubyGems"
 export PATH=$PATH:"$GEM_HOME/bin"
 export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
