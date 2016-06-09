@@ -62,6 +62,7 @@ if !filereadable(plug_readme)
 endif
 
 
+
 call plug#begin('~/.vim/bundle')
 
 Plug  'rizzatti/dash.vim'
@@ -85,7 +86,12 @@ Plug  'klen/python-mode'
 Plug  'unterzicht/vim-virtualenv'
 Plug  'mbbill/undotree'
 Plug  'plasticboy/vim-markdown'
-Plug  'Valloric/YouCompleteMe'
+function! BuildYCM(info)
+    if a:info.status == 'installed' || a:info.force
+        !./install.py
+    endif
+endfunction
+Plug  'Valloric/YouCompleteMe', {'do': function('BuildYCM'), 'for': 'python, javascript' }
 " syntax
 Plug  'scrooloose/syntastic'
 " git plugins
@@ -94,8 +100,8 @@ Plug  'tpope/vim-fugitive'
 " javascript plugins
 Plug  'ternjs/tern_for_vim'
 " c# plugins
-" Plug 'OmniSharp/Omnisharp-vim'
-" Plug  'tpope/vim-dispatch'
+Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
+Plug  'tpope/vim-dispatch'
 " Plug  'OrangeT/vim-csharp'
 " Plug  'Shougo/vimproc.vim'
 " Plug  'Shougo/vimshell.vim'
@@ -326,3 +332,69 @@ nnoremap <leader>gd :YcmCompleter GoTo<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+
+
+
+
+
+" omnisharp-vim
+let g:OmniSharp_host = "http://localhost:2000"
+let g:OmniSharp_timeout = 1
+let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+augroup omnisharp_commands
+    autocmd!
+    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+    " Synchronous build (blocks Vim)
+    "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
+    " Builds can also run asynchronously with vim-dispatch installed
+    autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+    " automatic syntax check on events (TextChanged requires Vim 7.4)
+    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+    " Automatically add new cs files to the nearest project on save
+    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+    "show type information automatically when the cursor stops moving
+    " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+    "The following commands are contextual, based on the current cursor position.
+    autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+    autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+    "finds members in the current buffer
+    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+    " cursor can be anywhere on the line containing an issue
+    autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
+    autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
+    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+    " autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
+    "navigate up by method/property/field
+    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+    "navigate down by method/property/field
+    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+augroup END
+
+set updatetime=500
+
+nnoremap <leader><space> :OmniSharpGetCodeActions<cr>
+vnoremap <leader><space> :call OmniSharp#GetCodeActions('visual')<cr>
+
+" rename with dialog
+nnoremap <leader>nm :OmniSharpRename<cr>
+nnoremap <F2> :OmniSharpRename<cr>
+" rename without dialog - with cursor on the symbol to rename... ':Rename newname'
+command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+
+" Force OmniSharp to reload the solution. Useful when switching branches etc.
+nnoremap <leader>rl :OmniSharpReloadSolution<cr>
+nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+" Load the current .cs file to the nearest project
+nnoremap <leader>tp :OmniSharpAddToProject<cr>
+
+" (Experimental - uses vim-dispatch or vimproc plugin) - Start the omnisharp server for the current solution
+nnoremap <leader>ss :OmniSharpStartServer<cr>
+nnoremap <leader>sp :OmniSharpStopServer<cr>
+
+" Add syntax highlighting for types and interfaces
+nnoremap <leader>th :OmniSharpHighlightTypes<cr>
+"Don't ask to save when changing buffers (i.e. when jumping to a type definition)
+set hidden
