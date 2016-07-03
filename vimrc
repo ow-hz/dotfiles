@@ -4,13 +4,27 @@ set nocompatible
 " Set the character encoding used inside Vim.
 " set encoding=utf-8
 " Used for opening existed file.
-set fileencodings=utf-8,gbk
 " Set leader key.
-let mapleader=","
 " Use plugin.
 filetype plugin indent on
 " Always show status bar.
 set laststatus=2
+
+"*****************************************************************************
+"" vim-plug
+"*****************************************************************************
+let iCanHazPlug=1
+
+let plug_vim=expand('~/.vim/autoload/plug.vim')
+
+if !filereadable(plug_vim)
+    echo "Installing vim-plug..."
+    echo ""
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    let iCanHazPlug=0
+endif
+
+call plug#begin('~/.vim/bundle')
 
 
 
@@ -52,66 +66,105 @@ endif
 
 
 
-let iCanHazPlug=1
-let plug_readme=expand('~/.vim/autoload/plug.vim')
-if !filereadable(plug_readme)
-    echo "Installing vim-plug..."
-    echo ""
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let iCanHazPlug=0
-endif
 
+"*****************************************************************************
+"" plug-vim install essential packages
+"*****************************************************************************
+Plug 'scrooloose/nerdtree'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 
+Plug 'tpope/vim-commentary'
 
-call plug#begin('~/.vim/bundle')
+Plug 'ctrlpvim/ctrlp.vim'
 
-Plug  'rizzatti/dash.vim'
-Plug  'tpope/vim-commentary'
-Plug  'tpope/vim-surround'
-Plug  'vim-airline/vim-airline'
-Plug  'vim-airline/vim-airline-themes'
-Plug  'scrooloose/nerdtree'
-Plug  'Xuyuanp/nerdtree-git-plugin'
-Plug  'ctrlpvim/ctrlp.vim'
-Plug  'godlygeek/tabular'
-Plug  'terryma/vim-multiple-cursors'
-Plug  'mattn/emmet-vim'
-Plug  'majutsushi/tagbar'
-Plug  'easymotion/vim-easymotion'
-Plug  'vim-scripts/bufexplorer.zip'
-Plug  'altercation/vim-colors-solarized'
-" Plug  'snipmate'
-Plug 'garbas/vim-snipmate'
-Plug 'marcweber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-Plug  'AutoClose'
-Plug  'klen/python-mode'
-Plug  'unterzicht/vim-virtualenv'
-Plug  'mbbill/undotree'
-Plug  'plasticboy/vim-markdown'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+
+Plug 'tpope/vim-surround'
+
+Plug 'godlygeek/tabular'
+
+Plug 'rizzatti/dash.vim'
+
+Plug 'terryma/vim-multiple-cursors'
+
+Plug 'easymotion/vim-easymotion'
+
+Plug 'majutsushi/tagbar'
+
+Plug 'AutoClose'
+
+" Plug  'jiangmiao/auto-pairs'
+
+Plug 'vim-scripts/grep.vim'
+
+Plug 'sheerun/vim-polyglot'
+
+Plug 'bronson/vim-trailing-whitespace'
+
+" Plug 'ntpeters/vim-better-whitespace'
+
+Plug 'Shougo/deoplete.nvim'
+
+"" syntax check
+Plug  'scrooloose/syntastic'
+
+" Plug 'vim-scripts/CSApprox'
+"
+Plug 'yggdroot/indentLine'
+
+Plug 'vim-scripts/bufexplorer.zip'
+"" theme
+Plug 'altercation/vim-colors-solarized'
+"" snippets
+Plug 'marcweber/vim-addon-mw-utils'| Plug 'tomtom/tlib_vim'| Plug 'garbas/vim-snipmate'
+"" fonts and icons
+Plug  'ryanoasis/vim-devicons'
+"" marks
+Plug  'kshenoy/vim-signature'
+
+"*****************************************************************************
+"" plug-vim install customized packages
+"*****************************************************************************
+"
+"" Vim-Session
+Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
+
+"" Lisp Bundle
+Plug 'vim-scripts/slimv.vim'
+
+"" Python Bundle
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'unterzicht/vim-virtualenv'
+
+"" Javascript Bundle
+Plug 'jelera/vim-javascript-syntax'
+" Plug  'ternjs/tern_for_vim'
+
+"" .Net Bundle
+Plug  'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
+Plug  'OrangeT/vim-csharp', { 'for': 'cs' }
+" Plug 'Shougo/neocomplete.vim', { 'for': 'cs'}
+
+"" HTML Bundle
+Plug 'amirh/HTML-AutoCloseTag'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'gorodinskiy/vim-coloresque'
+Plug 'tpope/vim-haml'
+Plug 'mattn/emmet-vim'
+
+Plug 'mbbill/undotree'
+Plug 'plasticboy/vim-markdown'
 function! BuildYCM(info)
     if a:info.status == 'installed' || a:info.force
         !./install.py
     endif
 endfunction
 Plug  'Valloric/YouCompleteMe', {'do': function('BuildYCM'), 'for': 'python, javascript' }
-" syntax
-Plug  'scrooloose/syntastic'
-" git plugins
-Plug  'airblade/vim-gitgutter'
-Plug  'tpope/vim-fugitive'
-" javascript plugins
-Plug  'ternjs/tern_for_vim'
-" c# plugins
-Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
-" Plug 'Shougo/neocomplete.vim', { 'for': 'cs'}
-Plug 'Shougo/deoplete.nvim', { 'for': 'cs'}
-Plug  'tpope/vim-dispatch'
-Plug  'OrangeT/vim-csharp'
-" Plug  'Shougo/vimproc.vim'
-" Plug  'Shougo/vimshell.vim'
-Plug  'kshenoy/vim-signature'
-Plug  'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -123,18 +176,36 @@ if iCanHazPlug == 0
 endif
 
 
+"*****************************************************************************
+"" Basic Setup
+"*****************************************************************************"
+"" Encoding
+" set encoding=utf-8
+set fileencoding=utf-8
+set fileencodings=utf-8
 
-"=======================================================================================
-" save as sudo
-ca w!! w !sudo tee "%"
-
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
+"" Map leader to ,
+let mapleader=','
 
 
+set fileformats=unix,dos,mac
 
-"=======================================================================================
-" Colorscheme
+"" session management
+let g:session_directory = "~/.config/nvim/session"
+let g:session_autoload = "no"
+let g:session_autosave = "no"
+let g:session_command_aliases = 1
+
+
+
+"*****************************************************************************
+"" Visual Settings
+"*****************************************************************************"
+syntax on
+set ruler
+set number
+
+"" Color Scheme
 colorscheme solarized
 set background=dark
 
@@ -147,7 +218,21 @@ if has('gui_running')
 endif
 
 highlight clear SignColumn
-set cursorline              " Highlight the current line
+"" Highlight the current line
+set cursorline
+
+"" Keep cursor 3 lines away from screen border
+set scrolloff=3
+
+
+
+
+"=======================================================================================
+" save as sudo
+ca w!! w !sudo tee "%"
+
+"=======================================================================================
+
 
 " Tabs and spaces handling
 set expandtab
@@ -158,7 +243,6 @@ set shiftwidth=4
 set incsearch               " Incremental search
 set hlsearch                " Highlighted search results
 
-syntax on                   " Syntax highlight on
 
 set number                  " Show line numbers
 
@@ -411,7 +495,7 @@ set hidden
  let g:deoplete#enable_at_startup = 1
 " Use smartcase.
 let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 3
+let g:deoplete#auto_complete_start_length = 2
 
 if !exists('g:deoplete#omni_patterns')
 	let g:deoplete#omni_patterns = {}

@@ -89,5 +89,4 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
-
-# [ -s "/Users/owen/.dnx/dnvm/dnvm.sh" ] && . "/Users/owen/.dnx/dnvm/dnvm.sh" # Load dnvm
+eval $(docker-machine env)
