@@ -70,6 +70,8 @@ endif
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
 " Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'tpope/vim-commentary'
@@ -84,7 +86,7 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'tpope/vim-surround'
 
-Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular', { 'on': 'Tagbar' }
 
 Plug 'rizzatti/dash.vim'
 
@@ -141,11 +143,12 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 Plug 'vim-scripts/slimv.vim'
 
 "" Python Bundle
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'unterzicht/vim-virtualenv'
 
 "" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax'
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug  'ternjs/tern_for_vim'
 
 "" .Net Bundle
@@ -161,12 +164,12 @@ Plug 'mattn/emmet-vim'
 
 Plug 'mbbill/undotree'
 Plug 'plasticboy/vim-markdown'
-function! BuildYCM(info)
-    if a:info.status == 'installed' || a:info.force
-        !./install.py
-    endif
-endfunction
-Plug  'Valloric/YouCompleteMe', {'do': function('BuildYCM'), 'for': 'python, javascript' }
+" function! BuildYCM(info)
+"     if a:info.status == 'installed' || a:info.force
+"         !./install.py
+"     endif
+" endfunction
+" Plug  'Valloric/YouCompleteMe', {'do': function('BuildYCM'), 'for': 'python, javascript' }
 
 call plug#end()
 
@@ -385,7 +388,7 @@ let g:airline_powerline_fonts = 1
 
 
 " Syntastic
-let g:syntastic_python_checkers = ['flake8', 'mccabe']
+let g:syntastic_python_checkers=['python', 'flake8']
 let g:syntastic_always_populate_loc_list = 1
 
 
@@ -606,3 +609,22 @@ endfunctio
 " " https://github.com/c9s/perlomni.vim
 " let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 " let g:neocomplete#sources#omni#input_patterns.cs = '.*[^=\);]'
+
+
+
+"*****************************************************************************
+"" Customized Plugin Settings
+"*****************************************************************************
+"" jedi-vim
+let g:jedi#popup_on_dot = 1
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = "<leader>d"
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#show_call_signatures = "0"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#smart_auto_mappings = 0
+
+
+let g:indentLine_char = '┆'
