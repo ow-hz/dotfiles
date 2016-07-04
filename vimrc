@@ -7,8 +7,6 @@ set nocompatible
 " Set leader key.
 " Use plugin.
 filetype plugin indent on
-" Always show status bar.
-set laststatus=2
 
 "*****************************************************************************
 "" vim-plug
@@ -20,7 +18,7 @@ let plug_vim=expand('~/.vim/autoload/plug.vim')
 if !filereadable(plug_vim)
     echo "Installing vim-plug..."
     echo ""
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     let iCanHazPlug=0
 endif
 
@@ -71,7 +69,7 @@ endif
 "" plug-vim install essential packages
 "*****************************************************************************
 Plug 'scrooloose/nerdtree'
-Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'tpope/vim-commentary'
@@ -108,7 +106,12 @@ Plug 'bronson/vim-trailing-whitespace'
 
 " Plug 'ntpeters/vim-better-whitespace'
 
-Plug 'Shougo/deoplete.nvim'
+"" neocpmplete
+if has('nvim')
+    Plug 'Shougo/deoplete.nvim'
+else
+    Plug 'Shougo/neocomplete.vim'
+endif
 
 "" syntax check
 Plug  'scrooloose/syntastic'
@@ -146,9 +149,8 @@ Plug 'jelera/vim-javascript-syntax'
 " Plug  'ternjs/tern_for_vim'
 
 "" .Net Bundle
-Plug  'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
-Plug  'OrangeT/vim-csharp', { 'for': 'cs' }
-" Plug 'Shougo/neocomplete.vim', { 'for': 'cs'}
+Plug 'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
+Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
 
 "" HTML Bundle
 Plug 'amirh/HTML-AutoCloseTag'
@@ -218,12 +220,15 @@ if has('gui_running')
 endif
 
 highlight clear SignColumn
+
 "" Highlight the current line
 set cursorline
 
 "" Keep cursor 3 lines away from screen border
 set scrolloff=3
 
+"" Always show status bar
+set laststatus=2
 
 
 
