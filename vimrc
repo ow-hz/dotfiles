@@ -271,7 +271,7 @@ set number                  " Show line numbers
 set backspace=indent,eol,start
 set linespace=0             " No extra spaces between rows
 set showmatch               " Show matching brackets/parenthesis
-" set ignorecase              " Case insensitive search
+set ignorecase              " Case insensitive search
 set wildmenu                " Show list instead of just completing
 
 " Command <Tab> completion, list matches, then longest common part, all
