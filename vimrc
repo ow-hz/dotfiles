@@ -96,9 +96,9 @@ Plug 'easymotion/vim-easymotion'
 
 Plug 'majutsushi/tagbar'
 
-Plug 'AutoClose'
+" Plug 'AutoClose'
 
-" Plug  'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 Plug 'vim-scripts/grep.vim'
 
@@ -108,11 +108,23 @@ Plug 'bronson/vim-trailing-whitespace'
 
 " Plug 'ntpeters/vim-better-whitespace'
 
-"" neocpmplete
 if has('nvim')
+    "" auto-completion
     Plug 'Shougo/deoplete.nvim'
 else
+    "" auto-completion
     Plug 'Shougo/neocomplete.vim'
+    "" shell
+    Plug 'Shougo/vimshell.vim'
+
+    function! BuildVimProc(info)
+        if a:info.status == 'installed' || a:info.force
+            if WINDOWS()
+                ! tools\\update-dll-mingw
+            endif
+        endif
+    endfunction
+    Plug 'Shougo/vimproc.vim', { 'do': function('BuildVimProc')}
 endif
 
 "" syntax check
@@ -145,6 +157,7 @@ Plug 'vim-scripts/slimv.vim'
 "" Python Bundle
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'unterzicht/vim-virtualenv'
 
 "" Javascript Bundle
@@ -258,7 +271,7 @@ set number                  " Show line numbers
 set backspace=indent,eol,start
 set linespace=0             " No extra spaces between rows
 set showmatch               " Show matching brackets/parenthesis
-set ignorecase              " Case insensitive search
+" set ignorecase              " Case insensitive search
 set wildmenu                " Show list instead of just completing
 
 " Command <Tab> completion, list matches, then longest common part, all
@@ -352,12 +365,12 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
 " Python-mode
 " let g:pymode_run_bind      = '<leader>r'
-let g:pymode_motion          = 0
-let g:pymode_rope            = 0
-let g:pymode_rope_completion = 0
-let g:pymode_doc             = 0
-let g:pymode_run             = 0
-let g:pymode_lint            = 0
+" let g:pymode_motion          = 0
+" let g:pymode_rope            = 0
+" let g:pymode_rope_completion = 0
+" let g:pymode_doc             = 0
+" let g:pymode_run             = 0
+" let g:pymode_lint            = 0
 " Refactoring mapping
 " let g:pymode_rope_goto_definition_bind = '<leader>d'
 " let g:pymode_rope_rename_bind          = '<leader>r'
