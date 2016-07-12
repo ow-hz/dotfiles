@@ -154,9 +154,12 @@ Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 "" Lisp Bundle
 Plug 'vim-scripts/slimv.vim'
 
+"" Salt files
+Plug 'saltstack/salt-vim'
+Plug 'stephpy/vim-yaml'
+
 "" Python Bundle
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'unterzicht/vim-virtualenv'
 
@@ -641,3 +644,6 @@ let g:jedi#smart_auto_mappings = 0
 
 
 let g:indentLine_char = '┆'
+
+
+let g:sls_use_jinja_syntax = 1
