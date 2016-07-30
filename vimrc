@@ -312,7 +312,7 @@ let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 " plugin settings
 " NERDTree
-let g:NERDTreeWinPos="right"
+let g:NERDTreeWinPos="left"
 " let g:NERDTreeHighlightCursorline = 1
 " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 " autocmd StdinReadPre * let s:std_in=1
