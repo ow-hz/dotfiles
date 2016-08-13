@@ -162,10 +162,10 @@ Plug 'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
 Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
 
 "" HTML Bundle
-Plug 'amirh/HTML-AutoCloseTag'
-Plug 'hail2u/vim-css3-syntax'
-Plug 'gorodinskiy/vim-coloresque'
-Plug 'tpope/vim-haml'
+Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
+Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
+Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
+Plug 'tpope/vim-haml', {'for': 'html'}
 Plug 'mattn/emmet-vim'
 
 Plug 'mbbill/undotree'
@@ -396,7 +396,7 @@ let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
 
 " Youcompleteme
-  let g:ycm_auto_trigger = 0
+ " let g:ycm_auto_trigger = 0
 
 
 " Vim-airline
@@ -442,8 +442,8 @@ augroup END
 "=======================================================================================
 " key mappings
 nnoremap <leader>t :Tabularize /
-nnoremap <leader>gd :YcmCompleter GoTo<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
+" nnoremap <leader>gd :YcmCompleter GoTo<CR>
+" nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
 
