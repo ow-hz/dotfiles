@@ -96,7 +96,10 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'bronson/vim-trailing-whitespace'
 
+Plug 'ivanov/vim-ipython'
+
 " Plug 'ntpeters/vim-better-whitespace'
+"
 
 if has('nvim')
     "" auto-completion
@@ -218,7 +221,7 @@ set number
 
 "" Color Scheme
 colorscheme solarized
-set background=dark
+set background=light
 
 if has('gui_running')
     if has("gui_macvim")
