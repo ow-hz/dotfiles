@@ -651,3 +651,6 @@ let g:indentLine_char = '┆'
 
 
 let g:sls_use_jinja_syntax = 1
+
+
+autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
