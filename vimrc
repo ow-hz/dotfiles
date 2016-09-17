@@ -161,14 +161,14 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug  'ternjs/tern_for_vim'
 
 "" .Net Bundle
-Plug 'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
-Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
+" Plug 'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
+" Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
 
 "" HTML Bundle
-Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
+" Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
 Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
-Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
-Plug 'tpope/vim-haml', {'for': 'html'}
+" Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
+" Plug 'tpope/vim-haml', {'for': 'html'}
 Plug 'mattn/emmet-vim'
 
 Plug 'mbbill/undotree'
@@ -455,90 +455,92 @@ au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
 
 
 " omnisharp-vim
-let g:OmniSharp_host = "http://localhost:2000"
-let g:OmniSharp_timeout = 1
-let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
-augroup omnisharp_commands
-    autocmd!
-    autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-    " Synchronous build (blocks Vim)
-    "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
-    " Builds can also run asynchronously with vim-dispatch installed
-    autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
-    " automatic syntax check on events (TextChanged requires Vim 7.4)
-    autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-    " Automatically add new cs files to the nearest project on save
-    autocmd BufWritePost *.cs call OmniSharp#AddToProject()
-    "show type information automatically when the cursor stops moving
-    " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
-    "The following commands are contextual, based on the current cursor position.
-    autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
-    autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
-    autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
-    autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
-    autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
-    "finds members in the current buffer
-    autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
-    " cursor can be anywhere on the line containing an issue
-    autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
-    autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
-    autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
-    " autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
-    "navigate up by method/property/field
-    autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
-    "navigate down by method/property/field
-    autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
-augroup END
+" let g:OmniSharp_host = "http://localhost:2000"
+" let g:OmniSharp_timeout = 1
+" let g:syntastic_cs_checkers = ['syntax', 'semantic', 'issues']
+" augroup omnisharp_commands
+"     autocmd!
+"     autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+"     " Synchronous build (blocks Vim)
+"     "autocmd FileType cs nnoremap <F5> :wa!<cr>:OmniSharpBuild<cr>
+"     " Builds can also run asynchronously with vim-dispatch installed
+"     autocmd FileType cs nnoremap <leader>b :wa!<cr>:OmniSharpBuildAsync<cr>
+"     " automatic syntax check on events (TextChanged requires Vim 7.4)
+"     autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+"     " Automatically add new cs files to the nearest project on save
+"     autocmd BufWritePost *.cs call OmniSharp#AddToProject()
+"     "show type information automatically when the cursor stops moving
+"     " autocmd CursorHold *.cs call OmniSharp#TypeLookupWithoutDocumentation()
+"     "The following commands are contextual, based on the current cursor position.
+"     autocmd FileType cs nnoremap gd :OmniSharpGotoDefinition<cr>
+"     autocmd FileType cs nnoremap <leader>fi :OmniSharpFindImplementations<cr>
+"     autocmd FileType cs nnoremap <leader>ft :OmniSharpFindType<cr>
+"     autocmd FileType cs nnoremap <leader>fs :OmniSharpFindSymbol<cr>
+"     autocmd FileType cs nnoremap <leader>fu :OmniSharpFindUsages<cr>
+"     "finds members in the current buffer
+"     autocmd FileType cs nnoremap <leader>fm :OmniSharpFindMembers<cr>
+"     " cursor can be anywhere on the line containing an issue
+"     autocmd FileType cs nnoremap <leader>x  :OmniSharpFixIssue<cr>
+"     autocmd FileType cs nnoremap <leader>fx :OmniSharpFixUsings<cr>
+"     autocmd FileType cs nnoremap <leader>tt :OmniSharpTypeLookup<cr>
+"     " autocmd FileType cs nnoremap <leader>dc :OmniSharpDocumentation<cr>
+"     "navigate up by method/property/field
+"     autocmd FileType cs nnoremap <C-K> :OmniSharpNavigateUp<cr>
+"     "navigate down by method/property/field
+"     autocmd FileType cs nnoremap <C-J> :OmniSharpNavigateDown<cr>
+" augroup END
 
-set updatetime=500
+" set updatetime=500
 
-nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
-vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
+" nnoremap <leader>ca :OmniSharpGetCodeActions<cr>
+" vnoremap <leader>ca :call OmniSharp#GetCodeActions('visual')<cr>
 
-" rename with dialog
-nnoremap <leader>nm :OmniSharpRename<cr>
-nnoremap <F2> :OmniSharpRename<cr>
-" rename without dialog - with cursor on the symbol to rename... ':Rename newname'
-command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
+" " rename with dialog
+" nnoremap <leader>nm :OmniSharpRename<cr>
+" nnoremap <F2> :OmniSharpRename<cr>
+" " rename without dialog - with cursor on the symbol to rename... ':Rename newname'
+" command! -nargs=1 Rename :call OmniSharp#RenameTo("<args>")
 
-" Force OmniSharp to reload the solution. Useful when switching branches etc.
-nnoremap <leader>rs :OmniSharpReloadSolution<cr>
-nnoremap <leader>cf :OmniSharpCodeFormat<cr>
-" Load the current .cs file to the nearest project
-nnoremap <leader>ap :OmniSharpAddToProject<cr>
+" " Force OmniSharp to reload the solution. Useful when switching branches etc.
+" nnoremap <leader>rs :OmniSharpReloadSolution<cr>
+" nnoremap <leader>cf :OmniSharpCodeFormat<cr>
+" " Load the current .cs file to the nearest project
+" nnoremap <leader>ap :OmniSharpAddToProject<cr>
 
-" (Experimental - uses vim-dispatch or vimproc plugin) - Start the omnisharp server for the current solution
-nnoremap <leader>ss :OmniSharpStartServer<cr>
-nnoremap <leader>sp :OmniSharpStopServer<cr>
+" " (Experimental - uses vim-dispatch or vimproc plugin) - Start the omnisharp server for the current solution
+" nnoremap <leader>ss :OmniSharpStartServer<cr>
+" nnoremap <leader>sp :OmniSharpStopServer<cr>
 
-" Add syntax highlighting for types and interfaces
-nnoremap <leader>th :OmniSharpHighlightTypes<cr>
+" " Add syntax highlighting for types and interfaces
+" nnoremap <leader>th :OmniSharpHighlightTypes<cr>
+"
+
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
 set hidden
 
 
-
-
 " deoplete
- let g:deoplete#enable_at_startup = 1
-" Use smartcase.
-let g:deoplete#enable_smart_case = 1
-let g:deoplete#auto_complete_start_length = 2
+if has('nvim')
+     let g:deoplete#enable_at_startup = 1
+    " Use smartcase.
+    let g:deoplete#enable_smart_case = 1
+    let g:deoplete#auto_complete_start_length = 2
 
-if !exists('g:deoplete#omni_patterns')
-	let g:deoplete#omni_patterns = {}
+    if !exists('g:deoplete#omni_patterns')
+        let g:deoplete#omni_patterns = {}
+    endif
+    let g:deoplete#omni_patterns['cs'] = '[^. *\t]\.\w*'
+
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+    inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+
+    " <CR>: close popup and save indent.
+    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+    function! s:my_cr_function() abort
+      return deoplete#mappings#close_popup() . "\<CR>"
+    endfunctio
 endif
-let g:deoplete#omni_patterns['cs'] = '[^. *\t]\.\w*'
-
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
-
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function() abort
-  return deoplete#mappings#close_popup() . "\<CR>"
-endfunctio
 
 
 
