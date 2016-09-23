@@ -56,7 +56,7 @@ plugins=(git brew npm tmux gem pip pyenv tmuxinator osx)
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/Users/owen/Library/Python/2.7/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export PATH=$PATH:"/usr/local/share/dotnet"
 export GEM_HOME="/Volumes/MacStoreroom/RubyGems"
 export PATH=$PATH:"$GEM_HOME/bin"
@@ -89,4 +89,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
  [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
+ if [ -f /usr/local/bin/python3  ]; then
+     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
+fi
+
+ if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+     export WORKON_HOME=$HOME/.virtualenvs
+     source /usr/local/bin/virtualenvwrapper.sh
+fi
 eval $(docker-machine env)
