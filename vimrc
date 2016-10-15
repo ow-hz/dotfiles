@@ -169,6 +169,7 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
 " Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
 " Plug 'tpope/vim-haml', {'for': 'html'}
+Plug 'chrisgillis/vim-bootstrap3-snippets'
 Plug 'mattn/emmet-vim'
 
 Plug 'mbbill/undotree'
@@ -205,7 +206,7 @@ let mapleader=','
 set fileformats=unix,dos,mac
 
 "" session management
-let g:session_directory = "~/.vim/session"
+let g:session_directory = "~/.vim_session"
 let g:session_autoload = "no"
 let g:session_autosave = "no"
 let g:session_command_aliases = 1
@@ -310,7 +311,7 @@ set whichwrap=b,s,h,l,<,>,[,]
 " }
 
 " ctrlp cache dir
-let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
+" let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 
 " plugin settings
