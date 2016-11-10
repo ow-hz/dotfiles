@@ -1,20 +1,20 @@
-export TERM=xterm-256color
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-
-export EDITOR="vim"
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH=~/.oh-my-zsh
+export ZSH=/Users/owen/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
+
+# Uncomment the following line to use hyphen-insensitive completion. Case
+# sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -51,19 +51,14 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git brew npm tmux gem pip pyenv tmuxinator osx)
+plugins=(git)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-export PATH=$PATH:"/usr/local/share/dotnet"
-export GEM_HOME="/Volumes/MacStoreroom/RubyGems"
-export PATH=$PATH:"$GEM_HOME/bin"
-export JAVA_HOME="/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home/"
-export CLASSPATH=$JAVA_HOME/lib
-export PATH=$JAVA_HOME/bin:$PATH
-source $ZSH/oh-my-zsh.sh
+
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
 
@@ -78,7 +73,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -88,13 +83,3 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
- [[ -s $(brew --prefix)/etc/profile.d/autojump.sh ]] && . $(brew --prefix)/etc/profile.d/autojump.sh
- if [ -f /usr/local/bin/python3  ]; then
-     export VIRTUALENVWRAPPER_PYTHON=/usr/local/bin/python3
-fi
-
- if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-     export WORKON_HOME=$HOME/.virtualenvs
-     source /usr/local/bin/virtualenvwrapper.sh
-fi
-eval $(docker-machine env)

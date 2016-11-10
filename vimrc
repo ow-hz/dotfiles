@@ -21,8 +21,7 @@ if !filereadable(plug_vim)
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     let iCanHazPlug=0
 endif
-
-call plug#begin('~/.vim/bundle')
+call plug#begin('~/.vim/pluged')
 
 
 
@@ -43,14 +42,14 @@ endfunction
 
 
 
-if WINDOWS()
-    " Set runtime path for Windows.
-    set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
-    "Fix menu display for Windows.
-    source $VIMRUNTIME/delmenu.vim
-    source $VIMRUNTIME/menu.vim
-    language messages en_US.UTF-8
-endif
+" if WINDOWS()
+"     " Set runtime path for Windows.
+"     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
+"     "Fix menu display for Windows.
+"     source $VIMRUNTIME/delmenu.vim
+"     source $VIMRUNTIME/menu.vim
+"     language messages en_US.UTF-8
+" endif
 
 
 
@@ -142,14 +141,14 @@ Plug  'kshenoy/vim-signature'
 "*****************************************************************************
 "
 "" Vim-Session
-Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
+"Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
 
 "" Lisp Bundle
 Plug 'vim-scripts/slimv.vim'
 
 "" Salt files
-Plug 'saltstack/salt-vim'
-Plug 'stephpy/vim-yaml'
+" Plug 'saltstack/salt-vim'
+" Plug 'stephpy/vim-yaml'
 
 "" Python Bundle
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
@@ -166,10 +165,10 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 
 "" HTML Bundle
 " Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
-Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
+" Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
 " Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
 " Plug 'tpope/vim-haml', {'for': 'html'}
-Plug 'chrisgillis/vim-bootstrap3-snippets'
+" Plug 'chrisgillis/vim-bootstrap3-snippets'
 Plug 'mattn/emmet-vim'
 
 Plug 'mbbill/undotree'
@@ -206,10 +205,10 @@ let mapleader=','
 set fileformats=unix,dos,mac
 
 "" session management
-let g:session_directory = "~/.vim_session"
-let g:session_autoload = "no"
-let g:session_autosave = "no"
-let g:session_command_aliases = 1
+"let g:session_directory = "~/.vim_session"
+"let g:session_autoload = "no"
+"let g:session_autosave = "no"
+"let g:session_command_aliases = 1
 
 
 
@@ -222,13 +221,13 @@ set number
 
 "" Color Scheme
 colorscheme solarized
-set background=light
+" set background=light
 
 if has('gui_running')
     if has("gui_macvim")
-        set guifont=Monaco\ for\ Powerline:h11
+        "set guifont=Monaco\ for\ Powerline:h11
     elseif has("gui_win32")
-        set guifont=Consolas:h10
+        "set guifont=Consolas:h10
     endif
 endif
 
@@ -291,23 +290,23 @@ set whichwrap=b,s,h,l,<,>,[,]
 " Storage setting {
 
     " Better backup, swap and redo storage
-    set directory=~/.vim/dirs/tmp
+    "set directory=~/.vim/dirs/tmp
     " Make backup files
-    set backup
-    set backupdir=~/.vim/dirs/backups
-    set undofile
-    set undodir=~/.vim/dirs/undos
+    "set backup
+    "set backupdir=~/.vim/dirs/backups
+    "set undofile
+    "set undodir=~/.vim/dirs/undos
 
     " Create needed directories
-    if !isdirectory(&backupdir)
-        call mkdir(&backupdir, "p")
-    endif
-    if !isdirectory(&directory)
-        call mkdir(&directory, "p")
-    endif
-    if !isdirectory(&undodir)
-        call mkdir(&undodir, "p")
-    endif
+    "if !isdirectory(&backupdir)
+    "    call mkdir(&backupdir, "p")
+    "endif
+    "if !isdirectory(&directory)
+    "    call mkdir(&directory, "p")
+    "endif
+    "if !isdirectory(&undodir)
+    "    call mkdir(&undodir, "p")
+    "endif
 " }
 
 " ctrlp cache dir
@@ -361,13 +360,13 @@ noremap <c-l> <c-w>l
 
 " Settings for Common Lisp.
 if WINDOWS()
- let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
+ " let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
 endif
 
 
 
 " NERDTree
-let NERDTreeIgnore=['\.vim$', '\.pyc$']
+" let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
 
 
@@ -521,27 +520,27 @@ set hidden
 
 
 " deoplete
-if has('nvim')
-     let g:deoplete#enable_at_startup = 1
-    " Use smartcase.
-    let g:deoplete#enable_smart_case = 1
-    let g:deoplete#auto_complete_start_length = 2
+" if has('nvim')
+"      let g:deoplete#enable_at_startup = 1
+"     " Use smartcase.
+"     let g:deoplete#enable_smart_case = 1
+"     let g:deoplete#auto_complete_start_length = 2
 
-    if !exists('g:deoplete#omni_patterns')
-        let g:deoplete#omni_patterns = {}
-    endif
-    let g:deoplete#omni_patterns['cs'] = '[^. *\t]\.\w*'
+"     if !exists('g:deoplete#omni_patterns')
+"         let g:deoplete#omni_patterns = {}
+"     endif
+"     let g:deoplete#omni_patterns['cs'] = '[^. *\t]\.\w*'
 
-    " <C-h>, <BS>: close popup and delete backword char.
-    inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
-    inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
+"     " <C-h>, <BS>: close popup and delete backword char.
+"     inoremap <expr><C-h> deoplete#mappings#smart_close_popup()."\<C-h>"
+"     inoremap <expr><BS>  deoplete#mappings#smart_close_popup()."\<C-h>"
 
-    " <CR>: close popup and save indent.
-    inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-    function! s:my_cr_function() abort
-      return deoplete#mappings#close_popup() . "\<CR>"
-    endfunctio
-endif
+"     " <CR>: close popup and save indent.
+"     inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+"     function! s:my_cr_function() abort
+"       return deoplete#mappings#close_popup() . "\<CR>"
+"     endfunctio
+" endif
 
 
 
