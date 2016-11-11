@@ -85,9 +85,20 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 export PATH=/Users/owen/Library/Python/2.7/bin:$PATH
 
+# Examine docker-machine status and set env.
 ds=$(docker-machine status)
 if [ $ds = "Running" ]; then
     echo "Setting docker-machine env..."
     eval $(docker-machine env)
     echo "Done."
 fi
+
+wh=$HOME/.local/virtualenvs
+if [ ! -e $wh ]; then
+    echo "Creating $wh path..."
+    mkdir -p $wh
+    echo "Done."
+fi
+export WORKON_HOME=$wh
+export VIRTUALENVWRAPPER_SCRIPT=$(which virtualenvwrapper.sh)
+source $(which virtualenvwrapper_lazy.sh)
