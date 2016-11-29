@@ -95,14 +95,14 @@ Plug 'sheerun/vim-polyglot'
 
 Plug 'bronson/vim-trailing-whitespace'
 
-Plug 'ivanov/vim-ipython'
+" Plug 'ivanov/vim-ipython'
 
 " Plug 'ntpeters/vim-better-whitespace'
 "
 
 if has('nvim')
     "" auto-completion
-    Plug 'Shougo/deoplete.nvim'
+    " Plug 'Shougo/deoplete.nvim'
 else
     "" auto-completion
     Plug 'Shougo/neocomplete.vim'
@@ -656,3 +656,10 @@ let g:sls_use_jinja_syntax = 1
 
 
 autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+
+
+" split navagation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
