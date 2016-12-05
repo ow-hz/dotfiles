@@ -8,6 +8,37 @@ set nocompatible
 " Use plugin.
 filetype plugin indent on
 
+
+" general settings
+"
+" ui settings
+" plugins settings
+
+" customized functions
+
+" customized general mappings
+" split navagation
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
+nnoremap <C-l> <C-w><C-l>
+
+" set arrow keys disabled
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
+
+" filetype settings
+autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+augroup file_python
+augroup end
+
+augroup file_js
+augroup end
+"
+" others
+
 "*****************************************************************************
 "" vim-plug
 "*****************************************************************************
@@ -137,9 +168,6 @@ Plug  'kshenoy/vim-signature'
 "" plug-vim install customized packages
 "*****************************************************************************
 "
-"" Vim-Session
-"Plug 'xolox/vim-misc' | Plug 'xolox/vim-session'
-
 "" Lisp Bundle
 Plug 'vim-scripts/slimv.vim'
 
@@ -175,7 +203,6 @@ Plug 'plasticboy/vim-markdown'
 "         !./install.py
 "     endif
 " endfunction
-" Plug  'Valloric/YouCompleteMe', {'do': function('BuildYCM'), 'for': 'python, javascript' }
 
 call plug#end()
 
@@ -200,13 +227,6 @@ let mapleader=','
 
 
 set fileformats=unix,dos,mac
-
-"" session management
-"let g:session_directory = "~/.vim_session"
-"let g:session_autoload = "no"
-"let g:session_autosave = "no"
-"let g:session_command_aliases = 1
-
 
 
 "*****************************************************************************
@@ -349,11 +369,6 @@ nmap [h <Plug>GitGutterPrevHunk
 " Using <space> for folding toggle
 nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
-" disable arrow keys
-noremap <c-k> <c-w>k
-noremap <c-j> <c-w>j
-noremap <c-h> <c-w>h
-noremap <c-l> <c-w>l
 
 " Settings for Common Lisp.
 if WINDOWS()
@@ -392,11 +407,6 @@ endif
 " let g:jedi#goto_assignments_command = ''
 " let g:jedi#rename_command           = ''
 " let g:jedi#show_call_signatures     = 2
-
-
-
-" Youcompleteme
- " let g:ycm_auto_trigger = 0
 
 
 " Vim-airline
@@ -476,11 +486,3 @@ let g:indentLine_char = '┆'
 let g:sls_use_jinja_syntax = 1
 
 
-autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-
-
-" split navagation
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
