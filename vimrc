@@ -1,159 +1,54 @@
-"=======================================================================================
-" Not compatible with vi.
+" general settings {{{
 set nocompatible
-" Set the character encoding used inside Vim.
-" set encoding=utf-8
-" Used for opening existed file.
-" Set leader key.
-" Use plugin.
 filetype plugin indent on
+set fileencoding=utf-8
+set fileencodings=utf-8
+set scrolloff=3
+set laststatus=2
+let mapleader=','
+syntax on
+" set fileformats=unix,dos,mac
+" }}}
 
 
-" general settings
-"
-" ui settings
-" plugins settings
-
-" customized functions
-
-" customized general mappings
-" split navagation
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
-
-" set arrow keys disabled
-noremap <c-k> <c-w>k
-noremap <c-j> <c-w>j
-noremap <c-h> <c-w>h
-noremap <c-l> <c-w>l
-
-" filetype settings
-autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-augroup file_python
-augroup end
-
-augroup file_js
-augroup end
-"
-" others
-
-"*****************************************************************************
-"" vim-plug
-"*****************************************************************************
+" plug settings {{{
 let iCanHazPlug=1
-
 let plug_vim=expand('~/.vim/autoload/plug.vim')
-
 if !filereadable(plug_vim)
-    echo "Installing vim-plug..."
-    echo ""
+    echo "Installing vim-plug...\n"
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     let iCanHazPlug=0
 endif
 call plug#begin('~/.vim/pluged')
-
-
-
-"=======================================================================================
-" Identify platforms.
-silent function! OSX()
-    return has('macunix')
-endfunction
-silent function! LINUX()
-    return has('unix') && !has('macunix') && !has('win32unix')
-endfunction
-silent function! WINDOWS()
-    return (has('win16') || has('win32') || has('win64'))
-endfunction
-
-
-
-" if WINDOWS()
-"     " Set runtime path for Windows.
-"     set runtimepath=$HOME/.vim,$VIM/vimfiles,$VIMRUNTIME
-"     "Fix menu display for Windows.
-"     source $VIMRUNTIME/delmenu.vim
-"     source $VIMRUNTIME/menu.vim
-"     language messages en_US.UTF-8
-" endif
-
-
-
-
-"*****************************************************************************
-"" plug-vim install essential packages
-"*****************************************************************************
+" plugins
 Plug 'scrooloose/nerdtree'
 " Plug 'jistr/vim-nerdtree-tabs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-
 Plug 'tpope/vim-commentary'
-
 Plug 'ctrlpvim/ctrlp.vim'
-
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
-
 Plug 'tpope/vim-surround'
-
 Plug 'godlygeek/tabular', { 'on': 'Tagbar' }
-
 Plug 'rizzatti/dash.vim'
-
 Plug 'terryma/vim-multiple-cursors'
-
 Plug 'easymotion/vim-easymotion'
-
 Plug 'majutsushi/tagbar'
-
 " Plug 'AutoClose'
-
 Plug 'jiangmiao/auto-pairs'
-
 Plug 'vim-scripts/grep.vim'
-
 Plug 'sheerun/vim-polyglot'
-
 Plug 'bronson/vim-trailing-whitespace'
-
 " Plug 'ivanov/vim-ipython'
-
 " Plug 'ntpeters/vim-better-whitespace'
-"
-
-if has('nvim')
-    "" auto-completion
-    " Plug 'Shougo/deoplete.nvim'
-else
-    "" auto-completion
-    Plug 'Shougo/neocomplete.vim'
-    "" shell
-    Plug 'Shougo/vimshell.vim'
-
-    function! BuildVimProc(info)
-        if a:info.status == 'installed' || a:info.force
-            if WINDOWS()
-                ! tools\\update-dll-mingw
-            endif
-        endif
-    endfunction
-    Plug 'Shougo/vimproc.vim', { 'do': function('BuildVimProc')}
-endif
-
 "" syntax check
 Plug  'scrooloose/syntastic'
-
 " Plug 'vim-scripts/CSApprox'
-"
 Plug 'yggdroot/indentLine'
-
 Plug 'vim-scripts/bufexplorer.zip'
 "" theme
 Plug 'altercation/vim-colors-solarized'
@@ -163,31 +58,21 @@ Plug 'marcweber/vim-addon-mw-utils'| Plug 'tomtom/tlib_vim'| Plug 'garbas/vim-sn
 Plug  'ryanoasis/vim-devicons'
 "" marks
 Plug  'kshenoy/vim-signature'
-
 "*****************************************************************************
 "" plug-vim install customized packages
 "*****************************************************************************
-"
 "" Lisp Bundle
 Plug 'vim-scripts/slimv.vim'
-
 "" Salt files
 " Plug 'saltstack/salt-vim'
 " Plug 'stephpy/vim-yaml'
-
 "" Python Bundle
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'unterzicht/vim-virtualenv'
-
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug  'ternjs/tern_for_vim'
-
-"" .Net Bundle
-" Plug 'tpope/vim-dispatch' | Plug 'OmniSharp/Omnisharp-vim', {'for': 'cs'}
-" Plug 'OrangeT/vim-csharp', { 'for': 'cs' }
-
 "" HTML Bundle
 " Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
 " Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
@@ -195,70 +80,30 @@ Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " Plug 'tpope/vim-haml', {'for': 'html'}
 " Plug 'chrisgillis/vim-bootstrap3-snippets'
 Plug 'mattn/emmet-vim'
-
 Plug 'mbbill/undotree'
 Plug 'plasticboy/vim-markdown'
-" function! BuildYCM(info)
-"     if a:info.status == 'installed' || a:info.force
-"         !./install.py
-"     endif
-" endfunction
-
 call plug#end()
-
-
 if iCanHazPlug == 0
-    echo "Installing vim plugins..."
-    echo ""
+    echo "Installing vim plugins...\n"
     :PlugInstall
 endif
+" }}}
 
 
-"*****************************************************************************
-"" Basic Setup
-"*****************************************************************************"
-"" Encoding
-" set encoding=utf-8
-set fileencoding=utf-8
-set fileencodings=utf-8
-
-"" Map leader to ,
-let mapleader=','
-
-
-set fileformats=unix,dos,mac
-
-
-"*****************************************************************************
-"" Visual Settings
-"*****************************************************************************"
-syntax on
+" ui settings {{{
 set ruler
 set number
-
-"" Color Scheme
-colorscheme solarized
-" set background=light
-
-if has('gui_running')
-    if has("gui_macvim")
-        "set guifont=Monaco\ for\ Powerline:h11
-    elseif has("gui_win32")
-        "set guifont=Consolas:h10
-    endif
-endif
-
-highlight clear SignColumn
-
-"" Highlight the current line
+set incsearch
+set hlsearch
+" hilight the cursor line
 set cursorline
+" highlight clear SignColumn
+" color scheme
+colorscheme solarized
+" }}}
 
-"" Keep cursor 3 lines away from screen border
-set scrolloff=3
 
-"" Always show status bar
-set laststatus=2
-
+" customized functions {{{
 function! ToggleBG()
     let s:tbg = &background
     " Inversion
@@ -268,8 +113,52 @@ function! ToggleBG()
         set background=dark
     endif
 endfunction
-noremap <leader>bg :call ToggleBG()<CR>
+" }}}
 
+
+" general mappings {{{
+" set arrow key disabled for moving
+noremap <Up>    <NOP>
+noremap <Down>  <NOP>
+noremap <Left>  <NOP>
+noremap <Right> <NOP>
+" split navagation
+noremap <c-k> <c-w>k
+noremap <c-j> <c-w>j
+noremap <c-h> <c-w>h
+noremap <c-l> <c-w>l
+" toggle background
+noremap <leader>bg :call ToggleBG()<CR>
+" }}}
+
+
+" specific filetype settings {{{
+" python {{{
+augroup filetype_python
+	autocmd BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+	autocmd FileType python setlocal foldmethod=indent
+	" tabs and space
+	autocmd FileType python set expandtab
+	autocmd FileType python set tabstop=4
+	autocmd FileType python set softtabstop=4
+	autocmd FileType python set shiftwidth=4
+augroup end
+" }}}
+
+" vim {{{
+augroup filetype filetype_vim
+       	autocmd FileType vim setlocal foldmethod=marker
+augroup end
+" }}}
+
+augroup file_js
+augroup end
+" }}}
+
+
+" others {{{
+" }}}
 
 
 "=======================================================================================
@@ -279,23 +168,17 @@ ca w!! w !sudo tee "%"
 "=======================================================================================
 
 
-" Tabs and spaces handling
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-set incsearch               " Incremental search
-set hlsearch                " Highlighted search results
 
 
-set number                  " Show line numbers
+
+
+
 
 " Backspace for dummies
 set backspace=indent,eol,start
 set linespace=0             " No extra spaces between rows
 set showmatch               " Show matching brackets/parenthesis
-set ignorecase              " Case insensitive search
+" set ignorecase              " Case insensitive search
 set wildmenu                " Show list instead of just completing
 
 " Command <Tab> completion, list matches, then longest common part, all
@@ -304,27 +187,6 @@ set wildmode=full
 " Backspace and cursor keys to wrap.
 set whichwrap=b,s,h,l,<,>,[,]
 
-" Storage setting {
-
-    " Better backup, swap and redo storage
-    "set directory=~/.vim/dirs/tmp
-    " Make backup files
-    "set backup
-    "set backupdir=~/.vim/dirs/backups
-    "set undofile
-    "set undodir=~/.vim/dirs/undos
-
-    " Create needed directories
-    "if !isdirectory(&backupdir)
-    "    call mkdir(&backupdir, "p")
-    "endif
-    "if !isdirectory(&directory)
-    "    call mkdir(&directory, "p")
-    "endif
-    "if !isdirectory(&undodir)
-    "    call mkdir(&undodir, "p")
-    "endif
-" }
 
 " ctrlp cache dir
 " let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
@@ -342,10 +204,6 @@ let g:NERDTreeWinPos="left"
 "=======================================================================================
 " Customized Mapping
 "
-noremap <Up>    <NOP>
-noremap <Down>  <NOP>
-noremap <Left>  <NOP>
-noremap <Right> <NOP>
 
 " Buffer Move
 nnoremap <silent> [b :bprevious<CR>
@@ -371,9 +229,9 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 
 " Settings for Common Lisp.
-if WINDOWS()
- " let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
-endif
+" if WINDOWS()
+"  " let g:slimv_swank_cmd = '!start "C:/Program Files (x86)/LispCabinet/bin/ccl/wx86cl.exe" -l "C:/Program Files (x86)/LispCabinet/site/lisp/slime/start-swank.lisp"'
+" endif
 
 
 
@@ -439,14 +297,6 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 
 "=======================================================================================
 " onoremap ih :<c-u> execute "normal! ?^==\\+$\r:nohlsearch\rkvg_"<CR>
-" Vimscript file settings{{{
-augroup filetype_vim
-    autocmd!
-    autocmd FileType vim setlocal foldmethod=marker
-
-augroup END
-"}}}
-
 
 
 "=======================================================================================
@@ -455,7 +305,6 @@ nnoremap <leader>t :Tabularize /
 " nnoremap <leader>gd :YcmCompleter GoTo<CR>
 " nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 
-au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
 
 
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
@@ -465,7 +314,7 @@ set hidden
 "*****************************************************************************
 "" Customized Plugin Settings
 "*****************************************************************************
-"" jedi-vim
+" jedi-vim
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
@@ -478,11 +327,5 @@ let g:jedi#smart_auto_mappings = 0
 
 " don`t use popup docs
 autocmd FileType python setlocal completeopt-=preview
-
-
 let g:indentLine_char = '┆'
-
-
-let g:sls_use_jinja_syntax = 1
-
-
+let g:sls_use_jinja_syntax = 1"}}}
