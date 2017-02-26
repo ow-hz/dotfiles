@@ -11,7 +11,7 @@ syntax on
 " }}}
 
 
-" plug settings {{{
+" vim-pulg {{{
 let iCanHazPlug=1
 let plug_vim=expand('~/.vim/autoload/plug.vim')
 if !filereadable(plug_vim)
@@ -43,6 +43,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'bronson/vim-trailing-whitespace'
+Plug 'python-mode/python-mode'
 " Plug 'ivanov/vim-ipython'
 " Plug 'ntpeters/vim-better-whitespace'
 "" syntax check
@@ -68,7 +69,6 @@ Plug 'vim-scripts/slimv.vim'
 " Plug 'stephpy/vim-yaml'
 "" Python Bundle
 Plug 'davidhalter/jedi-vim', { 'for': 'python' }
-Plug 'hdima/python-syntax', {'for': 'python'}
 Plug 'unterzicht/vim-virtualenv'
 "" Javascript Bundle
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
@@ -100,6 +100,10 @@ set cursorline
 " highlight clear SignColumn
 " color scheme
 colorscheme solarized
+
+if has("gui_running")
+    set guifont=MesloLGMDZ_Nerd_Font
+endif
 " }}}
 
 
@@ -166,12 +170,6 @@ augroup end
 ca w!! w !sudo tee "%"
 
 "=======================================================================================
-
-
-
-
-
-
 
 
 " Backspace for dummies
@@ -311,9 +309,21 @@ nnoremap <leader>t :Tabularize /
 set hidden
 
 
-"*****************************************************************************
+" plugin-settings {{{
+" python-mode {{{
+let g:pymode = 1
+let g:pymode_lint = 0
+let g:pymode_rope = 0
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_rope_completion = 0
+highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
+" }}}
+" }}}
+
+" *****************************************************************************
 "" Customized Plugin Settings
-"*****************************************************************************
+" *****************************************************************************
 " jedi-vim
 let g:jedi#popup_on_dot = 1
 let g:jedi#goto_assignments_command = "<leader>g"
