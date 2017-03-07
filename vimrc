@@ -43,7 +43,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'python-mode/python-mode'
+" Plug 'python-mode/python-mode'
 " Plug 'ivanov/vim-ipython'
 " Plug 'ntpeters/vim-better-whitespace'
 "" syntax check
@@ -236,23 +236,6 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " NERDTree
 " let NERDTreeIgnore=['\.vim$', '\.pyc$']
 
-
-
-" Python-mode
-" let g:pymode_run_bind      = '<leader>r'
-" let g:pymode_motion          = 0
-" let g:pymode_rope            = 0
-" let g:pymode_rope_completion = 0
-" let g:pymode_doc             = 0
-" let g:pymode_run             = 0
-" let g:pymode_lint            = 0
-" Refactoring mapping
-" let g:pymode_rope_goto_definition_bind = '<leader>d'
-" let g:pymode_rope_rename_bind          = '<leader>r'
-" let g:pymode_rope_rename_module_bind   = '<leader>rm'
-
-
-
 " Solarized
 " let g:solarized_termcolors=256
 
@@ -263,6 +246,14 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " let g:jedi#goto_assignments_command = ''
 " let g:jedi#rename_command           = ''
 " let g:jedi#show_call_signatures     = 2
+let g:jedi#popup_select_first = 0
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
 
 
 " Vim-airline
@@ -308,18 +299,6 @@ nnoremap <leader>t :Tabularize /
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
 set hidden
 
-
-" plugin-settings {{{
-" python-mode {{{
-let g:pymode = 1
-let g:pymode_lint = 0
-let g:pymode_rope = 0
-let g:pymode_syntax = 1
-let g:pymode_syntax_all = 1
-let g:pymode_rope_completion = 0
-highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
-" }}}
-" }}}
 
 " *****************************************************************************
 "" Customized Plugin Settings
