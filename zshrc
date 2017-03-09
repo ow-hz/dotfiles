@@ -83,6 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
 export PATH=/Users/owen/Library/Python/2.7/bin:$PATH
 
 # Examine docker-machine status and set env.
