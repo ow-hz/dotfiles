@@ -106,3 +106,8 @@ source $(which virtualenvwrapper_lazy.sh)
 
 # Set Java home
 export JAVA_HOME='/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home'
+
+# Launch tmux
+if [ "$TMUX" = "" ]; then
+    tmux;
+fi
