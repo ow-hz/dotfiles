@@ -6,6 +6,7 @@ set fileencodings=utf-8
 set scrolloff=3
 set laststatus=2
 let mapleader=','
+set viminfo='1000
 syntax on
 " set fileformats=unix,dos,mac
 " }}}
@@ -47,7 +48,7 @@ Plug 'bronson/vim-trailing-whitespace'
 " Plug 'ivanov/vim-ipython'
 " Plug 'ntpeters/vim-better-whitespace'
 "" syntax check
-Plug  'scrooloose/syntastic'
+Plug 'w0rp/ale'
 " Plug 'vim-scripts/CSApprox'
 Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
@@ -260,11 +261,20 @@ let g:jedi#rename_command = "<leader>r"
 let g:airline_powerline_fonts = 1
 
 
-
-" Syntastic
-let g:syntastic_python_checkers=['python', 'flake8']
-let g:syntastic_always_populate_loc_list = 1
-
+" ale
+" filetype off
+let &runtimepath.=',~/.vim/pluged/ale'
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'python': ['flake8'],
+\}
+" filetype plugin on
+let g:ale_sign_column_always = 1
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
+" let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 
 
 " Bufexplorer
@@ -291,9 +301,6 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 "=======================================================================================
 " key mappings
 nnoremap <leader>t :Tabularize /
-" nnoremap <leader>gd :YcmCompleter GoTo<CR>
-" nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-
 
 
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
@@ -316,5 +323,5 @@ let g:jedi#smart_auto_mappings = 0
 
 " don`t use popup docs
 autocmd FileType python setlocal completeopt-=preview
-let g:indentLine_char = '┆'
-let g:sls_use_jinja_syntax = 1"}}}
+ let g:indentLine_char = '┆'
+" let g:sls_use_jinja_syntax = 1"}}}
