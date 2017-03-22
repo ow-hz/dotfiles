@@ -8,6 +8,16 @@ set laststatus=2
 let mapleader=','
 set viminfo='1000
 syntax on
+
+if exists('$TMUX')
+    set term=screen-256color
+endif
+augroup generic_file_settings
+    autocmd FileType * set expandtab
+	autocmd FileType * set tabstop=4
+	autocmd FileType * set softtabstop=4
+	autocmd FileType * set shiftwidth=4
+augroup end
 " set fileformats=unix,dos,mac
 " }}}
 
@@ -140,9 +150,9 @@ noremap <leader>bg :call ToggleBG()<CR>
 " specific filetype settings {{{
 " python {{{
 augroup filetype_python
-	autocmd BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+	autocmd BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python3 % <CR>
 	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-	autocmd FileType python setlocal foldmethod=indent
+	" autocmd FileType python setlocal foldmethod=indent
 	" tabs and space
 	autocmd FileType python set expandtab
 	autocmd FileType python set tabstop=4
@@ -153,7 +163,7 @@ augroup end
 
 " vim {{{
 augroup filetype filetype_vim
-       	autocmd FileType vim setlocal foldmethod=marker
+    autocmd FileType vim setlocal foldmethod=marker
 augroup end
 " }}}
 
@@ -248,9 +258,10 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " let g:jedi#rename_command           = ''
 " let g:jedi#show_call_signatures     = 2
 let g:jedi#popup_select_first = 0
+let g:jedi#popup_on_dot = 0
 let g:jedi#goto_command = "<leader>d"
 let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
+" let g:jedi#goto_definitions_command = ""
 let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
@@ -278,9 +289,9 @@ let g:ale_sign_warning = '--'
 
 
 " Bufexplorer
-nnoremap <silent> <F11>   : BufExplorer<CR>
-nnoremap <silent> <m-F11> : BufExplorerHorizontalSplit<CR>
-nnoremap <silent> <c-F11> : BufExplorerVerticalSplit<CR>
+nnoremap <silent> <F2>   : BufExplorer<CR>
+" nnoremap <silent> <m-F2> : BufExplorerHorizontalSplit<CR>
+" nnoremap <silent> <c-F2> : BufExplorerVerticalSplit<CR>
 
 
 
@@ -311,7 +322,7 @@ set hidden
 "" Customized Plugin Settings
 " *****************************************************************************
 " jedi-vim
-let g:jedi#popup_on_dot = 1
+let g:jedi#popup_on_dot = 0
 let g:jedi#goto_assignments_command = "<leader>g"
 let g:jedi#goto_definitions_command = "<leader>d"
 let g:jedi#documentation_command = "K"
@@ -323,5 +334,5 @@ let g:jedi#smart_auto_mappings = 0
 
 " don`t use popup docs
 autocmd FileType python setlocal completeopt-=preview
- let g:indentLine_char = '┆'
+let g:indentLine_char = '┆'
 " let g:sls_use_jinja_syntax = 1"}}}

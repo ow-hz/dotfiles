@@ -109,5 +109,5 @@ export JAVA_HOME='/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 
 # Launch tmux
 if [ "$TMUX" = "" ]; then
-    tmux;
+    tmux new -s default-session
 fi
