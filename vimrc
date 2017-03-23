@@ -65,7 +65,7 @@ Plug 'vim-scripts/bufexplorer.zip'
 "" theme
 Plug 'altercation/vim-colors-solarized'
 "" snippets
-Plug 'marcweber/vim-addon-mw-utils'| Plug 'tomtom/tlib_vim'| Plug 'garbas/vim-snipmate'
+" Plug 'marcweber/vim-addon-mw-utils'| Plug 'tomtom/tlib_vim'| Plug 'garbas/vim-snipmate'
 "" fonts and icons
 Plug  'ryanoasis/vim-devicons'
 "" marks
@@ -150,7 +150,7 @@ noremap <leader>bg :call ToggleBG()<CR>
 " specific filetype settings {{{
 " python {{{
 augroup filetype_python
-	autocmd BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python3 % <CR>
+	autocmd BufRead *.py map <buffer> <F3> :w<CR>:!/usr/bin/env python3 % <CR>
 	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 	" autocmd FileType python setlocal foldmethod=indent
 	" tabs and space
@@ -266,6 +266,7 @@ let g:jedi#documentation_command = "K"
 let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
+autocmd FileType python setlocal omnifunc=jedi#completions
 
 
 " Vim-airline
@@ -321,18 +322,7 @@ set hidden
 " *****************************************************************************
 "" Customized Plugin Settings
 " *****************************************************************************
-" jedi-vim
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = "<leader>d"
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#show_call_signatures = "0"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#smart_auto_mappings = 0
-
 " don`t use popup docs
-autocmd FileType python setlocal completeopt-=preview
+" autocmd FileType python setlocal completeopt-=preview
 let g:indentLine_char = '┆'
 " let g:sls_use_jinja_syntax = 1"}}}
