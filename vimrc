@@ -149,8 +149,18 @@ noremap <leader>bg :call ToggleBG()<CR>
 
 " specific filetype settings {{{
 " python {{{
+function! RunProgramme()
+    if g:virtualenv_loaded == 1
+        silent !clear
+        !python %
+    else
+        !/usr/bin/env python3 %
+    endif
+endfunction
+
 augroup filetype_python
-	autocmd BufRead *.py map <buffer> <F3> :w<CR>:!/usr/bin/env python3 % <CR>
+    autocmd BufRead *.py map <buffer> <F3> :w<CR>:call RunProgramme()<CR>
+
 	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 	" autocmd FileType python setlocal foldmethod=indent
 	" tabs and space
