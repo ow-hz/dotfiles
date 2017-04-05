@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git autojump)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,6 +83,10 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+# alias tmux=" tmux new -s default-session"
+# Vim in programming mod
+alias vp="vim -c 'NERD|wincmd l'"
+
 export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
 export PATH=/Users/owen/Library/Python/2.7/bin:$PATH
 
@@ -109,5 +113,5 @@ export JAVA_HOME='/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Ho
 
 # Launch tmux
 if [ "$TMUX" = "" ]; then
-    tmux new -s default-session
 fi
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh

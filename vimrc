@@ -1,7 +1,7 @@
 " general settings {{{
 set nocompatible
 filetype plugin indent on
-set fileencoding=utf-8
+" set fileencoding=utf-8
 set fileencodings=utf-8
 set scrolloff=3
 set laststatus=2
@@ -33,6 +33,7 @@ endif
 call plug#begin('~/.vim/pluged')
 " plugins
 Plug 'scrooloose/nerdtree'
+Plug 'skywind3000/asyncrun.vim'
 " Plug 'jistr/vim-nerdtree-tabs'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'jistr/vim-nerdtree-tabs'
@@ -64,8 +65,11 @@ Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
 "" theme
 Plug 'altercation/vim-colors-solarized'
+"" utils
+Plug 'marcweber/vim-addon-mw-utils'
+Plug 'tomtom/tlib_vim'
 "" snippets
-" Plug 'marcweber/vim-addon-mw-utils'| Plug 'tomtom/tlib_vim'| Plug 'garbas/vim-snipmate'
+Plug 'garbas/vim-snipmate'
 "" fonts and icons
 Plug  'ryanoasis/vim-devicons'
 "" marks
@@ -113,7 +117,7 @@ set cursorline
 colorscheme solarized
 
 if has("gui_running")
-    set guifont=MesloLGMDZ_Nerd_Font
+    set guifont=MesloLGSDZ_Nerd_Font
 endif
 " }}}
 
@@ -144,22 +148,27 @@ noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 " toggle background
 noremap <leader>bg :call ToggleBG()<CR>
+
+map <F4> :NERDTreeToggle<CR>
+map <F5> :TagbarToggle<CR>
+
 " }}}
 
 
 " specific filetype settings {{{
 " python {{{
 function! RunProgramme()
-    if g:virtualenv_loaded == 1
-        silent !clear
-        !python %
-    else
-        !/usr/bin/env python3 %
-    endif
+    " if g:virtualenv_loaded == 1
+    "     silent !clear
+    "     !python %
+    " else
+    " endif
+    silent !clear
+    !/usr/bin/env python3 %
 endfunction
 
 augroup filetype_python
-    autocmd BufRead *.py map <buffer> <F3> :w<CR>:call RunProgramme()<CR>
+    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
 
 	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 	" autocmd FileType python setlocal foldmethod=indent
@@ -173,7 +182,7 @@ augroup end
 
 " vim {{{
 augroup filetype filetype_vim
-    autocmd FileType vim setlocal foldmethod=marker
+    " autocmd FileType vim setlocal foldmethod=marker
 augroup end
 " }}}
 
@@ -283,7 +292,7 @@ autocmd FileType python setlocal omnifunc=jedi#completions
 let g:airline_powerline_fonts = 1
 
 
-" ale
+" ale {
 " filetype off
 let &runtimepath.=',~/.vim/pluged/ale'
 let g:ale_linters = {
@@ -292,17 +301,19 @@ let g:ale_linters = {
 \}
 " filetype plugin on
 let g:ale_sign_column_always = 1
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
+let g:ale_sign_error = '•'
+let g:ale_sign_warning = '•'
 " highlight clear ALEErrorSign
 " highlight clear ALEWarningSign
 " let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
+" }
 
 
-" Bufexplorer
+" Bufexplorer {
 nnoremap <silent> <F2>   : BufExplorer<CR>
 " nnoremap <silent> <m-F2> : BufExplorerHorizontalSplit<CR>
 " nnoremap <silent> <c-F2> : BufExplorerVerticalSplit<CR>
+" }
 
 
 
@@ -336,3 +347,8 @@ set hidden
 " autocmd FileType python setlocal completeopt-=preview
 let g:indentLine_char = '┆'
 " let g:sls_use_jinja_syntax = 1"}}}
+"
+
+let g:virtualenv_directory = '~/.local/virtualenvs'
+
+let NERDTreeIgnore=['.*.pyc']
