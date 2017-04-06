@@ -32,11 +32,10 @@ if !filereadable(plug_vim)
 endif
 call plug#begin('~/.vim/pluged')
 " plugins
+Plug 'Valloric/YouCompleteMe'
+Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
-Plug 'skywind3000/asyncrun.vim'
 " Plug 'jistr/vim-nerdtree-tabs'
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tpope/vim-commentary'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -45,58 +44,41 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular', { 'on': 'Tagbar' }
+Plug 'godlygeek/tabular'
 Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
-" Plug 'AutoClose'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'bronson/vim-trailing-whitespace'
-" Plug 'python-mode/python-mode'
-" Plug 'ivanov/vim-ipython'
-" Plug 'ntpeters/vim-better-whitespace'
-"" syntax check
+" "" syntax check
 Plug 'w0rp/ale'
-" Plug 'vim-scripts/CSApprox'
 Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
-"" theme
-Plug 'altercation/vim-colors-solarized'
-"" utils
+" "" utils
 Plug 'marcweber/vim-addon-mw-utils'
 Plug 'tomtom/tlib_vim'
-"" snippets
+" "" snippets
 Plug 'garbas/vim-snipmate'
-"" fonts and icons
+" "" fonts and icons
 Plug  'ryanoasis/vim-devicons'
-"" marks
+" "" marks
 Plug  'kshenoy/vim-signature'
-"*****************************************************************************
-"" plug-vim install customized packages
-"*****************************************************************************
-"" Lisp Bundle
-Plug 'vim-scripts/slimv.vim'
-"" Salt files
-" Plug 'saltstack/salt-vim'
-" Plug 'stephpy/vim-yaml'
-"" Python Bundle
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" "*****************************************************************************
+" "" plug-vim install customized packages
+" "*****************************************************************************
+" "" Lisp Bundle
+" Plug 'vim-scripts/slimv.vim'
+" "" Python Bundle
 Plug 'unterzicht/vim-virtualenv'
-"" Javascript Bundle
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-" Plug  'ternjs/tern_for_vim'
-"" HTML Bundle
-" Plug 'amirh/HTML-AutoCloseTag', {'for': 'html'}
-" Plug 'hail2u/vim-css3-syntax', {'for': 'html'}
-" Plug 'gorodinskiy/vim-coloresque', {'for': 'html'}
-" Plug 'tpope/vim-haml', {'for': 'html'}
-" Plug 'chrisgillis/vim-bootstrap3-snippets'
-Plug 'mattn/emmet-vim'
-Plug 'mbbill/undotree'
-Plug 'plasticboy/vim-markdown'
+" "" Javascript Bundle
+" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+" "" HTML Bundle
+" Plug 'mattn/emmet-vim'
+" Plug 'mbbill/undotree'
+" Plug 'plasticboy/vim-markdown'
 call plug#end()
 if iCanHazPlug == 0
     echo "Installing vim plugins...\n"
@@ -167,26 +149,26 @@ function! RunProgramme()
     !/usr/bin/env python3 %
 endfunction
 
-augroup filetype_python
-    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
-
-	autocmd FileType python map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-	" autocmd FileType python setlocal foldmethod=indent
-	" tabs and space
-	autocmd FileType python set expandtab
-	autocmd FileType python set tabstop=4
-	autocmd FileType python set softtabstop=4
-	autocmd FileType python set shiftwidth=4
-augroup end
+"augroup filetype_py
+"    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
+"
+"	" autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+"	" autocmd FileType py setlocal foldmethod=indent
+"	" tabs and space
+"	autocmd FileType py set expandtab
+"	autocmd FileType py set tabstop=4
+"	autocmd FileType py set softtabstop=4
+"	autocmd FileType py set shiftwidth=4
+"augroup end
 " }}}
 
 " vim {{{
-augroup filetype filetype_vim
+augroup vim
     " autocmd FileType vim setlocal foldmethod=marker
 augroup end
 " }}}
 
-augroup file_js
+augroup js
 augroup end
 " }}}
 
@@ -214,10 +196,6 @@ set wildmode=full
 
 " Backspace and cursor keys to wrap.
 set whichwrap=b,s,h,l,<,>,[,]
-
-
-" ctrlp cache dir
-" let g:ctrlp_cache_dir = '~/.vim/dirs/cache/ctrlp'
 
 
 " plugin settings
@@ -276,16 +254,16 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 " let g:jedi#goto_assignments_command = ''
 " let g:jedi#rename_command           = ''
 " let g:jedi#show_call_signatures     = 2
-let g:jedi#popup_select_first = 0
-let g:jedi#popup_on_dot = 0
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-" let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-autocmd FileType python setlocal omnifunc=jedi#completions
+" let g:jedi#popup_select_first = 0
+" let g:jedi#popup_on_dot = 0
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" " let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" " let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" autocmd FileType python setlocal omnifunc=jedi#completions
 
 
 " Vim-airline
@@ -303,8 +281,8 @@ let g:ale_linters = {
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '•'
 let g:ale_sign_warning = '•'
-" highlight clear ALEErrorSign
-" highlight clear ALEWarningSign
+highlight clear ALEErrorSign
+highlight clear ALEWarningSign
 " let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " }
 
@@ -351,4 +329,7 @@ let g:indentLine_char = '┆'
 
 let g:virtualenv_directory = '~/.local/virtualenvs'
 
-let NERDTreeIgnore=['.*.pyc']
+let g:NERDTreeIgnore=['.*.pyc']
+" let g:ycm_python_binary_path = 'python'
+filetype plugin indent on
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
