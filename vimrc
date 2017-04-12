@@ -76,7 +76,7 @@ Plug 'unterzicht/vim-virtualenv'
 " "" Javascript Bundle
 " Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " "" HTML Bundle
-" Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim'
 " Plug 'mbbill/undotree'
 " Plug 'plasticboy/vim-markdown'
 call plug#end()
@@ -146,20 +146,21 @@ function! RunProgramme()
     " else
     " endif
     silent !clear
-    !/usr/bin/env python3 %
+    " !/usr/bin/env python3 %
+    !python %
 endfunction
 
-"augroup filetype_py
-"    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
-"
-"	" autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-"	" autocmd FileType py setlocal foldmethod=indent
-"	" tabs and space
-"	autocmd FileType py set expandtab
-"	autocmd FileType py set tabstop=4
-"	autocmd FileType py set softtabstop=4
-"	autocmd FileType py set shiftwidth=4
-"augroup end
+augroup PythonFile
+    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
+
+	" autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+	" autocmd FileType py setlocal foldmethod=indent
+	" tabs and space
+	autocmd FileType py set expandtab
+	autocmd FileType py set tabstop=4
+	autocmd FileType py set softtabstop=4
+	autocmd FileType py set shiftwidth=4
+augroup end
 " }}}
 
 " vim {{{
