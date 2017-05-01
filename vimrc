@@ -153,7 +153,7 @@ endfunction
 augroup PythonFile
     autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
 
-	" autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+	autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 	" autocmd FileType py setlocal foldmethod=indent
 	" tabs and space
 	autocmd FileType py set expandtab
