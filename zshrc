@@ -88,7 +88,7 @@ source $ZSH/oh-my-zsh.sh
 alias vp="vim -c 'NERD|wincmd l'"
 
 export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
-export PATH=/Users/owen/Library/Python/2.7/bin:$PATH
+export VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # Examine docker-machine status and set env.
 ds=$(docker-machine status)
