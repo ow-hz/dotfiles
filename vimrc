@@ -12,12 +12,12 @@ syntax on
 if exists('$TMUX')
     set term=screen-256color
 endif
-augroup generic_file_settings
-    autocmd FileType * set expandtab
-	autocmd FileType * set tabstop=4
-	autocmd FileType * set softtabstop=4
-	autocmd FileType * set shiftwidth=4
-augroup end
+" augroup generic_file_settings
+"     autocmd FileType * set expandtab
+"     autocmd FileType * set tabstop=2
+"     autocmd FileType * set softtabstop=2
+"     autocmd FileType * set shiftwidth=2
+" augroup end
 " set fileformats=unix,dos,mac
 " }}}
 
@@ -169,8 +169,6 @@ augroup vim
 augroup end
 " }}}
 
-augroup js
-augroup end
 " }}}
 
 
@@ -282,8 +280,8 @@ let g:ale_linters = {
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '•'
 let g:ale_sign_warning = '•'
-highlight clear ALEErrorSign
-highlight clear ALEWarningSign
+" highlight clear ALEErrorSign
+" highlight clear ALEWarningSign
 " let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " }
 
@@ -334,3 +332,10 @@ let g:NERDTreeIgnore=['.*.pyc']
 " let g:ycm_python_binary_path = 'python'
 filetype plugin indent on
 let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+
+
+" youcomplete
+" jump
+nnoremap <leader>fg :YcmCompleter GoTo<CR>
+nnoremap <leader>fr :YcmCompleter GoToReferences<CR>
+nnoremap <leader>fk :YcmCompleter GetDoc<CR>
