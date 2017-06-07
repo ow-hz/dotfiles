@@ -153,7 +153,7 @@ endfunction
 augroup PythonFile
     autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
 
-	autocmd FileType py map <leader>b Oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+	autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 	" autocmd FileType py setlocal foldmethod=indent
 	" tabs and space
 	autocmd FileType py set expandtab
@@ -328,10 +328,10 @@ let g:indentLine_char = '┆'
 
 let g:virtualenv_directory = '~/.local/virtualenvs'
 
-let g:NERDTreeIgnore=['.*.pyc']
+let g:NERDTreeIgnore=['.*.pyc', '__pycache__/']
 " let g:ycm_python_binary_path = 'python'
 filetype plugin indent on
-let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+" let g:ycm_server_python_interpreter = '~/.local/pyenv/shims/python'
 
 
 " youcomplete
