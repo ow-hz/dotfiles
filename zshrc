@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git autojump vi-mode pyenv)
+plugins=(git autojump vi-mode pyenv colored-man-pages zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,9 +86,10 @@ source $ZSH/oh-my-zsh.sh
 # alias tmux=" tmux new -s default-session"
 # Vim in programming mod
 alias vp="vim -c 'NERD|wincmd l'"
+alias typora="open -a typora"
 
 #export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
-export PYENV_ROOT=$HOME/.local/.pyenv
+export PYENV_ROOT=$HOME/.local/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 #gexport VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
@@ -118,4 +119,4 @@ if [ "$TMUX" = "" ]; then
 fi
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 eval "$(pyenv init -)"
-export PYTHON_CONFIGURE_OPTS="--enable-framework"
+pyenv virtualenvwrapper
