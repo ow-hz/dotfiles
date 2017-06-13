@@ -336,6 +336,14 @@ filetype plugin indent on
 
 " youcomplete
 " jump
-nnoremap <leader>fg :YcmCompleter GoTo<CR>
-nnoremap <leader>fr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>fk :YcmCompleter GetDoc<CR>
+nnoremap <leader>fg :YcmCompleter GoTo<cr>
+nnoremap <leader>fr :YcmCompleter GoToReferences<cr>
+nnoremap <leader>fk :YcmCompleter GetDoc<cr>
+
+
+" if has('gui_mac') || has('gui_macvim') || has('mac')
+"     call NERDTreeAddMenuItem({'text': '(r)eveal in Finder the current node', 'shortcut': 'r', 'callback': 'NERDTreeRevealInFinder'})
+"     call NERDTreeAddMenuItem({'text': '(o)pen the current node with system editor', 'shortcut': 'o', 'callback': 'NERDTreeExecuteFile'})
+"     call NERDTreeAddMenuItem({'text': '(q)uicklook the current node', 'shortcut': 'q', 'callback': 'NERDTreeQuickLook'})
+" endif
+
