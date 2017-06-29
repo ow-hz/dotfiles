@@ -97,6 +97,7 @@ set cursorline
 " highlight clear SignColumn
 " color scheme
 colorscheme solarized
+set background=dark
 
 if has("gui_running")
     set guifont=MesloLGSDZ_Nerd_Font
