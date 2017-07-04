@@ -15,10 +15,10 @@ set expandtab
 set softtabstop=4
 " 以4个空格缩进
 set shiftwidth=4
-" todo indents to next multiple of 'shitwidth'
 set shiftround
 
-" todo Make backspace as you expected
 set backspace=indent,eol,start
-" Switch between
 set hidden
+" 显示状态拦
+set laststatus=2
+set display=lastline
