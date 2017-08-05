@@ -14,7 +14,7 @@ if exists('$TMUX')
 endif
 " augroup generic_file_settings
 "     autocmd FileType * set expandtab
-"     autocmd FileType * set tabstop=2
+"     autocmd FileType * set tabstop=3
 "     autocmd FileType * set softtabstop=2
 "     autocmd FileType * set shiftwidth=2
 " augroup end
@@ -31,13 +31,17 @@ if !filereadable(plug_vim)
     let iCanHazPlug=0
 endif
 call plug#begin('~/.vim/pluged')
+call plug#begin()
 " plugins
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'davidhalter/jedi-vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
+Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -45,6 +49,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
+Plug 'junegunn/vim-easy-align'
 Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
@@ -54,17 +59,16 @@ Plug 'vim-scripts/grep.vim'
 Plug 'sheerun/vim-polyglot'
 Plug 'bronson/vim-trailing-whitespace'
 " "" syntax check
-Plug 'w0rp/ale'
+Plug 'vim-syntastic/syntastic'
 Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
+Plug 'mattn/emmet-vim'
 " "" utils
-Plug 'marcweber/vim-addon-mw-utils'
-Plug 'tomtom/tlib_vim'
-" "" snippets
-Plug 'garbas/vim-snipmate'
+" Plug 'marcweber/vim-addon-mw-utils'
+" Plug 'tomtom/tlib_vim'
 " "" fonts and icons
-Plug  'ryanoasis/vim-devicons'
-" "" marks
+" Plug  'ryanoasis/vim-devicons'
+" toggle or display marks
 Plug  'kshenoy/vim-signature'
 " "*****************************************************************************
 " "" plug-vim install customized packages
@@ -72,11 +76,9 @@ Plug  'kshenoy/vim-signature'
 " "" Lisp Bundle
 " Plug 'vim-scripts/slimv.vim'
 " "" Python Bundle
-Plug 'unterzicht/vim-virtualenv'
 " "" Javascript Bundle
 " Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 " "" HTML Bundle
-Plug 'mattn/emmet-vim'
 " Plug 'mbbill/undotree'
 " Plug 'plasticboy/vim-markdown'
 call plug#end()
@@ -249,34 +251,40 @@ nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 
 
 
-" " Jedi-vim
-" let g:jedi#goto_command             = ''
-" let g:jedi#goto_assignments_command = ''
-" let g:jedi#rename_command           = ''
-" let g:jedi#show_call_signatures     = 2
-" let g:jedi#popup_select_first = 0
-" let g:jedi#popup_on_dot = 0
-" let g:jedi#goto_command = "<leader>d"
-" let g:jedi#goto_assignments_command = "<leader>g"
-" " let g:jedi#goto_definitions_command = ""
-" let g:jedi#documentation_command = "K"
-" let g:jedi#usages_command = "<leader>n"
-" " let g:jedi#completions_command = "<C-Space>"
-" let g:jedi#rename_command = "<leader>r"
-" autocmd FileType python setlocal omnifunc=jedi#completions
+" Jedi-vim
+let g:jedi#show_call_signatures     = 2
+let g:jedi#popup_select_first       = 0
+let g:jedi#goto_definitions_command = "<leader>jd"
+let g:jedi#goto_command             = "<leader>jg"
+let g:jedi#goto_assignments_command = "<leader>ja"
+let g:jedi#documentation_command    = "<leader>jk"
+let g:jedi#usages_command           = "<leader>ju"
+let g:jedi#rename_command           = "<leader>jr"
+
+" autocmd FileType python setlocal omnifunc = jedi#completions
+" youcomplete
+" jump
+" nnoremap <leader>fg :YcmCompleter GoTo<cr>
+" nnoremap <leader>fr :YcmCompleter GoToReferences<cr>
+" nnoremap <leader>fk :YcmCompleter GetDoc<cr>
 
 
 " Vim-airline
-let g:airline_powerline_fonts = 1
+" let g:airline_powerline_fonts = 1
+
+" {
+let g:syntastic_python_checkers = ['flake8']
+
+" }
 
 
-" ale {
-" filetype off
-let &runtimepath.=',~/.vim/pluged/ale'
-let g:ale_linters = {
-\   'javascript': ['eslint'],
-\   'python': ['flake8'],
-\}
+" " ale {
+" " filetype off
+" let &runtimepath.=',~/.vim/pluged/ale'
+" let g:ale_linters = {
+" \   'javascript': ['eslint'],
+" \   'python': ['flake8'],
+" \}
 " filetype plugin on
 let g:ale_sign_column_always = 1
 let g:ale_sign_error = '•'
@@ -310,9 +318,6 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 
 
 "=======================================================================================
-" key mappings
-nnoremap <leader>t :Tabularize /
-
 
 "Don't ask to save when changing buffers (i.e. when jumping to a type definition)
 set hidden
@@ -335,11 +340,6 @@ filetype plugin indent on
 " let g:ycm_server_python_interpreter = '~/.local/pyenv/shims/python'
 
 
-" youcomplete
-" jump
-nnoremap <leader>fg :YcmCompleter GoTo<cr>
-nnoremap <leader>fr :YcmCompleter GoToReferences<cr>
-nnoremap <leader>fk :YcmCompleter GetDoc<cr>
 
 
 " if has('gui_mac') || has('gui_macvim') || has('mac')
@@ -347,4 +347,5 @@ nnoremap <leader>fk :YcmCompleter GetDoc<cr>
 "     call NERDTreeAddMenuItem({'text': '(o)pen the current node with system editor', 'shortcut': 'o', 'callback': 'NERDTreeExecuteFile'})
 "     call NERDTreeAddMenuItem({'text': '(q)uicklook the current node', 'shortcut': 'q', 'callback': 'NERDTreeQuickLook'})
 " endif
-
+xmap ga <Plug>(EasyAlign)
+nmap ga <Plug>(EasyAlign)

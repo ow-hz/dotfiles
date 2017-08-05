@@ -51,7 +51,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git pip httpie extract docker autojump vi-mode pyenv colored-man-pages zsh-syntax-highlighting)
+plugins=(git pip httpie docker autojump vi-mode pyenv colored-man-pages zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -88,35 +88,26 @@ source $ZSH/oh-my-zsh.sh
 alias vp="vim -c 'NERD|wincmd l'"
 alias typora="open -a typora"
 
-#export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
+# set pyenv path
 export PYENV_ROOT=$HOME/.local/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
-#gexport VIRTUALENVWRAPPER_PYTHON=$(which python3)
 
 # Examine docker-machine status and set env.
-ds=$(docker-machine status)
-if [ $ds = "Running" ]; then
-    echo "Setting docker-machine env..."
-    eval $(docker-machine env)
-    echo "Done."
-fi
+# ds=$(docker-machine status)
+# if [ $ds = "Running" ]; then
+#     echo "Setting docker-machine env..."
+#     eval $(docker-machine env)
+#     echo "Done."
+# fi
 
+# set virtualenv path
 wh=$HOME/.local/virtualenvs
-if [ ! -e $wh ]; then
-    echo "Creating $wh path..."
-    mkdir -p $wh
-    echo "Done."
-fi
+[ ! -e $wh ] && mkdir -p $wh
 export WORKON_HOME=$wh
-#export VIRTUALENVWRAPPER_SCRIPT=$(which virtualenvwrapper.sh)
-#source $(which virtualenvwrapper_lazy.sh)
 
-# Set Java home
-export JAVA_HOME='/Library/Internet Plug-Ins/JavaAppletPlugin.plugin/Contents/Home'
 
-# Launch tmux
-if [ "$TMUX" = "" ]; then
-fi
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 eval "$(pyenv init -)"
 pyenv virtualenvwrapper
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
