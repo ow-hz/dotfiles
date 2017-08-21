@@ -6,20 +6,20 @@ set fileencodings=utf-8
 set scrolloff=3
 set laststatus=2
 let mapleader=','
-set viminfo='1000
-syntax on
 
-if exists('$TMUX')
-    set term=screen-256color
-endif
-" augroup generic_file_settings
-"     autocmd FileType * set expandtab
-"     autocmd FileType * set tabstop=3
-"     autocmd FileType * set softtabstop=2
-"     autocmd FileType * set shiftwidth=2
-" augroup end
-" set fileformats=unix,dos,mac
-" }}}
+" true color support for tmux
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
+
+syntax on
+augroup generic_file_settings
+
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set fileformats=unix,dos,mac
 
 
 " vim-pulg {{{
@@ -33,12 +33,18 @@ endif
 call plug#begin('~/.vim/pluged')
 call plug#begin()
 " plugins
+Plug 'sheerun/vim-polyglot'
 " Plug 'Valloric/YouCompleteMe'
 Plug 'davidhalter/jedi-vim'
+Plug 'tpope/vim-repeat'
+" color theme
 Plug 'altercation/vim-colors-solarized'
+Plug 'joshdick/onedark.vim'
+
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 " Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jmcantrell/vim-virtualenv'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
 Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
@@ -98,11 +104,14 @@ set hlsearch
 set cursorline
 " highlight clear SignColumn
 " color scheme
-colorscheme solarized
-set background=dark
+" colorscheme solarized
+" set background=light
+colorscheme onedark
 
 if has("gui_running")
     set guifont=MesloLGSDZ_Nerd_Font
+    " set pythondll=~/.local/.pyenv/versions/2.7.11/Python.framework/Versions/2.7/Python
+    " set pythondll = /Users/owen/.local/pyenv/versions/3.6.1/Python.framework/python
 endif
 " }}}
 
@@ -260,6 +269,7 @@ let g:jedi#goto_assignments_command = "<leader>ja"
 let g:jedi#documentation_command    = "<leader>jk"
 let g:jedi#usages_command           = "<leader>ju"
 let g:jedi#rename_command           = "<leader>jr"
+let g:jedi#popup_on_dot = 0
 
 " autocmd FileType python setlocal omnifunc = jedi#completions
 " youcomplete
@@ -274,6 +284,7 @@ let g:jedi#rename_command           = "<leader>jr"
 
 " {
 let g:syntastic_python_checkers = ['flake8']
+let g:syntastic_yaml_checkers = ['yamllint']
 
 " }
 

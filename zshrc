@@ -110,4 +110,4 @@ export WORKON_HOME=$wh
 eval "$(pyenv init -)"
 pyenv virtualenvwrapper
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
