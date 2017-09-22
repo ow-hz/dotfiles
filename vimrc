@@ -13,14 +13,6 @@ let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
 
 syntax on
-augroup generic_file_settings
-
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set fileformats=unix,dos,mac
-
 
 " vim-pulg {{{
 let iCanHazPlug=1
@@ -32,29 +24,23 @@ if !filereadable(plug_vim)
 endif
 call plug#begin('~/.vim/pluged')
 call plug#begin()
-" plugins
-Plug 'sheerun/vim-polyglot'
-" Plug 'Valloric/YouCompleteMe'
+"" plugins
 Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-repeat'
 " color theme
-Plug 'altercation/vim-colors-solarized'
 Plug 'joshdick/onedark.vim'
-
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-" Plug 'jistr/vim-nerdtree-tabs'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
-Plug 'junegunn/goyo.vim', { 'for': 'markdown' }
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
-Plug 'godlygeek/tabular'
+" Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
 Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
@@ -62,31 +48,15 @@ Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
-Plug 'sheerun/vim-polyglot'
 Plug 'bronson/vim-trailing-whitespace'
 " "" syntax check
 Plug 'vim-syntastic/syntastic'
 Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'mattn/emmet-vim'
-" "" utils
-" Plug 'marcweber/vim-addon-mw-utils'
-" Plug 'tomtom/tlib_vim'
-" "" fonts and icons
-" Plug  'ryanoasis/vim-devicons'
-" toggle or display marks
-Plug  'kshenoy/vim-signature'
 " "*****************************************************************************
 " "" plug-vim install customized packages
 " "*****************************************************************************
-" "" Lisp Bundle
-" Plug 'vim-scripts/slimv.vim'
-" "" Python Bundle
-" "" Javascript Bundle
-" Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-" "" HTML Bundle
-" Plug 'mbbill/undotree'
-" Plug 'plasticboy/vim-markdown'
 call plug#end()
 if iCanHazPlug == 0
     echo "Installing vim plugins...\n"
@@ -162,25 +132,6 @@ function! RunProgramme()
     !python %
 endfunction
 
-augroup PythonFile
-    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
-
-	autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-	" autocmd FileType py setlocal foldmethod=indent
-	" tabs and space
-	autocmd FileType py set expandtab
-	autocmd FileType py set tabstop=4
-	autocmd FileType py set softtabstop=4
-	autocmd FileType py set shiftwidth=4
-augroup end
-" }}}
-
-" vim {{{
-augroup vim
-    " autocmd FileType vim setlocal foldmethod=marker
-augroup end
-" }}}
-
 " }}}
 
 
@@ -213,9 +164,6 @@ set whichwrap=b,s,h,l,<,>,[,]
 " NERDTree
 let g:NERDTreeWinPos="left"
 " let g:NERDTreeHighlightCursorline = 1
-" autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 
 "=======================================================================================
@@ -271,16 +219,9 @@ let g:jedi#usages_command           = "<leader>ju"
 let g:jedi#rename_command           = "<leader>jr"
 let g:jedi#popup_on_dot = 0
 
-" autocmd FileType python setlocal omnifunc = jedi#completions
-" youcomplete
-" jump
-" nnoremap <leader>fg :YcmCompleter GoTo<cr>
-" nnoremap <leader>fr :YcmCompleter GoToReferences<cr>
-" nnoremap <leader>fk :YcmCompleter GetDoc<cr>
-
-
 " Vim-airline
 " let g:airline_powerline_fonts = 1
+let g:airline_highlighting_cache=1
 
 " {
 let g:syntastic_python_checkers = ['flake8']
@@ -318,10 +259,6 @@ nnoremap <silent> <F2>   : BufExplorer<CR>
 " Autocmd
 autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
 autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
-" autocmd FileType javascript nnoremap <buffer><localleader>c I//<esc>
-" autocmd FileType python nnoremap <buffer><localleader>c I#<esc>
-" autocmd BufWrite * :sleep 2000m
-
 
 
 "=======================================================================================
@@ -329,9 +266,6 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 
 
 "=======================================================================================
-
-"Don't ask to save when changing buffers (i.e. when jumping to a type definition)
-set hidden
 
 
 " *****************************************************************************
@@ -350,13 +284,26 @@ let g:NERDTreeIgnore=['.*.pyc', '__pycache__/']
 filetype plugin indent on
 " let g:ycm_server_python_interpreter = '~/.local/pyenv/shims/python'
 
-
-
-
-" if has('gui_mac') || has('gui_macvim') || has('mac')
-"     call NERDTreeAddMenuItem({'text': '(r)eveal in Finder the current node', 'shortcut': 'r', 'callback': 'NERDTreeRevealInFinder'})
-"     call NERDTreeAddMenuItem({'text': '(o)pen the current node with system editor', 'shortcut': 'o', 'callback': 'NERDTreeExecuteFile'})
-"     call NERDTreeAddMenuItem({'text': '(q)uicklook the current node', 'shortcut': 'q', 'callback': 'NERDTreeQuickLook'})
-" endif
 xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
+
+augroup js_json_html_file
+    autocmd!
+    autocmd FileType js,json,html set tabstop=2
+    autocmd FileType js,json,html set softtabstop=2
+    autocmd FileType js,json,html set shiftwidth=2
+augroup END
+
+augroup python_file
+    autocmd!
+    autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
+
+	autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+	" autocmd FileType py setlocal foldmethod=indent
+	" tabs and space
+	autocmd FileType py set expandtab
+	autocmd FileType py set tabstop=4
+	autocmd FileType py set softtabstop=4
+	autocmd FileType py set shiftwidth=4
+	autocmd FileType py set smartindent | set cindent | set autoindent
+augroup end
