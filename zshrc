@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias tmux=" tmux new -s default-session"
+
 # Vim in programming mod
 alias vp="vim -c 'NERD|wincmd l'"
 alias typora="open -a typora"
@@ -92,22 +93,11 @@ alias typora="open -a typora"
 export PYENV_ROOT=$HOME/.local/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 
-# Examine docker-machine status and set env.
-# ds=$(docker-machine status)
-# if [ $ds = "Running" ]; then
-#     echo "Setting docker-machine env..."
-#     eval $(docker-machine env)
-#     echo "Done."
-# fi
-
 # set virtualenv path
 wh=$HOME/.local/virtualenvs
 [ ! -e $wh ] && mkdir -p $wh
 export WORKON_HOME=$wh
 
-
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 eval "$(pyenv init -)"
-pyenv virtualenvwrapper
-
-# [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# pyenv virtualenvwrapper
