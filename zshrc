@@ -90,14 +90,23 @@ alias vp="vim -c 'NERD|wincmd l'"
 alias typora="open -a typora"
 
 # set pyenv path
-export PYENV_ROOT=$HOME/.local/pyenv
-export PATH=$PYENV_ROOT/bin:$PATH
+# export PYENV_ROOT=$HOME/.local/pyenv
+# export PATH=$PYENV_ROOT/bin:$PATH
 
-# set virtualenv path
-wh=$HOME/.local/virtualenvs
-[ ! -e $wh ] && mkdir -p $wh
-export WORKON_HOME=$wh
+# # set virtualenv path
+# wh=$HOME/.local/virtualenvs
+# [ ! -e $wh ] && mkdir -p $wh
+# export WORKON_HOME=$wh
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-eval "$(pyenv init -)"
+
+# eval "$(pyenv init -)"
 # pyenv virtualenvwrapper
+export LANG="en_US.UTF-8"
+export LC_COLLATE="en_US.UTF-8"
+export LC_CTYPE="en_US.UTF-8"
+export LC_MESSAGES="en_US.UTF-8"
+export LC_MONETARY="en_US.UTF-8"
+export LC_NUMERIC="en_US.UTF-8"
+export LC_TIME="en_US.UTF-8"
+export LC_ALL=

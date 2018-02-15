@@ -1,18 +1,30 @@
-" general settings {{{
+"
+" *** general settings ***
+"
+" no compatible with vi
 set nocompatible
-filetype plugin indent on
-" set fileencoding=utf-8
-set fileencodings=utf-8
-set scrolloff=3
-set laststatus=2
-let mapleader=','
 
-" true color support for tmux
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum""]"
+filetype plugin indent on
 
 syntax on
+
+set scrolloff=3 laststatus=2
+
+let mapleader=','
+
+" turn on ruler, number, inxearch, hlsearch and cursorline
+set ru nu is hls cul
+" turn showmatch
+set sm
+" use backspace to delete
+set bs=indent,eol,start
+" show completion list
+set wmnu wildmode=full
+" Command <Tab> completion, list matches, then longest common part, all
+set wildmode=full
+" Backspace and cursor keys to wrap.
+" set whichwrap=b,s,h,l,<,>,[,]
+
 
 " vim-pulg {{{
 let iCanHazPlug=1
@@ -25,15 +37,18 @@ endif
 call plug#begin('~/.vim/pluged')
 call plug#begin()
 "" plugins
-Plug 'davidhalter/jedi-vim'
+" Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-repeat'
 " color theme
-Plug 'joshdick/onedark.vim'
+Plug 'hdima/python-syntax'
+" Plug 'python-mode/python-mode'
+Plug 'NLKNguyen/papercolor-theme'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jmcantrell/vim-virtualenv'
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'tpope/vim-commentary'
+" Plug 'scrooloose/nerdcommenter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -42,7 +57,6 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 " Plug 'godlygeek/tabular'
 Plug 'junegunn/vim-easy-align'
-Plug 'rizzatti/dash.vim'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'easymotion/vim-easymotion'
 Plug 'majutsushi/tagbar'
@@ -50,7 +64,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
 Plug 'bronson/vim-trailing-whitespace'
 " "" syntax check
-Plug 'vim-syntastic/syntastic'
+Plug 'w0rp/ale'
 Plug 'yggdroot/indentLine'
 Plug 'vim-scripts/bufexplorer.zip'
 Plug 'mattn/emmet-vim'
@@ -65,25 +79,13 @@ endif
 " }}}
 
 
-" ui settings {{{
-set ruler
-set number
-set incsearch
-set hlsearch
-" hilight the cursor line
-set cursorline
-" highlight clear SignColumn
-" color scheme
-" colorscheme solarized
-" set background=light
-colorscheme onedark
 
-if has("gui_running")
-    set guifont=MesloLGSDZ_Nerd_Font
-    " set pythondll=~/.local/.pyenv/versions/2.7.11/Python.framework/Versions/2.7/Python
-    " set pythondll = /Users/owen/.local/pyenv/versions/3.6.1/Python.framework/python
-endif
-" }}}
+"
+" *** color theme ***
+"
+set background=light
+colorscheme PaperColor
+
 
 
 " customized functions {{{
@@ -97,6 +99,7 @@ function! ToggleBG()
     endif
 endfunction
 " }}}
+noremap <leader>bg :call ToggleBG()<CR>
 
 
 " general mappings {{{
@@ -111,7 +114,6 @@ noremap <c-j> <c-w>j
 noremap <c-h> <c-w>h
 noremap <c-l> <c-w>l
 " toggle background
-noremap <leader>bg :call ToggleBG()<CR>
 
 map <F4> :NERDTreeToggle<CR>
 map <F5> :TagbarToggle<CR>
@@ -135,9 +137,6 @@ endfunction
 " }}}
 
 
-" others {{{
-" }}}
-
 
 "=======================================================================================
 " save as sudo
@@ -146,18 +145,6 @@ ca w!! w !sudo tee "%"
 "=======================================================================================
 
 
-" Backspace for dummies
-set backspace=indent,eol,start
-set linespace=0             " No extra spaces between rows
-set showmatch               " Show matching brackets/parenthesis
-" set ignorecase              " Case insensitive search
-set wildmenu                " Show list instead of just completing
-
-" Command <Tab> completion, list matches, then longest common part, all
-set wildmode=full
-
-" Backspace and cursor keys to wrap.
-set whichwrap=b,s,h,l,<,>,[,]
 
 
 " plugin settings
@@ -223,11 +210,6 @@ let g:jedi#popup_on_dot = 0
 " let g:airline_powerline_fonts = 1
 let g:airline_highlighting_cache=1
 
-" {
-let g:syntastic_python_checkers = ['flake8']
-let g:syntastic_yaml_checkers = ['yamllint']
-
-" }
 
 
 " " ale {
@@ -284,8 +266,8 @@ let g:NERDTreeIgnore=['.*.pyc', '__pycache__/']
 filetype plugin indent on
 " let g:ycm_server_python_interpreter = '~/.local/pyenv/shims/python'
 
-xmap ga <Plug>(EasyAlign)
-nmap ga <Plug>(EasyAlign)
+" xmap ga <Plug>(EasyAlign)
+" nmap ga <Plug>(EasyAlign)
 
 augroup js_json_html_file
     autocmd!
@@ -307,3 +289,12 @@ augroup python_file
 	autocmd FileType py set shiftwidth=4
 	autocmd FileType py set smartindent | set cindent | set autoindent
 augroup end
+
+
+" *** ctrl-p ***
+" let g:ctrlp_show_hidden = 1
+
+
+" *** ale ***
+" auto fix
+nmap <F8> <Plug>(ale_fix)
