@@ -37,7 +37,7 @@ endif
 call plug#begin('~/.vim/pluged')
 call plug#begin()
 "" plugins
-" Plug 'davidhalter/jedi-vim'
+Plug 'davidhalter/jedi-vim'
 Plug 'tpope/vim-repeat'
 " color theme
 Plug 'hdima/python-syntax'
