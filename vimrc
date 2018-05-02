@@ -1,8 +1,9 @@
-"
-" *** general settings ***
-"
+" ==============================================
+" General settings
+" ==============================================
 " no compatible with vi
 set nocompatible
+set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 
 filetype plugin indent on
 
@@ -12,21 +13,37 @@ set scrolloff=3 laststatus=2
 
 let mapleader=','
 
-" turn on ruler, number, inxearch, hlsearch and cursorline
-set ru nu is hls cul
-" turn showmatch
-set sm
+set ruler number cursorline
+set incsearch hlsearch
+set showmatch
 " use backspace to delete
 set bs=indent,eol,start
 " show completion list
-set wmnu wildmode=full
+set wildmenu wildmode=full
 " Command <Tab> completion, list matches, then longest common part, all
 set wildmode=full
 " Backspace and cursor keys to wrap.
 " set whichwrap=b,s,h,l,<,>,[,]
+set expandtab
+" one tab uses 4 space
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
 
 
-" vim-pulg {{{
+" ==============================================
+" General functions
+" ==============================================
+
+
+" ==============================================
+" General mappings
+" ==============================================
+
+
+" ==============================================
+" Bundle settings
+" ==============================================
 let iCanHazPlug=1
 let plug_vim=expand('~/.vim/autoload/plug.vim')
 if !filereadable(plug_vim)
@@ -37,37 +54,40 @@ endif
 call plug#begin('~/.vim/pluged')
 call plug#begin()
 "" plugins
-Plug 'davidhalter/jedi-vim'
-Plug 'tpope/vim-repeat'
-" color theme
-Plug 'hdima/python-syntax'
-" Plug 'python-mode/python-mode'
-Plug 'NLKNguyen/papercolor-theme'
+
+" Essential Plug
+Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'jmcantrell/vim-virtualenv'
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-Plug 'tpope/vim-commentary'
-" Plug 'scrooloose/nerdcommenter'
+Plug 'tpope/vim-surround'
+Plug 'scrooloose/syntastic'
 Plug 'ctrlpvim/ctrlp.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'majutsushi/tagbar'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-surround'
-" Plug 'godlygeek/tabular'
-Plug 'junegunn/vim-easy-align'
-Plug 'terryma/vim-multiple-cursors'
+Plug 'honza/vim-snippets'
 Plug 'easymotion/vim-easymotion'
-Plug 'majutsushi/tagbar'
+Plug 'godlygeek/tabular'
+Plug 'mattn/emmet-vim'
+Plug 'tpope/vim-repeat'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'davidhalter/jedi-vim'
+Plug 'yggdroot/indentLine'
+Plug 'terryma/vim-multiple-cursors'
+Plug 'tpope/vim-commentary'
+Plug 'lokaltog/vim-powerline'
+" Plug 'JamshedVesuna/vim-markdown-preview'
+
+Plug 'hdima/python-syntax'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jmcantrell/vim-virtualenv'
+" Plug 'junegunn/vim-easy-align'
 Plug 'jiangmiao/auto-pairs'
 Plug 'vim-scripts/grep.vim'
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
 " "" syntax check
-Plug 'w0rp/ale'
-Plug 'yggdroot/indentLine'
+" Plug 'w0rp/ale'
 Plug 'vim-scripts/bufexplorer.zip'
-Plug 'mattn/emmet-vim'
 " "*****************************************************************************
 " "" plug-vim install customized packages
 " "*****************************************************************************
@@ -76,7 +96,24 @@ if iCanHazPlug == 0
     echo "Installing vim plugins...\n"
     :PlugInstall
 endif
-" }}}
+
+
+" ==============================================
+" General autocmd
+" ==============================================
+" Vim file settings ------------------------ {{{
+augroup filetype_vim
+    autocmd!
+    autocmd FileType vim set foldmethod=marker
+    " expand tab to space automatically
+    autocmd FileType vim set expandtab
+    " one tab uses 4 space
+    autocmd FileType vim set tabstop=4
+    autocmd FileType vim set softtabstop=4
+    autocmd FileType vim set shiftwidth=4
+    " autocmd FileType vim set smartindent | set cindent | set autoindent
+augroup end
+" {{{
 
 
 
@@ -85,10 +122,12 @@ endif
 "
 set background=light
 colorscheme PaperColor
+" colorscheme molokai
+" let g:rehash256 = 1
 
 
 
-" customized functions {{{
+" customized functions
 function! ToggleBG()
     let s:tbg = &background
     " Inversion
@@ -98,11 +137,9 @@ function! ToggleBG()
         set background=dark
     endif
 endfunction
-" }}}
 noremap <leader>bg :call ToggleBG()<CR>
 
 
-" general mappings {{{
 " set arrow key disabled for moving
 noremap <Up>    <NOP>
 noremap <Down>  <NOP>
@@ -118,11 +155,8 @@ noremap <c-l> <c-w>l
 map <F4> :NERDTreeToggle<CR>
 map <F5> :TagbarToggle<CR>
 
-" }}}
 
 
-" specific filetype settings {{{
-" python {{{
 function! RunProgramme()
     " if g:virtualenv_loaded == 1
     "     silent !clear
@@ -134,7 +168,6 @@ function! RunProgramme()
     !python %
 endfunction
 
-" }}}
 
 
 
@@ -239,8 +272,9 @@ nnoremap <silent> <F2>   : BufExplorer<CR>
 
 "=======================================================================================
 " Autocmd
-autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
-autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
+
+" autocmd BufWritePre * :%s/\s\+$//ge    " Delete trial spaces
+" autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 
 
 "=======================================================================================
@@ -257,7 +291,7 @@ autocmd! BufWritePost ~/.vimrc nested :source ~/.vimrc
 " autocmd FileType python setlocal completeopt-=preview
 let g:indentLine_char = '┆'
 " let g:sls_use_jinja_syntax = 1"}}}
-"
+
 
 let g:virtualenv_directory = '~/.local/virtualenvs'
 
@@ -280,21 +314,37 @@ augroup python_file
     autocmd!
     autocmd BufRead *.py map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
 
-	autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-	" autocmd FileType py setlocal foldmethod=indent
-	" tabs and space
-	autocmd FileType py set expandtab
-	autocmd FileType py set tabstop=4
-	autocmd FileType py set softtabstop=4
-	autocmd FileType py set shiftwidth=4
-	autocmd FileType py set smartindent | set cindent | set autoindent
+    autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+    " autocmd FileType py setlocal foldmethod=indent
+    " tabs and space
+    autocmd FileType py set expandtab
+    autocmd FileType py set tabstop=4
+    autocmd FileType py set softtabstop=18
+    autocmd FileType py set shiftwidth=4
+    autocmd FileType py set smartindent | set cindent | set autoindent
 augroup end
 
 
-" *** ctrl-p ***
-" let g:ctrlp_show_hidden = 1
+" exchange line
+nnoremap - ddp
+nnoremap _ ddkp
+nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>
 
 
-" *** ale ***
-" auto fix
-nmap <F8> <Plug>(ale_fix)
+" nnoremap <leader>" viw<esc>a"<esc>hbi"<esc>lel
+
+" autocmd BufWrite * :echom "Writing buffer!"
+
+
+
+" ==============================================
+" Plugin settings
+" ==============================================
+"
+" Mappings
+"
+" GitGutter 
+" previous hunk
+" nnoremap <leader>gph :GitGutterPrevHunk<cr>
+" next hunk
+" nnoremap <leader>gph :GitGutterNextHunk<cr>
