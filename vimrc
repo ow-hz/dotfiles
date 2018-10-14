@@ -44,14 +44,14 @@ set shiftwidth=4
 " ==============================================
 " Bundle settings
 " ==============================================
-let iCanHazPlug=1
-let plug_vim=expand('~/.vim/autoload/plug.vim')
-if !filereadable(plug_vim)
-    echo "Installing vim-plug...\n"
-    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    let iCanHazPlug=0
-endif
-call plug#begin('~/.vim/pluged')
+" let iCanHazPlug=1
+" let plug_vim=expand('~/.vim/autoload/plug.vim')
+" if !filereadable(plug_vim)
+"     echo "Installing vim-plug...\n"
+"     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+"     let iCanHazPlug=0
+" endif
+" call plug#begin('~/.vim/pluged')
 call plug#begin()
 "" plugins
 
@@ -92,10 +92,10 @@ Plug 'vim-scripts/bufexplorer.zip'
 " "" plug-vim install customized packages
 " "*****************************************************************************
 call plug#end()
-if iCanHazPlug == 0
-    echo "Installing vim plugins...\n"
-    :PlugInstall
-endif
+" if iCanHazPlug == 0
+"     echo "Installing vim plugins...\n"
+"     :PlugInstall
+" endif
 
 
 " ==============================================
