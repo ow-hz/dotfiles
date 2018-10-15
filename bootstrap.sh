@@ -10,32 +10,28 @@ install() {
     done
 }
 
-# install essentials
-install zsh vim tmux
+# install essential softwares
+install zsh vim tmux git
 
 # change login shell
-if [ $0 -ne 'zsh' ]
-then
+if [ $0 -ne 'zsh' ]; then
     sudo chsh $(whoami) -s $(which zsh)
 fi
 
 # create dotfiles
-if [ ! -e $dotfiles ]
-then
+if [ ! -e $dotfiles ]; then
     echo '.dotfiles folder dosen`t exist ...'
     git clone https://github.com/alanowen/dotfiles $dotfiles
 fi
 
-# crate oh-my-zsh
-if [ ! -e $ohmyzsh ]
-then
-    echo 'oh-my-zsh dosen`t` exist..'
+# create oh-my-zsh
+if [ ! -e $ohmyzsh ]; then
+    echo 'oh-my-zsh dosen`t exist..'
     git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh
 fi
 
 # create symbolic
-if [ ! -e ~/.zshrc ]
-then
+if [ ! -e ~/.zshrc ]; then
     echo 'create symbolic of zshrc'
     ln -s $dotfiles/zshrc ~/.zshrc
 else
@@ -44,8 +40,7 @@ else
 fi
 
 # create symbolic
-if [ ! -e ~/.vimrc]
-then
+if [ ! -e ~/.vimrc]; then
     echo 'create symbolic of vimrc'
     ln -s $dotfiles/vimrc ~/.vimrc
 else
@@ -54,9 +49,10 @@ else
 fi
 
 # download vim bundle management tool
-if [ ! -e ~/.vim/autoload/plug.vim ]
-then
+if [ ! -e ~/.vim/autoload/plug.vim ]; then
     echo 'download plug.vim'
     curl -Lo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim -c PlugInstall
 fi
+
+echo 'Done!'
