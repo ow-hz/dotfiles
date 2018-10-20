@@ -6,7 +6,7 @@ install() {
     echo 'install packages...'
     for i in $*
     do
-        sudo apt-get install $i -y
+        sudo pacman -S $i
     done
 }
 
@@ -32,7 +32,7 @@ fi
 
 # create symbolic
 if [ ! -e ~/.zshrc ]; then
-    echo 'create symbolic of zshrc'
+    echo 'create symbolic of .zshrc'
     ln -s $dotfiles/zshrc ~/.zshrc
 else
     echo 'symboic of zshrc exists...'
@@ -41,11 +41,17 @@ fi
 
 # create symbolic
 if [ ! -e ~/.vimrc]; then
-    echo 'create symbolic of vimrc'
+    echo 'create symbolic of .vimrc'
     ln -s $dotfiles/vimrc ~/.vimrc
 else
     echo 'symbolic of vimrc exists...'
     ln -si $dotfiles/vimrc ~/.vimrc
+fi
+
+# create symbolic
+if [ !-e ~/.xinitrc ]; then
+    echo 'crate symbolic of .xinitrc'
+    ln -s $dotfiles/xinitrc ~/.xinitrc
 fi
 
 # download vim bundle management tool
