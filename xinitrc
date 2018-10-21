@@ -4,6 +4,6 @@ export XMODIFIERS="@im=fcitx"
 
 fcitx &
 
-[[ -f ~/.Xresources ]] && xrdb -merge -I$HOME ~/.Xresources
+[[ -f ~/.dotfiles/Xresources ]] && xrdb -merge -I$HOME ~/.dotfiles/Xresources
 
-exec i3
+exec i3 -V >> ~/i3log-$(date +'%F') 2>&1

@@ -14,7 +14,7 @@ install() {
 install zsh vim tmux git
 
 # change login shell
-if [ $0 -ne 'zsh' ]; then
+if [ $0 != 'zsh' ]; then
     sudo chsh $(whoami) -s $(which zsh)
 fi
 
@@ -49,7 +49,7 @@ else
 fi
 
 # create symbolic
-if [ !-e ~/.xinitrc ]; then
+if [ ! -e ~/.xinitrc ]; then
     echo 'crate symbolic of .xinitrc'
     ln -s $dotfiles/xinitrc ~/.xinitrc
 fi
