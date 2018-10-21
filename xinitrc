@@ -6,4 +6,6 @@ fcitx &
 
 [[ -f ~/.dotfiles/Xresources ]] && xrdb -merge -I$HOME ~/.dotfiles/Xresources
 
-exec i3 -V >> ~/i3log-$(date +'%F') 2>&1
+killall -q polybar
+
+exec i3 -c ~/.dotfiles/i3/config -V >> ~/i3log-$(date +'%F') 2>&1
