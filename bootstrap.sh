@@ -14,9 +14,12 @@ install() {
 install zsh vim tmux git
 
 # install applications on archlinux
+install openssh
+install python3
 install fcitx fcitx-im fcitx-googlepinyin
-install wqy-zenhei wqy-microhei
-install ttf-ubuntu-font-family adobe-source-code-pro-fonts ttf-font-awesome
+install wqy-microhei wqy-zenhei
+install adobe-source-code-pro-fonts 
+install ttf-font-awesome
 
 # change login shell
 if [ $0 != 'zsh' ]; then

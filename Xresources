@@ -1,8 +1,6 @@
 Xft.dpi:96
 URxvt.allow_bold:true
 URxvt.font:xft:Source Code Pro:style=Regular:antialias=True:size=9
-/* ,xft:WenQuanYi Zen Hei:style=Regular:size=12 */
-/* xft:Monaco:style=Regular:antialias=True:size=9, */
 
 # URxvt color
 /* URxvt*foreground: white */
