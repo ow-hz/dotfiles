@@ -1,3 +1,21 @@
-/* Xft.dpi:96 */
+Xft.dpi:96
 URxvt.allow_bold:true
-URxvt.font:xft:Monaco:style=Regular:antialias=True:size=9,xft:Source Code Pro:style=Regular:antialias=True:size=11,xft:WenQuanYi Zen Hei:style=Regular:size=12
+URxvt.font:xft:Source Code Pro:style=Regular:antialias=True:size=9
+/* ,xft:WenQuanYi Zen Hei:style=Regular:size=12 */
+/* xft:Monaco:style=Regular:antialias=True:size=9, */
+
+# URxvt color
+/* URxvt*foreground: white */
+/* URxvt*background: black */
+
+/* URxvt.inheritPixmap:true */
+/* URxvt.background:#000000 */
+
+# URxvt url
+URxvt.urlLauncher:chromium
+
+# URxvt scrollbar
+URxvt.scrollBar:True
+
+# URxvt border
+URxvt.borderLess:False

@@ -167,12 +167,19 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
         # status_command      i3status --config ./i3status.conf
-        status_command      i3status --config
+        status_command      i3status
         tray_output         primary
         position            top
         workspace_buttons   yes
 }
 
+# i3gaps config
+for_window [class="^.*"] border pixel 0
+gaps inner 8
+gaps outer 6
+
 # default start applicatons
+exec --no-startup-id compton -b
 exec_always --no-startup-id ../polybar/launch.sh
+exec_always --no-startup-id feh --bg-scale ~/Pictures/default.jpg
 exec chromium

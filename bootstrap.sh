@@ -13,6 +13,11 @@ install() {
 # install essential softwares
 install zsh vim tmux git
 
+# install applications on archlinux
+install fcitx fcitx-im fcitx-googlepinyin
+install wqy-zenhei wqy-microhei
+install ttf-ubuntu-font-family adobe-source-code-pro-fonts ttf-font-awesome
+
 # change login shell
 if [ $0 != 'zsh' ]; then
     sudo chsh $(whoami) -s $(which zsh)
