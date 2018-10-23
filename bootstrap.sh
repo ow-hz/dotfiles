@@ -15,11 +15,12 @@ install zsh vim tmux git
 
 # install applications on archlinux
 install openssh
-install python3
+install python3 python-pip python-virtualenv
 install fcitx fcitx-im fcitx-googlepinyin
 install wqy-microhei wqy-zenhei
 install adobe-source-code-pro-fonts 
 install ttf-font-awesome
+install feh
 
 # change login shell
 if [ $0 != 'zsh' ]; then
