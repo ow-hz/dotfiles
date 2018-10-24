@@ -14,7 +14,7 @@ install() {
 install zsh vim tmux git
 
 # install applications on archlinux
-install openssh
+install openssh xterm
 install python3 python-pip python-virtualenv
 install fcitx fcitx-im fcitx-googlepinyin
 install wqy-microhei wqy-zenhei
