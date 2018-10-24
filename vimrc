@@ -3,7 +3,9 @@
 " ==============================================
 " no compatible with vi
 set nocompatible
+
 set encoding=utf-8
+
 set fileencodings=ucs-bom,utf-8,utf-16,gbk,big5,gb18030,latin1
 
 filetype plugin indent on
@@ -11,7 +13,8 @@ filetype plugin indent on
 syntax on
 
 set t_Co=256
-set scrolloff=3 laststatus=2
+
+set laststatus=2
 
 let mapleader=','
 
