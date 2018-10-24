@@ -111,4 +111,8 @@ export LC_NUMERIC="en_US.UTF-8"
 export LC_TIME="en_US.UTF-8"
 export LC_ALL=
 
+if [[ $TERM == "xterm" ]]; then
+    export TERM="xterm-256color"
+fi
+
 export PATH=/Users/owen/Library/Python/3.6/bin:$PATH

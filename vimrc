@@ -10,6 +10,7 @@ filetype plugin indent on
 
 syntax on
 
+set t_Co=256
 set scrolloff=3 laststatus=2
 
 let mapleader=','

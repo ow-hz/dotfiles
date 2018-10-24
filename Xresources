@@ -1,19 +1,38 @@
-Xft.dpi:96
-URxvt.allow_bold:true
-URxvt.font:xft:Source Code Pro:style=Regular:antialias=True:size=9
+/* Xft.dpi:96 */
 
-# URxvt color
-/* URxvt*foreground: white */
-/* URxvt*background: black */
 
-/* URxvt.inheritPixmap:true */
-/* URxvt.background:#000000 */
+!========================================================================
+!
+! URxvt
+!
+!========================================================================
+/* URxvt.allow_bold:true */
+/* URxvt.font:xft:Source Code Pro:style=Regular:antialias=True:size=9 */
 
-# URxvt url
-URxvt.urlLauncher:chromium
+/* # URxvt color */
+/* /1* URxvt*foreground: white *1/ */
+/* /1* URxvt*background: black *1/ */
 
-# URxvt scrollbar
-URxvt.scrollBar:True
+/* /1* URxvt.inheritPixmap:true *1/ */
+/* /1* URxvt.background:#000000 *1/ */
 
-# URxvt border
-URxvt.borderLess:False
+/* # URxvt url */
+/* URxvt.urlLauncher:chromium */
+
+/* # URxvt scrollbar */
+/* URxvt.scrollBar:True */
+
+/* # URxvt border */
+/* URxvt.borderLess:False */
+
+
+!========================================================================
+!
+! XTerm
+!
+!========================================================================
+# XTerm*termName:xterm-256color
+XTerm*faceName:xft:Source Code Pro:style=Regular:antialias=True:size=9
+XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias:size=9
+
+XTerm*scrollbar:yes
