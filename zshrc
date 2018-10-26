@@ -85,10 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias tmux=" tmux new -s default-session"
 
-# Vim in programming mod
-alias vp="vim -c 'NERD|wincmd l'"
-alias typora="open -a typora"
-
 # set pyenv path
 # export PYENV_ROOT=$HOME/.local/pyenv
 # export PATH=$PYENV_ROOT/bin:$PATH
@@ -100,19 +96,15 @@ alias typora="open -a typora"
 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
-# eval "$(pyenv init -)"
 # pyenv virtualenvwrapper
-export LANG="en_US.UTF-8"
-export LC_COLLATE="en_US.UTF-8"
-export LC_CTYPE="en_US.UTF-8"
-export LC_MESSAGES="en_US.UTF-8"
-export LC_MONETARY="en_US.UTF-8"
-export LC_NUMERIC="en_US.UTF-8"
-export LC_TIME="en_US.UTF-8"
-export LC_ALL=
 
 if [[ $TERM == "xterm" ]]; then
     export TERM="xterm-256color"
 fi
 
-export PATH=/Users/owen/Library/Python/3.6/bin:$PATH
+export PYENV_ROOT=$HOME/.dotfiles/pyenv
+export PATH=$PYENV_ROOT/bin:$PATH
+
+if [ command -v pyenv 1> /dev/null 2>&1 ]; then
+    eval "$(pyenv init -)"
+fi

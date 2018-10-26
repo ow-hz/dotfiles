@@ -1,5 +1,6 @@
 dotfiles=~/.dotfiles
 ohmyzsh=$dotfiles'/oh-my-zsh'
+pyenv=$dotfiles'/pyenv'
 
 
 install() {
@@ -68,6 +69,11 @@ if [ ! -e ~/.vim/autoload/plug.vim ]; then
     echo 'download plug.vim'
     curl -Lo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
     vim -c PlugInstall
+fi
+
+# down pyenv
+if [ ! -e ~/.dotfiles/pyenv ];then
+    git clone http://github.com/pyenv/pyenv.git $pyenv
 fi
 
 echo 'Done!'
