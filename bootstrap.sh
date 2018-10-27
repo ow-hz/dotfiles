@@ -14,9 +14,9 @@ install() {
 # install core applications
 install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh
 # install develop tools
-install python3 python-pip python-virtualenv
+install python3 python-pip python-virtualenv cmake
 # install applications
-install feh vim fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
+install feh vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
 # install fonts
 install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome
 
@@ -71,6 +71,11 @@ fi
 # download pyenv
 if [ ! -e ~/.dotfiles/pyenv ];then
     git clone http://github.com/pyenv/pyenv.git $pyenv
+fi
+
+# download xterm color scheme
+if [ ! -e $dotfiles/solarized_xresources ]; then
+    git clone https://github.com/solarized/xresources $dotfiles/solarized_xresources
 fi
 
 echo 'Done!'

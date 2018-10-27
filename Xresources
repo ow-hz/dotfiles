@@ -36,3 +36,14 @@ XTerm*faceName:xft:Source Code Pro:style=Regular:antialias=True:size=9
 XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias:size=9
 
 XTerm*scrollbar:yes
+
+!========================================================================
+!
+! UXTerm
+!
+!========================================================================
+# UXTerm*termName:xterm-256color
+UXTerm*faceName:xft:Source Code Pro:style=Regular:antialias=True:size=9
+UXTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias:size=9
+
+UXTerm*scrollbar:yes
