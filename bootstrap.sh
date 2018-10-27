@@ -11,17 +11,14 @@ install() {
     done
 }
 
-# install essential softwares
-install zsh vim tmux git
-
-# install applications on archlinux
-install openssh xterm
+# install core applications
+install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh
+# install develop tools
 install python3 python-pip python-virtualenv
-install fcitx fcitx-im fcitx-googlepinyin
-install wqy-microhei wqy-zenhei
-install adobe-source-code-pro-fonts 
-install ttf-font-awesome
-install feh
+# install applications
+install feh vim fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
+# install fonts
+install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome
 
 # change login shell
 if [ $0 != 'zsh' ]; then
@@ -71,7 +68,7 @@ if [ ! -e ~/.vim/autoload/plug.vim ]; then
     vim -c PlugInstall
 fi
 
-# down pyenv
+# download pyenv
 if [ ! -e ~/.dotfiles/pyenv ];then
     git clone http://github.com/pyenv/pyenv.git $pyenv
 fi
