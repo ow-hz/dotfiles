@@ -84,6 +84,7 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 # alias tmux=" tmux new -s default-session"
+alias tmux="tmux -2 -f ~/.dotfiles/tmux.conf"
 
 # set pyenv path
 # export PYENV_ROOT=$HOME/.local/pyenv
@@ -104,6 +105,10 @@ fi
 
 export PYENV_ROOT=$HOME/.dotfiles/pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
+
+if [[ -d ~/.local/bin ]]; then
+    export PATH=~/.local/bin:$PATH
+fi
 
 if [ command -v pyenv 1> /dev/null 2>&1 ]; then
     eval "$(pyenv init -)"

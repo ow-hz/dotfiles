@@ -182,5 +182,5 @@ gaps outer 6
 # default start applicatons
 exec --no-startup-id compton -b
 exec_always --no-startup-id ../polybar/launch.sh
-exec_always --no-startup-id feh --bg-scale ~/Pictures/default.jpg
+exec_always --no-startup-id feh --bg-scale ~/Pictures/wallpaper.jpg
 exec chromium

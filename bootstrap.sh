@@ -12,7 +12,7 @@ install() {
 }
 
 # install core applications
-install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh
+install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
 # install develop tools
 install python3 python-pip python-virtualenv cmake
 # install applications
