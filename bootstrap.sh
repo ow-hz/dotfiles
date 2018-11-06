@@ -16,7 +16,7 @@ install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
 # install develop tools
 install python3 python-pip python-virtualenv cmake
 # install applications
-install feh vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
+install feh xcompmgr vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
 # install fonts
 install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome
 
