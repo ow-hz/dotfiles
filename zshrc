@@ -113,3 +113,10 @@ fi
 if [ command -v pyenv 1> /dev/null 2>&1 ]; then
     eval "$(pyenv init -)"
 fi
+
+# cnpm
+# alias for cnpm
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+    --cache=$HOME/.npm/.cache/cnpm \
+    --disturl=https://npm.taobao.org/dist \
+    --userconfig=$HOME/.cnpmrc"

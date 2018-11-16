@@ -31,9 +31,11 @@
 ! XTerm
 !
 !========================================================================
-# XTerm*termName:xterm-256color
+XTerm*termName:xterm-256color
 XTerm*faceName:xft:Source Code Pro:style=Regular:antialias=True:size=9
 XTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias:size=9
+# enable Alt key
+XTerm.vt100.metaSendsEscape: true
 
 XTerm*scrollbar:yes
 
@@ -42,8 +44,19 @@ XTerm*scrollbar:yes
 ! UXTerm
 !
 !========================================================================
-# UXTerm*termName:xterm-256color
+UXTerm*termName:xterm-256color
 UXTerm*faceName:xft:Source Code Pro:style=Regular:antialias=True:size=9
 UXTerm*faceNameDoublesize: WenQuanYi Micro Hei:antialias:size=9
+# enable Alt key
+UXTerm.vt100.metaSendsEscape: true
 
 UXTerm*scrollbar:yes
+
+
+!========================================================================
+!
+! Key binding
+!
+!========================================================================
+#Ctrl Shift <Key>C: copy-selection(CLIPBOARD) \n\
+#Ctrl Shift <Key>V: insert-selection(CLIPBOARD)
