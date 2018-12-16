@@ -86,10 +86,6 @@ source $ZSH/oh-my-zsh.sh
 # alias tmux=" tmux new -s default-session"
 alias tmux="tmux -2 -f ~/.dotfiles/tmux.conf"
 
-# set pyenv path
-# export PYENV_ROOT=$HOME/.local/pyenv
-# export PATH=$PYENV_ROOT/bin:$PATH
-
 # # set virtualenv path
 # wh=$HOME/.local/virtualenvs
 # [ ! -e $wh ] && mkdir -p $wh
@@ -104,6 +100,7 @@ if [[ $TERM == "xterm" ]]; then
 fi
 
 export PYENV_ROOT=$HOME/.dotfiles/pyenv
+export PATH=/usr/local/bin:$PATH
 export PATH=$PYENV_ROOT/bin:$PATH
 
 if [[ -d ~/.local/bin ]]; then

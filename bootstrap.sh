@@ -11,6 +11,18 @@ install() {
     done
 }
 
+
+os_platform() {
+    echo ''
+    if [ lsb_release -a 2>null ]; then
+        return 
+    fi
+
+    if [ cat /etc/os-release  2>null ]; then
+        return
+    fi
+}
+
 # install core applications
 install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
 # install develop tools
@@ -18,7 +30,7 @@ install python3 python-pip python-virtualenv cmake
 # install applications
 install feh xcompmgr vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
 # install fonts
-install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome
+install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome gnome-alsamixer
 
 # change login shell
 if [ $0 != 'zsh' ]; then
