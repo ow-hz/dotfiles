@@ -111,7 +111,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-if which pyenv-virtualenv-init > /dev/null; then
+if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then
   eval "$(pyenv virtualenv-init -)";
 fi
 
@@ -121,3 +121,18 @@ if command -v docker-machine >/dev/null 2>&1; then
     eval $(docker-machine env)
   fi
 fi
+
+linkBrewedPython() {
+  if command -v brew 1>/dev/null 2>&1; then
+    p=$(brew --cellar python3)
+    if [ -e $p ]; then
+      for i in `ls $p`; do
+        ln -s $p/$i/ $PYENV_ROOT/versions/$i-brew;
+        echo "$i linked to pyenv!"
+      done
+    fi
+  else
+    echo "Homebrew is not installed!"
+  fi
+}
+
