@@ -122,13 +122,15 @@ if command -v docker-machine >/dev/null 2>&1; then
   fi
 fi
 
-linkBrewedPython() {
+linkBrewedPython3() {
   if command -v brew 1>/dev/null 2>&1; then
     p=$(brew --cellar python3)
     if [ -e $p ]; then
       for i in `ls $p`; do
         ln -s $p/$i/ $PYENV_ROOT/versions/$i-brew;
-        echo "$i linked to pyenv!"
+	if [ $? -eq 0 ]; then
+          echo "$i linked to pyenv!"
+	fi
       done
     fi
   else
@@ -136,3 +138,4 @@ linkBrewedPython() {
   fi
 }
 
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

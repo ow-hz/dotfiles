@@ -1,93 +1,66 @@
-dotfiles=~/.dotfiles
-ohmyzsh=$dotfiles'/oh-my-zsh'
-pyenv=$dotfiles'/pyenv'
+dotfiles_dir="~/.dotfiles"
+ohmyzsh_dir="$dotfiles_dir/oh-my-zsh"
 
+echo "Installing homebrew..."
+# /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
-install() {
-    echo 'install packages...'
-    for i in $*
-    do
-        sudo pacman -S $i
-    done
-}
+echo "Installing oh-my-zsh..."
+# git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh_dir
 
+echo "Installing essential packages..."
+# brew install autojump vim pyenv pyenv-virtualenv \
+# 	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting
 
-os_platform() {
-    echo ''
-    if [ lsb_release -a 2>null ]; then
-        return 
-    fi
-
-    if [ cat /etc/os-release  2>null ]; then
-        return
-    fi
-}
-
-# install core applications
-install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
-# install develop tools
-install python3 python-pip python-virtualenv cmake
-# install applications
-install feh xcompmgr vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
-# install fonts
-install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome gnome-alsamixer
-
-# change login shell
-if [ $0 != 'zsh' ]; then
-    sudo chsh $(whoami) -s $(which zsh)
+if [ ! -f ~/.vimrc ]; then
+  echo "Linking vimrc..."
+  ln -s ~/.dotfiles/vimrc ~/.vimrc
 fi
 
-# create dotfiles
-if [ ! -e $dotfiles ]; then
-    echo '.dotfiles folder dosen`t exist ...'
-    git clone https://github.com/alanowen/dotfiles $dotfiles
+if [ ! -f ~/.zshrc ]; then
+  echo "Linking zshrc..."
+  ln -s ~/.dotfiles/zshrc ~/.zshrc
 fi
 
-# create oh-my-zsh
-if [ ! -e $ohmyzsh ]; then
-    echo 'oh-my-zsh dosen`t exist..'
-    git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh
+if [ ! -f ~/.vim/autoload/plug.vim ]; then
+  echo "Installing plug.vim..."
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+	  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
-# create symbolic
-if [ ! -e ~/.zshrc ]; then
-    echo 'create symbolic of .zshrc'
-    ln -s $dotfiles/zshrc ~/.zshrc
-else
-    echo 'symboic of zshrc exists...'
-    ln -si $dotfiles/zshrc ~/.zshrc
-fi
 
-# create symbolic
-if [ ! -e ~/.vimrc]; then
-    echo 'create symbolic of .vimrc'
-    ln -s $dotfiles/vimrc ~/.vimrc
-else
-    echo 'symbolic of vimrc exists...'
-    ln -si $dotfiles/vimrc ~/.vimrc
-fi
+# # install core applications
+# install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
+# # install develop tools
+# install python3 python-pip python-virtualenv cmake
+# # install applications
+# install feh xcompmgr vim code fcitx fcitx-im fcitx-googlepinyin fcitx-configtool chromium 
+# # install fonts
+# install wqy-microhei wqy-zenhei adobe-source-code-pro-fonts ttf-font-awesome gnome-alsamixer
 
-# create symbolic
-if [ ! -e ~/.xinitrc ]; then
-    echo 'crate symbolic of .xinitrc'
-    ln -s $dotfiles/xinitrc ~/.xinitrc
-fi
+# # change login shell
+# if [ $0 != 'zsh' ]; then
+#     sudo chsh $(whoami) -s $(which zsh)
+# fi
 
-# download vim bundle management tool
-if [ ! -e ~/.vim/autoload/plug.vim ]; then
-    echo 'download plug.vim'
-    curl -Lo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    vim -c PlugInstall
-fi
+# # create dotfiles
+# if [ ! -e $dotfiles ]; then
+#     echo '.dotfiles folder dosen`t exist ...'
+#     git clone https://github.com/alanowen/dotfiles $dotfiles
+# fi
 
-# download pyenv
-if [ ! -e ~/.dotfiles/pyenv ];then
-    git clone http://github.com/pyenv/pyenv.git $pyenv
-fi
+# # create oh-my-zsh
+# if [ ! -e $ohmyzsh ]; then
+#     echo 'oh-my-zsh dosen`t exist..'
+#     git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh
+# fi
 
-# download xterm color scheme
-if [ ! -e $dotfiles/solarized_xresources ]; then
-    git clone https://github.com/solarized/xresources $dotfiles/solarized_xresources
-fi
 
-echo 'Done!'
+
+# # # create symbolic
+# # if [ ! -e ~/.xinitrc ]; then
+# #     echo 'crate symbolic of .xinitrc'
+# #     ln -s $dotfiles/xinitrc ~/.xinitrc
+# # fi
+
+
+# echo 'Done!'
