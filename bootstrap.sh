@@ -1,15 +1,17 @@
-dotfiles_dir="~/.dotfiles"
+dotfiles_dir="$HOME/.dotfiles"
 ohmyzsh_dir="$dotfiles_dir/oh-my-zsh"
 
-echo "Installing homebrew..."
-# /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if ! command -v brew 1>/dev/null 2>&1; then
+  echo "Installing homebrew..."
+  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+fi
 
 echo "Installing oh-my-zsh..."
-# git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh_dir
+git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh_dir
 
 echo "Installing essential packages..."
-# brew install autojump vim pyenv pyenv-virtualenv \
-# 	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting
+brew install autojump vim pyenv pyenv-virtualenv \
+	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting
 
 if [ ! -f ~/.vimrc ]; then
   echo "Linking vimrc..."
