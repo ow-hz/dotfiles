@@ -29,6 +29,8 @@ if [ ! -f ~/.vim/autoload/plug.vim ]; then
 	  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 fi
 
+echo "Install plugins of vim..."
+
 
 # # install core applications
 # install xorg xorg-xinit i3 dmenu xterm openssh tmux  zsh autojump
