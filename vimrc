@@ -14,6 +14,8 @@ set laststatus=2
 
 let mapleader=','
 
+" set guifont=Menlo:h10
+
 " set cursorline
 " set showmatch
 set ruler
