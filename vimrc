@@ -57,13 +57,15 @@ Plug 'vim-scripts/grep.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': { -> coc#util#install() }}
+
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'mattn/emmet-vim'
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
 " Plug 'google/yapf'
 Plug 'SirVer/ultisnips'
 Plug 'scrooloose/syntastic'

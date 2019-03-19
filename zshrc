@@ -95,7 +95,11 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# My customized settings
+#################################################
+#                                               #
+# My customized settings                        #
+#                                               #
+#################################################
 alias tmux="tmux -2 -f ~/.dotfiles/tmux.conf"
 
 plugins=(git)

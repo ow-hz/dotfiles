@@ -12,7 +12,7 @@ if [ ! -d $ohmyzsh_dir ]; then
 fi
 
 echo "Installing essential packages..."
-brew install autojump vim pyenv pyenv-virtualenv proxychains-ng node tmux \
+brew install autojump vim pyenv pyenv-virtualenv proxychains-ng node tmux yarn \
 	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting
 
 if [ ! -f ~/.vimrc ]; then
