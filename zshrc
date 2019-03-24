@@ -126,6 +126,11 @@ if command -v docker-machine 1>/dev/null 2>&1; then
   fi
 fi
 
+# pipenv
+if command -v pipenv 1>/dev/null 2>&1; then
+  export PIPENV_VENV_IN_PROJECT=yes
+fi
+
 linkBrewedPython3() {
   if command -v brew 1>/dev/null 2>&1; then
     p=$(brew --cellar python3)
