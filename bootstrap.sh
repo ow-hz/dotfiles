@@ -1,5 +1,5 @@
 dotfiles_dir="$HOME/.dotfiles"
-ohmyzsh_dir="$dotfiles_dir/oh-my-zsh"
+ohmyzsh_dir="$HOME/.oh-my-zsh"
 
 
 function install_pyenv_plugins() {
@@ -39,7 +39,7 @@ fi
 
 
 echo "Installing essential packages..."
-brew install autojump vim pyenv pyenv-virtualenv proxychains-ng node tmux yarn gnu-sed\
+brew install autojump pyenv pyenv-virtualenv proxychains-ng node tmux yarn gnu-sed\
 	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting neovim
 
 
