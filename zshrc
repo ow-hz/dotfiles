@@ -111,6 +111,10 @@ plugins=(git)
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 
+# compile using brewed openssl
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+
 if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
@@ -133,7 +137,7 @@ fi
 
 linkBrewedPython3() {
   if command -v brew 1>/dev/null 2>&1; then
-    p=$(brew --cellar python3)
+    p=$(brew --cellar python)
     if [ -e $p ]; then
       for i in `ls $p`; do
         ln -s $p/$i/ $PYENV_ROOT/versions/$i-brew;

@@ -1,5 +1,11 @@
 dotfiles_dir="$HOME/.dotfiles"
 ohmyzsh_dir="$HOME/.oh-my-zsh"
+pyenv_root="$PYENV_ROOT"
+
+
+if [ -z $PYENV_ROOT ]; then
+    PYENV_ROOT="$HOME/.pyenv"    
+fi
 
 
 function install_pyenv_plugins() {
