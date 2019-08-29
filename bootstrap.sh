@@ -39,8 +39,13 @@ fi
 
 
 if [ ! -d $ohmyzsh_dir ]; then
-    echo "Installing oh-my-zsh..."
-    git clone https://github.com/robbyrussell/oh-my-zsh $ohmyzsh_dir
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+fi
+
+
+grep  -q "source ~/.dotfiles/zshrc" ~/.zshrc
+if [[ $? == 1 ]]; then
+    gsed -i '$a\\n\source ~/.dotfiles/zshrc' ~/.zshrc    
 fi
 
 
