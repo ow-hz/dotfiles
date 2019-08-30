@@ -43,15 +43,14 @@ if [ ! -d $ohmyzsh_dir ]; then
 fi
 
 
+echo "Installing essential packages..."
+brew install autojump pyenv pyenv-virtualenv proxychains-ng node tmux yarn gnu-sed\
+	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting neovim
+
 grep  -q "source ~/.dotfiles/zshrc" ~/.zshrc
 if [[ $? == 1 ]]; then
     gsed -i '$a\\n\source ~/.dotfiles/zshrc' ~/.zshrc    
 fi
-
-
-echo "Installing essential packages..."
-brew install autojump pyenv pyenv-virtualenv proxychains-ng node tmux yarn gnu-sed\
-	cmake python pipenv mosh docker docker-machine zsh-syntax-highlighting neovim
 
 
 if [ ! -f ~/.vimrc ]; then
