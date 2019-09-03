@@ -81,10 +81,8 @@ class Cli:
                 for i in self.instructions:
                     i()
 
-
     def instr(self, func):
         self.instructions.append(func)
-
 
     def echo(self, msg, style=None):
         msg = msg if style is None else style(msg)
@@ -115,13 +113,6 @@ def install_brew_packages():
         "gnu-sed", "cmake", "pipenv",
         "mosh", "docker", "docker-machine",
         "zsh-syntax-highlighting", "neovim"
-    ]
-
-
-@cli.instr
-def install_pyenv_pluginis():
-    pyenv_dir = '.pyenv'
-    makedirs(pyenv_dir)
 
     repos = ['concordusapps/pyenv-implict', 'pyenv/pyenv-doctor']
     for repo in repos:

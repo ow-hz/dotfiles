@@ -33,7 +33,8 @@ fi
 if ! has_command python3
 then
     show_warning_msg "Python3 is not installed!"
-    brew install python3
+    pyenv install 3.7.4
+    pyenv global 3.7.4
 fi
 
 python3 ~/.dotfiles/bootstrap.py

@@ -63,8 +63,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 
 " completion plugin
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" plugins for coc.nvim
+Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -72,9 +71,6 @@ Plug 'NLKNguyen/papercolor-theme'
 Plug 'junegunn/vim-easy-align'
 
 Plug 'mattn/emmet-vim'
-" Plug 'Valloric/YouCompleteMe'
-" Plug 'google/yapf'
-" Plug 'SirVer/ultisnips'
 Plug 'scrooloose/syntastic'
 " Plug 'timothycrosley/isort'
 
@@ -83,7 +79,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'honza/vim-snippets'
 " Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
-" Plug 'yggdroot/indentLine'
+Plug 'yggdroot/indentLine'
 " Plug 'terryma/vim-multiple-cursors'
 "
 " Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -106,7 +102,7 @@ colorscheme PaperColor
 
 
 " ctrip cache folder
-let g:ctrlp_cache_dir = $HOME.'/.config/ctrlp'
+" let g:ctrlp_cache_dir = $HOME.'/.local/ctrlp'
 
 
 " grep
@@ -189,15 +185,13 @@ function! QuickRun()
   endif
 endfunction
 
-autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
+" autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 
 " syntastic
 let g:syntastic_python_checkers = ["flake8"]
 
 
-
-
-hi pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
+" hi pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
 
 
 
@@ -207,53 +201,6 @@ hi pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
 " ==========================================================
 " ==========================================================
 "
-"
-" " show completion list
-" set wildmenu wildmode=full
-" " Command <Tab> completion, list matches, then longest common part, all
-" set wildmode=full
-" " Backspace and cursor keys to wrap.
-" " set whichwrap=b,s,h,l,<,>,[,]
-"
-"
-"
-" set t_Co=256
-" " Essential Plug
-" " "*****************************************************************************
-" " "" plug-vim install customized packages
-" " "*****************************************************************************
-" call plug#end()
-" " if iCanHazPlug == 0
-" "     echo "Installing vim plugins...\n"
-" "     :PlugInstall
-" " endif
-"
-"
-" " ==============================================
-" " General autocmd
-" " ==============================================
-" " Vim file settings ------------------------ {{{
-" augroup filetype_vim
-"     autocmd!
-"     autocmd FileType vim set foldmethod=marker
-"     " expand tab to space automatically
-"     autocmd FileType vim set expandtab
-"     " one tab uses 4 space
-"     autocmd FileType vim set tabstop=4
-"     autocmd FileType vim set softtabstop=4
-"     autocmd FileType vim set shiftwidth=4
-"     " autocmd FileType vim set smartindent | set cindent | set autoindent
-" augroup end
-" " {{{
-"
-"
-" " set arrow key disabled for moving
-" " split navagation
-" noremap <c-k> <c-w>k
-" noremap <c-j> <c-w>j
-" noremap <c-h> <c-w>h
-" noremap <c-l> <c-w>l
-" " toggle background
 "
 " map <F4> :NERDTreeToggle<CR>
 " map <F5> :TagbarToggle<CR>
@@ -390,23 +337,6 @@ hi pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
 " " next hunk
 " " nnoremap <leader>gph :GitGutterNextHunk<cr>
 
-" yaml
-autocmd! BufNewFile, BufReadPost *.{yaml, yml} set filetype=yaml foldmethod=indent
-autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 " " if hidden is not set, TextEdit might fail.
 " set hidden
@@ -528,10 +458,23 @@ autocmd FileType yaml setlocal tabstop=2 softtabstop=2 shiftwidth=2 expandtab
 " " Do default action for previous item.
 " nnoremap <silent> <space>k  :<C-u>CocPrev<CR>
 " " Resume latest coc list
-nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
-inoremap <silent><expr> <c-space> coc#refresh()
+" nnoremap <silent> <space>p  :<C-u>CocListResume<CR>
+" inoremap <silent><expr> <c-space> coc#refresh()
 
-nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy <Plug>(coc-type-definition)
-nmap <silent> gi <Plug>(coc-implementation)
-nmap <silent> gr <Plug>(coc-references)
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+
+let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
+
+" jedi-vim
+let g:jedi#goto_command = "<leader>d"
+let g:jedi#goto_assignments_command = "<leader>g"
+let g:jedi#goto_definitions_command = ""
+let g:jedi#documentation_command = "K"
+let g:jedi#usages_command = "<leader>n"
+let g:jedi#completions_command = "<C-Space>"
+let g:jedi#rename_command = "<leader>r"
+let g:jedi#popup_select_first = 0
