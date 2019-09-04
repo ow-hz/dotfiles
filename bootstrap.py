@@ -4,12 +4,14 @@
 
 import os
 import re
+import ssl
 import sys
 import urllib
 import subprocess
 from pathlib import Path
 from enum import Enum, auto
-from urllib.request import urlopen
+from urllib.parse import urlparse
+from urllib.request import urlopen, Request
 from functools import wraps, partial
 
 
@@ -54,8 +56,14 @@ bg_color = BackgroundColor
 
 
 def fetch_data(url, to_str=True):
-    res = urlopen(url)
-    data = res.read()
+    req = Request(url)
+    o = urlparse(url)
+    if o.scheme == 'https':
+        context = ssl._create_unverified_context()
+        resp = urlopen(req, context=context)
+    else:
+        resp = urlopen(req)
+    data = resp.read()
     return data.decode('utf-8') if to_str else data
 
 
@@ -97,12 +105,13 @@ os.chdir(home)
 
 @cli.instr
 def install_oh_my_zsh():
-    url = 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
-    data = fetch_data(url, to_str=False)
-    try:
-        subprocess.run(['sh', '-c'], shell=True, check=True, input=data)
-    except subprocess.CalledProcessError as error:
-        cli.echo(fr_color.red)
+    if not os.path.exists('.oh-my-zsh'):
+        url = 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
+        data = fetch_data(url, to_str=False)
+        try:
+            subprocess.run(['sh', '-c'], shell=True, check=True, input=data)
+        except subprocess.CalledProcessError as error:
+            cli.echo(fr_color.red)
 
 
 @cli.instr
@@ -110,9 +119,16 @@ def install_brew_packages():
     packages = [
         "autojump", "pyenv", "pyenv-virtualenv",
         "proxychains-ng", "node", "tmux", "yarn",
-        "gnu-sed", "cmake", "pipenv",
+        "gnu-sed", "cmake", "bochs",
         "mosh", "docker", "docker-machine",
         "zsh-syntax-highlighting", "neovim"
+    ]
+
+    try:
+        data = (' '.join(packages)).encode('utf-8')
+        subprocess.run(['brew', 'install'] + packages, check=True)
+    except subprocess.CalledProcessError as error:
+        cli.echo(fr_color.red)
 
     repos = ['concordusapps/pyenv-implict', 'pyenv/pyenv-doctor']
     for repo in repos:
