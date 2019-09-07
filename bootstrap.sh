@@ -27,6 +27,8 @@ if ! has_command brew
 then
     show_error_msg "Homebrew is not found on your mac!"
     /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    brew tap homebrew/cask-fonts
+    brew cask install font-fira-code
 fi
 
 

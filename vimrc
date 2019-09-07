@@ -68,6 +68,7 @@ Plug 'davidhalter/jedi-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'NLKNguyen/papercolor-theme'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
 Plug 'junegunn/vim-easy-align'
 
 Plug 'mattn/emmet-vim'
@@ -97,8 +98,10 @@ call plug#end()
 " *** Plugin settings ***
 "
 " color scheme
-set background=light
-colorscheme PaperColor
+" set background=light
+" colorscheme PaperColor
+colorscheme onehalflight
+" colorscheme onehalfdark
 
 
 " ctrip cache folder

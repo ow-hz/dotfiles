@@ -6,14 +6,22 @@ import os
 import re
 import ssl
 import sys
+import json
+import time
 import urllib
+import signal
+import socket
+import itertools
 import subprocess
 from pathlib import Path
 from enum import Enum, auto
 from urllib.parse import urlparse
-from urllib.request import urlopen, Request
 from functools import wraps, partial
+from urllib.request import urlopen, Request as urlrequest
 
+
+home_dir = Path.home()
+dotfiles_dir = Path(os.path.dirname(os.path.realpath(__file__)))
 
 dirname = os.path.dirname
 makedirs = partial(os.makedirs, exist_ok=True)
@@ -56,15 +64,20 @@ bg_color = BackgroundColor
 
 
 def fetch_data(url, to_str=True):
-    req = Request(url)
-    o = urlparse(url)
-    if o.scheme == 'https':
-        context = ssl._create_unverified_context()
-        resp = urlopen(req, context=context)
-    else:
-        resp = urlopen(req)
-    data = resp.read()
-    return data.decode('utf-8') if to_str else data
+    try:
+        req = urlrequest(url)
+        o = urlparse(url)
+        if o.scheme == 'https':
+            context = ssl._create_unverified_context()
+            resp = urlopen(req, context=context)
+        else:
+            resp = urlopen(req, timeout=1)
+        data = resp.read()
+        return data.decode('utf-8') if to_str else data
+    except urllib.error as e:
+        raise Exception('There was an error when fetching data: %r' % e)
+    except socket.timeout as e:
+        raise Exception('There was an error when fetching data: %r' % e)
 
 
 class Cli:
@@ -72,22 +85,37 @@ class Cli:
     def __init__(self):
         self.instructions = []
         self.finished = []
+
+    def show_options(self):
+        self.echo('Please select')
+        for n, i in enumerate(self.instructions):
+            self.echo(f'({n+1}) {i.__name__}')
+        self.echo('(a) all')
+        self.echo('(q) to quit')
+
+    def loading_settings(self):
+        with open(dotfiles_dir / 'settings.json', 'r') as f:
+            json_obj = json.load(f)
+
+    def execute(self, seq):
+        self.instructions[seq]()
     
     def run(self):
+        self.loading_settings()
         while True:
-            self.echo('Please select')
-            for n, i in enumerate(self.instructions):
-                self.echo(f'({n+1}) {i.__name__}')
-            self.echo('(a) all')
-            self.echo('(q) to quit')
-            n = input('>')
-
+            self.show_options()
+            n = input('>> ')
             if n == 'q':
                 break
-
-            if n == 'a':
+            elif n == 'a':
                 for i in self.instructions:
                     i()
+            else:
+                seqs = map(str, range(1, len(self.instructions) + 1))
+                if n in seqs:
+                    self.instructions[int(n) - 1]()
+                else:
+                    self.echo('Invalid selection!', style=fr_color.red)
 
     def instr(self, func):
         self.instructions.append(func)
@@ -98,9 +126,8 @@ class Cli:
 
 
 cli = Cli()
-home = Path.home()
 
-os.chdir(home)
+os.chdir(home_dir)
 
 
 @cli.instr
@@ -109,13 +136,14 @@ def install_oh_my_zsh():
         url = 'https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh'
         data = fetch_data(url, to_str=False)
         try:
-            subprocess.run(['sh', '-c'], shell=True, check=True, input=data)
+            p = subprocess.run(['sh', '-c'], shell=True, check=True, input=data)
         except subprocess.CalledProcessError as error:
             cli.echo(fr_color.red)
 
 
 @cli.instr
 def install_brew_packages():
+
     packages = [
         "autojump", "pyenv", "pyenv-virtualenv",
         "proxychains-ng", "node", "tmux", "yarn",
@@ -125,8 +153,11 @@ def install_brew_packages():
     ]
 
     try:
-        data = (' '.join(packages)).encode('utf-8')
-        subprocess.run(['brew', 'install'] + packages, check=True)
+        # p = subprocess.run(['brew', 'install'] + packages, check=True)
+        p = subprocess.Popen(['brew', 'install'] + packages)
+        p.wait()
+    except KeyboardInterrupt as e:
+        p.send_signal(signal.SIGINT)
     except subprocess.CalledProcessError as error:
         cli.echo(fr_color.red)
 
@@ -138,11 +169,10 @@ def install_brew_packages():
 @cli.instr
 def link_dot_files():
     files = ['vimrc', 'tmux.conf']
-    dotfiles_dir = Path('.dotfiles')
 
     for i in files:
         src = dotfiles_dir / i
-        des = f'.{i}'
+        des = home_dir / f'.{i}'
         if not os.path.exists(des):
             os.symlink(src, des)
 
