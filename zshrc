@@ -77,6 +77,9 @@ then
 fi
 
 
+SPACESHIP_VENV_SHOW=false
+
+
 alias set_proxy="export ALL_PROXY=socks5://127.0.0.1:1086 && echo 'Proxy is on!'"
 alias unset_proxy="unset ALL_PROXY && echo 'Proxy is off!'"
 
