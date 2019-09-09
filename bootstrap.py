@@ -1,4 +1,4 @@
-#! /usr/bin/env python3 
+#! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 
@@ -42,7 +42,7 @@ class Color(Enum):
 class ColorMeta(type):
     def __new__(mls, clsname, bases, attrs):
         cls = type.__new__(mls, clsname, bases, attrs)
-        
+
         for name, member in Color.__members__.items():
             k = name.lower()
             v = member.value + attrs['mask']
@@ -99,7 +99,7 @@ class Cli:
 
     def execute(self, seq):
         self.instructions[seq]()
-    
+
     def run(self):
         self.loading_settings()
         while True:
