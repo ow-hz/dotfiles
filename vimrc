@@ -100,8 +100,8 @@ call plug#end()
 " color scheme
 " set background=light
 " colorscheme PaperColor
-colorscheme onehalflight
-" colorscheme onehalfdark
+" colorscheme onehalflight
+colorscheme onehalfdark
 
 
 " ctrip cache folder
@@ -145,6 +145,12 @@ augroup file_python
   autocmd FileType python set expandtab
   " autocmd FileType vim set smartindent | set cindent | set autoindent
   autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+augroup end
+
+
+augroup file_javascript
+  autocmd!
+  autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
 augroup end
 
 
@@ -379,3 +385,5 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#popup_select_first = 0
+
+" highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
