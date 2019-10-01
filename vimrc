@@ -5,7 +5,7 @@
 set nocompatible
 
 set encoding=utf-8
-" set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
+set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 
 syntax on
 

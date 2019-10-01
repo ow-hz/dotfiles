@@ -1,7 +1,6 @@
 #! /usr/bin/env python3
 # -*- coding: utf-8 -*-
 
-
 import os
 import re
 import ssl
@@ -156,7 +155,7 @@ def install_brew_packages():
     packages = [
         "autojump", "pyenv", "pyenv-virtualenv",
         "proxychains-ng", "node", "tmux", "yarn",
-        "gnu-sed", "cmake", "bochs", "font-fira-code",
+        "gnu-sed", "cmake", "bochs", #"font-fira-code",
         "mosh", "docker", "docker-machine",
         "zsh-syntax-highlighting", "neovim"
     ]
@@ -177,7 +176,7 @@ def install_brew_packages():
 
 @cli.instr
 def link_dot_files():
-    files = ['vimrc', 'tmux.conf']
+    files = ['vimrc', 'tmux.conf', 'zshrc']
 
     for i in files:
         src = dotfiles_dir / i
@@ -206,12 +205,12 @@ def configure_vim():
             f.write('source ~/.vimrc\n')
 
 
-@cli.instr
-def configure_zsh():
-    r = re.compile('source ~/.dotfiles/zshrc')
-    with open('.zshrc', 'r+') as f:
-        if not any(r.search(i) for i in f):
-            f.write('\nsource ~/.dotfiles/zshrc\n')
+# @cli.instr
+# def configure_zsh():
+#     r = re.compile('source ~/.dotfiles/zshrc')
+#     with open('.zshrc', 'r+') as f:
+#         if not any(r.search(i) for i in f):
+#             f.write('\nsource ~/.dotfiles/zshrc\n')
 
 
 if __name__ == '__main__':
