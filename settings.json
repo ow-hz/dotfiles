@@ -1,1 +1,65 @@
-{}
+{
+    "brew_apps_to_install": [
+        "gdb",
+        "mas",
+        "mosh",
+        "nasm",
+        "node",
+        "tmux",
+        "yarn",
+        "bochs",
+        "cmake",
+        "ctags",
+        "pyenv",
+        "docker",
+        "golang",
+        "neovim",
+        "gnu-sed",
+        "autojump",
+        "docker-machine",
+        "proxychains-ng",
+        "pyenv-virtualenv",
+        "zsh-syntax-highlighting"
+    ],
+
+    "brew_cask_apps_to_install": [
+        "xld",
+        "dash",
+        "fork",
+        "iina",
+        "fliqlo",
+        "arduino",
+        "firefox",
+        "postman",
+        "staruml",
+        "wireshark",
+        "1password",
+        "coderunner",
+        "pdf-expert",
+        "daemon-tools",
+        "vmware-fusion",
+        "shadowsocksx-ng"
+    ],
+
+    "mas_apps_to_install": {
+        "QQ": "451108668",
+        "Shazam": "897118787",
+        "Kindle": "405399194",
+        "Magnet": "441258766",
+        "Keynote": "409183694",
+        "The Unarchiver": "425424353",
+        "WeChat": "836500024",
+        "VOX": "461369673",
+        "Pasta": "1438389787",
+        "Xcode": "497799835",
+        "Pages": "409201541",
+        "Spark": "1176895641",
+        "Numbers": "409203825"
+    },
+
+    "files_to_link": [
+        ["vimrc", "~/.vimrc"],
+        ["zshrc", "~/.zshrc"],
+        ["tmux.conf", "~/.tmux.conf"]
+    ]
+}

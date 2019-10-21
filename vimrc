@@ -100,8 +100,8 @@ call plug#end()
 " color scheme
 " set background=light
 " colorscheme PaperColor
-" colorscheme onehalflight
-colorscheme onehalfdark
+colorscheme onehalflight
+" colorscheme onehalfdark
 
 
 " ctrip cache folder

@@ -160,7 +160,7 @@ if command -v docker-machine 1>/dev/null 2>&1
 then
     if [ "$(docker-machine status 2>/dev/null)" = "Running" ]
     then
-        eval $(docker-machine env)
+        eval "$(docker-machine env)"
     fi
 fi
 
