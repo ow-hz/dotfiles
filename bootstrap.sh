@@ -35,8 +35,9 @@ fi
 if ! has_command python3
 then
     show_warning "Python3 is not installed!"
-    pyenv install 3.7.4
-    pyenv global 3.7.4
+    pyenv install 3.7.1
+    pyenv install 3.8.0
+    pyenv global 3.8.0
 fi
 
 python3 ~/.dotfiles/bootstrap.py
