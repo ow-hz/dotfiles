@@ -23,27 +23,9 @@
     ],
 
     "brew_cask_apps_to_install": [
-        "xld",
-        "dash",
-        "fork",
-        "iina",
-        "fliqlo",
-        "arduino",
-        "firefox",
-        "postman",
-        "staruml",
-        "wireshark",
-        "1password",
-        "coderunner",
-        "pdf-expert",
-        "daemon-tools",
-        "vmware-fusion",
-        "shadowsocksx-ng"
     ],
 
     "mas_apps_to_install": {
-        "QQ": "451108668",
-        "Shazam": "897118787",
         "Kindle": "405399194",
         "Magnet": "441258766",
         "Keynote": "409183694",

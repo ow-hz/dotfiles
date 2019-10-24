@@ -9,26 +9,27 @@ set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
 
 syntax on
 
+if !has('nvim')
+endif
+
 filetype plugin indent on
 
 set laststatus=2
 
 let mapleader=','
 
-" set cursorline
-" set showmatch
 set ruler
 set number
-set incsearch
 set hlsearch
+set incsearch
+set showmatch
+set cursorline
 
 " shorten update time of dianostic message
 set updatetime=300
 
 " always show signcolumns
 " set signcolumn=yes
-
-" set t_Co=256
 
 set backspace=indent,eol,start
 
@@ -44,11 +45,50 @@ set splitright
 
 "==============================================================================================
 "
+" -*- Customzied user functions -*-
+"
+function! SetBackgroundMode(...)
+  let s:new_bg = 'light'
+  let s:mode = systemlist('defaults read -g AppleInterfaceStyle')[0]
+  if $TERM_PROGRAM ==? 'Aapple_Terminal'
+    if s:mode ==? 'dark'
+      let s:new_bg = 'dark'
+    else
+      let s:new_bg = 'light'
+    endif
+  else
+  if &background !=? s:new_bg
+    let &background = s:new_bg
+  endif
+  endif
+
+endfunction
+
+
+function! ToggleBG()
+  let s:old_bg = &background
+    if s:old_bg == 'dark'
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+
+
+function! QuickRun()
+  exec 'w'
+  if &filetype == 'python'
+    exec '!time python3 %'
+  endif
+endfunction
+
+"==============================================================================================
+"
 " -*- Plugins -*-
 "
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
@@ -61,15 +101,22 @@ Plug 'tpope/vim-surround'
 Plug 'vim-scripts/grep.vim'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/vim-easy-align'
 
 " completion plugin
 Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" color theme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'junegunn/vim-easy-align'
+Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-two-firewatch'
+" Plug 'cocopon/iceberg.vim'
+Plug 'arcticicestudio/nord-vim'
+Plug 'mhartington/oceanic-next'
+Plug 'ajmwagar/vim-deus'
 
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/syntastic'
@@ -78,7 +125,7 @@ Plug 'scrooloose/syntastic'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 " Plug 'honza/vim-snippets'
-" Plug 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
 Plug 'yggdroot/indentLine'
 " Plug 'terryma/vim-multiple-cursors'
@@ -95,13 +142,66 @@ call plug#end()
 
 "==============================================================================================
 "
-" -*- Plugin settings -*-
+" -*- Color scheme -*-
 "
-" color scheme
-" set background=light
-" colorscheme PaperColor
-colorscheme onehalflight
+if has('termguicolors') && !empty($COLORTERM)==1
+  set termguicolors
+endif
+
+" call SetBackgroundMode()
+" call timer_start(3000, "SetBackgroundMode", {"repeat": -1})
+
+" check if supporting true color or not
+if &termguicolors
+  " ayu {{
+  let ayucolor="light"  " for light version of theme
+  " let ayucolor="mirage" " for mirage version of theme
+  " let ayucolor="dark"   " for dark version of theme
+  colorscheme ayu
+  " }}
+
+
+  " two-firewatch {{
+  " let g:two_firewatch_italics=1
+  " let g:airline_theme='twofirewatch'
+  " colorscheme two-firewatch
+  " }}
+
+  " oceanic-next {{
+  " colorscheme OceanicNext
+  " }}
+
+  " deus {{
+  " colorscheme deus
+  " }}
+
+  " nord {{
+  " colorscheme nord
+  " }}
+
+else
+  set background=light
+
+  " papercolor {{
+  let g:PaperColor_Theme_Options = {
+  \   'theme': {
+  \     'default.dark': {
+  \       'transparent_background': 0
+  \     },
+  \     'default.light': {
+  \       'transparent_background': 0
+  \     }
+  \   }
+  \ }
+  colorscheme PaperColor
+  " }}
+endif
+
+
+" onehalf {{
+" colorscheme onehalflight
 " colorscheme onehalfdark
+" }}
 
 
 " ctrip cache folder
@@ -111,23 +211,23 @@ colorscheme onehalflight
 " grep
 " nnoremap <leader>g :execute "grep! -R " . shellescape(expand("<cWORD>")) . " ."<cr>
 
-set tabstop=4
-" Setting this to a non-zero value other than tabstop will make the tab key (in insert mode) insert a combination of spaces (and possibly tabs) to simulate tab stops at this width.
-set softtabstop=4
-" The size of an "indent".
-" It's also measured in spaces, so if your code base indents with tab characters then you want shiftwidth to equal the number of tab characters times tabstop.
-" This is also used by things like the =, > and < commands.
-set shiftwidth=4
-" Enabling this will make the tab key (in insert mode) insert spaces instead of tab characters.
-" This also affects the behavior of the retab command.
-set expandtab
+" set tabstop=4
+" " Setting this to a non-zero value other than tabstop will make the tab key (in insert mode) insert a combination of spaces (and possibly tabs) to simulate tab stops at this width.
+" set softtabstop=4
+" " The size of an "indent".
+" " It's also measured in spaces, so if your code base indents with tab characters then you want shiftwidth to equal the number of tab characters times tabstop.
+" " This is also used by things like the =, > and < commands.
+" set shiftwidth=4
+" " Enabling this will make the tab key (in insert mode) insert spaces instead of tab characters.
+" " This also affects the behavior of the retab command.
+" set expandtab
 
 
 
 " -*- Auto commands -*-
 augroup file_vimrc
   autocmd!
-  autocmd BufWritePost ~/.vimrc nested :source ~/.vimrc
+  autocmd BufWritePost ~/.vimrc :source ~/.vimrc
   autocmd BufRead,SourceCmd ~/.vimrc set tabstop=2 softtabstop=2 shiftwidth=2 expandtab
   " set smartindent | set cindent | set autoindent
   " remove trial spaces
@@ -177,14 +277,7 @@ nnoremap ]B :blast<CR>
 
 " toggle background color
 noremap <leader>bg :call ToggleBG()<CR>
-" function ToggleBG()
-"     let s:tbg = &background
-"     if s:tbg == "dark"
-"         set background=light
-"     else
-"         set background=dark
-"     endif
-" endfunction
+
 
 " Keep the current visual block selection active after changing indent.
 vmap > >gv
@@ -196,12 +289,6 @@ nnoremap - ddp
 " run quickly
 map <F5> :call QuickRun()<CR>
 
-function! QuickRun()
-  exec "w"
-  if &filetype == "python"
-    exec "!time python3 %"
-  endif
-endfunction
 
 " autocmd FileType python nnoremap <LocalLeader>i :!isort %<CR><CR>
 
@@ -254,8 +341,8 @@ let g:syntastic_python_checkers = ["flake8"]
 " inoremap <C-Del> <C-\><C-O>D
 "
 "
-	" " Mapping for gitgutter
-	" nmap ]h <Plug>GitGutterNextHunk
+" " Mapping for gitgutter
+" nmap ]h <Plug>GitGutterNextHunk
 " nmap [h <Plug>GitGutterPrevHunk
 "
 " " Using <space> for folding toggle
@@ -385,5 +472,6 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#popup_select_first = 0
+
 
 " highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold

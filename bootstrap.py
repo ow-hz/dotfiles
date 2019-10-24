@@ -217,9 +217,10 @@ def brew_install(item):
 
 
 def cask_install(item):
-    env = os.environ.copy()
-    env['HOMEBREW_NO_AUTO_UPDATE'] = '1'
-    p = subprocess.run(['brew', 'cask', 'install', item], check=True, env=env)
+    # env = os.environ.copy()
+    # env['HOMEBREW_NO_AUTO_UPDATE'] = '1'
+    # p = subprocess.run(['brew', 'cask', 'install', item], check=True, env=env)
+    pass
 
 
 def mas_install(item_dict):
@@ -243,40 +244,37 @@ def install_oh_my_zsh():
 def install_brew_apps():
     apps = cli.settings['brew_apps_to_install']
 
-    deps_counter = Counter()
-    def parse_deps(app_list):
-        for i in app_list:
-            deps_counter.update([i])
-            deps = subprocess.check_output(['brew', 'deps', i]).decode('utf-8').strip('\n')
-            if deps:
-                parse_deps(deps.split('\n'))
+    # deps_counter = Counter()
+    # def parse_deps(app_list):
+    #     for i in app_list:
+    #         deps_counter.update([i])
+    #         deps = subprocess.check_output(['brew', 'deps', i]).decode('utf-8').strip('\n')
+    #         if deps:
+    #             parse_deps(deps.split('\n'))
 
-    parse_deps(apps)
+    # parse_deps(apps)
 
-    def filter_deps():
-        deps = DefaultOrderedDict(list)
-        for k, v in deps_counter.most_common():
-            deps[str(v)].append(k)
-        return deps
+    # def filter_deps():
+    #     deps = DefaultOrderedDict(list)
+    #     for k, v in deps_counter.most_common():
+    #         deps[str(v)].append(k)
+    #     return deps
 
-    deps = filter_deps()
+    # deps = filter_deps()
 
-    for i in deps:
-        for item in deps[i]:
-            cli.multiple_processing(brew_install, deps[i])
+    # for i in deps:
+    #     for item in deps[i]:
+    #         cli.multiple_processing(brew_install, deps[i], 1)
 
-    # print(list(filter_deps()))
+    env = os.environ.copy()
+    env['HOMEBREW_NO_AUTO_UPDATE'] = '1'
 
-
-    # env = os.environ.copy()
-    # env['HOMEBREW_NO_AUTO_UPDATE'] = '1'
-
-    # try:
-    #     p = subprocess.run(['brew', 'install'] + apps, check=True, env=env)
-    # except KeyboardInterrupt as e:
-    #     p.send_signal(signal.SIGINT)
-    # except subprocess.CalledProcessError as error:
-    #     cli.echo(fr_color.red)
+    try:
+        p = subprocess.run(['brew', 'install'] + apps, check=True, env=env)
+    except KeyboardInterrupt as e:
+        p.send_signal(signal.SIGINT)
+    except subprocess.CalledProcessError as error:
+        cli.echo(fr_color.red)
 
     # repos = ['concordusapps/pyenv-implict', 'pyenv/pyenv-doctor']
     # for repo in repos:
@@ -324,7 +322,7 @@ def configure_vim():
 @cli.task
 def install_apps_from_mac_app_store():
     apps = cli.settings['mas_apps_to_install']
-    cli.multiple_processing(mas_install, apps.items())
+    cli.multiple_processing(mas_install, apps.items(), cpu_count=1)
 
 
 if __name__ == '__main__':
