@@ -20,10 +20,12 @@ let mapleader=','
 
 set ruler
 set number
+set mouse=nv
 set hlsearch
 set incsearch
 set showmatch
 set cursorline
+set lazyredraw
 
 " shorten update time of dianostic message
 set updatetime=300
@@ -84,7 +86,7 @@ endfunction
 
 "==============================================================================================
 "
-" -*- Plugins -*-
+" -*- Plug plugins -*-
 "
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
@@ -108,6 +110,7 @@ Plug 'davidhalter/jedi-vim'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 " color theme
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'sonph/onehalf', {'rtp': 'vim/'}
@@ -142,7 +145,7 @@ call plug#end()
 
 "==============================================================================================
 "
-" -*- Color scheme -*-
+" -*- Color schemes -*-
 "
 if has('termguicolors') && !empty($COLORTERM)==1
   set termguicolors
@@ -224,7 +227,11 @@ endif
 
 
 
+"==============================================================================================
+"
 " -*- Auto commands -*-
+"
+" Vimscript file settings {{{
 augroup file_vimrc
   autocmd!
   autocmd BufWritePost ~/.vimrc :source ~/.vimrc
@@ -232,10 +239,12 @@ augroup file_vimrc
   " set smartindent | set cindent | set autoindent
   " remove trial spaces
   autocmd BufWritePre * :%s/\s\+$//ge
+  autocmd FileType vim setlocal foldmethod=marker
 augroup end
+" }}}
 
-
-augroup file_python
+" Python file settings {{{
+augroup filetype_python
   autocmd!
   " autocmd FileType python set foldmethod=marker
   " expand tab to space automatically
@@ -246,13 +255,23 @@ augroup file_python
   " autocmd FileType vim set smartindent | set cindent | set autoindent
   autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 augroup end
+" }}}
 
 
-augroup file_javascript
+" Javascrip file settings {{{
+augroup filetype_javascript
   autocmd!
   autocmd FileType javascript set tabstop=2 softtabstop=2 shiftwidth=2
 augroup end
+" }}}
 
+
+" Html file settings {{{
+augroup filetype_html
+  autocmd!
+  autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+augroup end
+" }}}
 
 
 "
@@ -299,19 +318,11 @@ let g:syntastic_python_checkers = ["flake8"]
 " hi pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
 
 
-
-
-" ==========================================================
-" ==========================================================
-" ==========================================================
 " ==========================================================
 "
 "
 " map <F4> :NERDTreeToggle<CR>
 " map <F5> :TagbarToggle<CR>
-"
-"
-"
 "
 "
 "
@@ -475,3 +486,8 @@ let g:jedi#popup_select_first = 0
 
 
 " highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
+
+" autocmd FileType *     :iabbrev <buffer> iff if:<left>
+" let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+" let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" let &t_EI = "\<Esc>]50;CursorShape=0\x7"
