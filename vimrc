@@ -41,7 +41,7 @@ noremap <Down>  <NOP>
 noremap <Left>  <NOP>
 noremap <Right> <NOP>
 
-" split position
+" split direction
 set splitbelow
 set splitright
 
@@ -120,6 +120,7 @@ Plug 'rakr/vim-two-firewatch'
 Plug 'arcticicestudio/nord-vim'
 Plug 'mhartington/oceanic-next'
 Plug 'ajmwagar/vim-deus'
+Plug 'dracula/vim'
 
 Plug 'mattn/emmet-vim'
 Plug 'scrooloose/syntastic'
@@ -163,6 +164,9 @@ if &termguicolors
   colorscheme ayu
   " }}
 
+  " dracula {{
+  colorscheme dracula
+  " }}
 
   " two-firewatch {{
   " let g:two_firewatch_italics=1
