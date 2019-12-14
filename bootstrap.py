@@ -23,6 +23,8 @@ from functools import wraps, partial
 from collections import Counter, OrderedDict, Callable
 from urllib.request import urlopen, Request as urlrequest
 
+from utils import Color
+
 
 HOME_DIR = Path.home()
 DOTFILES_DIR = Path(dirname(os.path.realpath(__file__)))
@@ -71,17 +73,6 @@ class DefaultOrderedDict(OrderedDict):
         return 'OrderedDefaultDict(%s, %s)' % (self.default_factory,
                                                OrderedDict.__repr__(self))
 
-
-class Color(Enum):
-    Black = 0
-    Red = auto()
-    Green = auto()
-    Yellow = auto()
-    BLue = auto()
-    Purple = auto()
-    Cyan = auto()
-    White = auto()
-    Reset = 9
 
 
 class ColorMeta(type):
