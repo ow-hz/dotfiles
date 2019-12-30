@@ -1,7 +1,6 @@
 {
     "brew_apps_to_install": [
         "gdb",
-        "mas",
         "mosh",
         "nasm",
         "node",
@@ -26,17 +25,6 @@
     ],
 
     "mas_apps_to_install": {
-        "Kindle": "405399194",
-        "Magnet": "441258766",
-        "Keynote": "409183694",
-        "The Unarchiver": "425424353",
-        "WeChat": "836500024",
-        "VOX": "461369673",
-        "Pasta": "1438389787",
-        "Xcode": "497799835",
-        "Pages": "409201541",
-        "Spark": "1176895641",
-        "Numbers": "409203825"
     },
 
     "files_to_link": [

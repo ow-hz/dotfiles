@@ -487,6 +487,7 @@ let g:jedi#usages_command = "<leader>n"
 let g:jedi#completions_command = "<C-Space>"
 let g:jedi#rename_command = "<leader>r"
 let g:jedi#popup_select_first = 0
+let g:jedi#completions_enabled = 1
 
 
 " highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
