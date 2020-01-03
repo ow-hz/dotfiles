@@ -1,5 +1,7 @@
 #! /bin/bash
 
+set -e
+
 
 function has_command() {
     # [[ $(command -v "nvim") == "" ]] && return 1 || return 0
