@@ -1,8 +1,11 @@
-"==============================================================================================
 "
 " -*- General settings -*-
 "
+" next buffer
 set nocompatible
+
+" Minimal number of screen lines to keep above and below the cursor.
+" set scrolloff=3
 
 set encoding=utf-8
 set fileencodings=utf-8,utf-16,gbk,big5,gb18030,latin1
@@ -59,9 +62,9 @@ function! SetBackgroundMode(...)
       let s:new_bg = 'light'
     endif
   else
-  if &background !=? s:new_bg
-    let &background = s:new_bg
-  endif
+    if &background !=? s:new_bg
+      let &background = s:new_bg
+    endif
   endif
 
 endfunction
@@ -69,11 +72,11 @@ endfunction
 
 function! ToggleBG()
   let s:old_bg = &background
-    if s:old_bg == 'dark'
-        set background=light
-    else
-        set background=dark
-    endif
+  if s:old_bg == 'dark'
+    set background=light
+  else
+    set background=dark
+  endif
 endfunction
 
 
@@ -105,8 +108,12 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 
+Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+
 " completion plugin
 Plug 'davidhalter/jedi-vim'
+" Plug 'zchee/deoplete-jedi'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -131,7 +138,7 @@ Plug 'airblade/vim-gitgutter'
 " Plug 'honza/vim-snippets'
 Plug 'godlygeek/tabular'
 Plug 'tpope/vim-repeat'
-Plug 'yggdroot/indentLine'
+" Plug 'yggdroot/indentLine'
 " Plug 'terryma/vim-multiple-cursors'
 "
 " Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -157,58 +164,59 @@ endif
 
 " check if supporting true color or not
 if &termguicolors
-  " ayu {{
-  let ayucolor="light"  " for light version of theme
+
+  " ayu {{{
+  " let ayucolor="light"  " for light version of theme
   " let ayucolor="mirage" " for mirage version of theme
   " let ayucolor="dark"   " for dark version of theme
-  colorscheme ayu
-  " }}
+  " colorscheme ayu
+  " }}}
 
-  " dracula {{
-  colorscheme dracula
-  " }}
+  " dracula {{{
+  " colorscheme dracula
+  " }}}
 
-  " two-firewatch {{
+  " two-firewatch {{{
   " let g:two_firewatch_italics=1
   " let g:airline_theme='twofirewatch'
   " colorscheme two-firewatch
-  " }}
+  " }}}
 
-  " oceanic-next {{
+  " oceanic-next {{{
   " colorscheme OceanicNext
-  " }}
+  " }}}
 
-  " deus {{
+  " deus {{{
   " colorscheme deus
-  " }}
+  " }}}
 
-  " nord {{
-  " colorscheme nord
-  " }}
+  " nord {{{
+  colorscheme nord
+  " }}}
 
 else
   set background=light
 
-  " papercolor {{
+  " papercolor {{{
   let g:PaperColor_Theme_Options = {
-  \   'theme': {
-  \     'default.dark': {
-  \       'transparent_background': 0
-  \     },
-  \     'default.light': {
-  \       'transparent_background': 0
-  \     }
-  \   }
-  \ }
+        \   'theme': {
+        \     'default.dark': {
+        \       'transparent_background': 0
+        \     },
+        \     'default.light': {
+        \       'transparent_background': 0
+        \     }
+        \   }
+        \ }
   colorscheme PaperColor
-  " }}
+  " }}}
 endif
 
 
-" onehalf {{
+" onehalf {{{
 " colorscheme onehalflight
 " colorscheme onehalfdark
-" }}
+" }}}
 
 
 " ctrip cache folder
@@ -248,18 +256,25 @@ augroup end
 " }}}
 
 " Python file settings {{{
-augroup filetype_python
+augroup file_python
   autocmd!
   " autocmd FileType python set foldmethod=marker
   " expand tab to space automatically
-  autocmd FileType python set tabstop=4
-  autocmd FileType python set softtabstop=4
-  autocmd FileType python set shiftwidth=4
-  autocmd FileType python set expandtab
+  autocmd BufNewFile,BufRead *.py
+        \ set tabstop=4 |
+        \ set softtabstop=4 |
+        \ set shiftwidth=4 |
+        \ set expandtab |
+        \ set autoindent |
   " autocmd FileType vim set smartindent | set cindent | set autoindent
-  autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
+  " autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 augroup end
 " }}}
+
+
+augroup filetype_html
+  autocmd BufWritePre,BufRead *.html :normal gg=G
+augroup end
 
 
 " Javascrip file settings {{{
@@ -292,6 +307,9 @@ nnoremap <leader><space> :noh<cr>
 " map esc key
 inoremap <C-[> <ESC>
 
+" list buffer
+nnoremap <leader>bl :buffers<cr>
+
 " buffer move
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
@@ -306,8 +324,6 @@ noremap <leader>bg :call ToggleBG()<CR>
 vmap > >gv
 vmap < <gv
 
-" move current line downward
-nnoremap - ddp
 
 " run quickly
 map <F5> :call QuickRun()<CR>
@@ -360,8 +376,6 @@ let g:syntastic_python_checkers = ["flake8"]
 " nmap ]h <Plug>GitGutterNextHunk
 " nmap [h <Plug>GitGutterPrevHunk
 "
-" " Using <space> for folding toggle
-" nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
 "
 "
 "
@@ -412,7 +426,6 @@ let g:syntastic_python_checkers = ["flake8"]
 "==============================================================================================
 " " don`t use popup docs
 " " autocmd FileType python setlocal completeopt-=preview
-" let g:indentLine_char = '┆'
 " " let g:sls_use_jinja_syntax = 1"}}}
 "
 "
@@ -496,3 +509,116 @@ let g:jedi#completions_enabled = 1
 " let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 " let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 " let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"
+
+
+"
+" Key mapping for normal and non-recursive mode
+"
+" nnoremap <space> za
+nnoremap <leader>" viw<esc>a"<esc>bi"<esc>lel
+nnoremap <leader>' viw<esc>a'<esc>bi'<esc>lel
+
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+
+" prefious buffer
+nnoremap <c-h> :bp<CR>
+" next buffer
+nnoremap <c-l> :bn<CR>
+
+
+nnoremap <buffer> Q x
+
+nnoremap <leader>g :grep -R '<cWORD>' .<cr>
+
+
+" 快速添加空行, 5[<space>
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+
+
+" Using <space> for folding toggle
+nnoremap <space> @=((foldclosed(line('.')) < 0) ? 'zc' : 'zo')<CR>
+
+
+
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
+
+nnoremap <leader>f :call FoldColumnToggle()<cr>
+nnoremap <leader>Q :call QuickFixToggle()<cr>
+nnoremap <leader>q :call CloseWindow()<cr>
+
+
+
+
+function! FoldColumnToggle()
+  echom &foldcolumn
+endfunction
+
+
+let g:quickfix_is_open = 0
+
+function! QuickFixToggle()
+  if g:quickfix_is_open
+    cclose
+    let g:quickfix_is_open = 0
+    execute g:quickfix_return_to_window . "wincmd w"
+  else
+    let g:quickfix_return_to_window = winnr()
+    copen
+    let g:quickfix_is_open = 1
+  endif
+endfunction
+
+
+
+function! CloseWindow()
+  execute ':close'
+endfunction
+
+
+
+" Change terminal-mode to normal
+tnoremap <ESC> <C-\><C-n>
+
+
+
+
+
+
+" ==========================================================
+"
+" Color
+"
+" ==========================================================
+
+
+
+
+
+" ==========================================================
+"
+" User defined commands
+"
+" ==========================================================
+command! -nargs=* T split | terminal <args>
+command! -nargs=* VT vsplit | terminal <args>
+
+
+
+" ==========================================================
+"
+" Current line position
+"
+" ==========================================================
+" zt
+" zz
+" zb
+"
+"
+"
+"
+"
+

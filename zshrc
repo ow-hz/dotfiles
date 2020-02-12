@@ -1,3 +1,5 @@
+export LC_ALL=en_US.UTF-8
+
 ZSH_THEME="robbyrussell"
 
 plugins=(git node npm themes)
