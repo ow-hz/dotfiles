@@ -108,7 +108,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 
-Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
+" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " completion plugin
 Plug 'davidhalter/jedi-vim'
@@ -173,7 +173,7 @@ if &termguicolors
   " }}}
 
   " dracula {{{
-  " colorscheme dracula
+  colorscheme dracula
   " }}}
 
   " two-firewatch {{{
@@ -195,7 +195,7 @@ if &termguicolors
   " }}}
 
 else
-  set background=light
+  set background=dark
 
   " papercolor {{{
   let g:PaperColor_Theme_Options = {
@@ -210,6 +210,7 @@ else
         \ }
   colorscheme PaperColor
   " }}}
+
 endif
 
 
@@ -244,6 +245,11 @@ endif
 " -*- Auto commands -*-
 "
 " Vimscript file settings {{{
+
+augroup general
+augroup end
+
+
 augroup file_vimrc
   autocmd!
   autocmd BufWritePost ~/.vimrc :source ~/.vimrc
@@ -270,10 +276,16 @@ augroup file_python
   " autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
 augroup end
 " }}}
+"
 
 
 augroup filetype_html
   autocmd BufWritePre,BufRead *.html :normal gg=G
+augroup end
+
+
+augroup shell_file
+  autocmd BufRead,SourceCmd *.sh set tabstop=4 softtabstop=4 shiftwidth=4 expandtab
 augroup end
 
 
@@ -622,3 +634,23 @@ command! -nargs=* VT vsplit | terminal <args>
 "
 "
 
+
+" fill rest of line with characters
+function! FillLine( str, width )
+    " set tw to the desired total length
+    " let tw = &textwidth
+    let tw = a:width
+    " strip trailing spaces first
+    .s/[[:space:]]*$//
+    " calculate total number of 'str's to insert
+    let reps = (tw - col("$")) / len(a:str)
+    " insert them, if there's room, removing trailing spaces (though forcing
+    " there to be one)
+    if reps > 0
+        .s/$/\=(' '.repeat(a:str, reps))/
+    endif
+endfunction
+
+
+
+let g:asmsyntax = 'nasm'

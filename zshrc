@@ -1,6 +1,6 @@
 export LC_ALL=en_US.UTF-8
 
-ZSH_THEME="robbyrussell"
+# ZSH_THEME="spaceship"
 
 plugins=(git node npm themes)
 
@@ -10,7 +10,7 @@ source $ZSH/oh-my-zsh.sh
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 
-
+alias reset_launchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
 alias set_proxy="export ALL_PROXY=socks5://127.0.0.1:1086 && echo 'Proxy is on!'"
 alias unset_proxy="unset ALL_PROXY && echo 'Proxy is off!'"
 
