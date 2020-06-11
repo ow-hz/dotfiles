@@ -1,7 +1,6 @@
 "
 " -*- General settings -*-
 "
-" next buffer
 set nocompatible
 
 " Minimal number of screen lines to keep above and below the cursor.
@@ -23,7 +22,6 @@ let mapleader=','
 
 set ruler
 set number
-set mouse=nv
 set hlsearch
 set incsearch
 set showmatch
@@ -108,12 +106,7 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'junegunn/vim-easy-align'
 
-" Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
-
-" completion plugin
-Plug 'davidhalter/jedi-vim'
-" Plug 'zchee/deoplete-jedi'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'ycm-core/YouCompleteMe'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -195,7 +188,7 @@ if &termguicolors
   " }}}
 
 else
-  set background=dark
+  set background=light
 
   " papercolor {{{
   let g:PaperColor_Theme_Options = {
@@ -503,16 +496,16 @@ nnoremap [h :GitGutterPrevHunk<cr>
 
 let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
 
-" jedi-vim
-let g:jedi#goto_command = "<leader>d"
-let g:jedi#goto_assignments_command = "<leader>g"
-let g:jedi#goto_definitions_command = ""
-let g:jedi#documentation_command = "K"
-let g:jedi#usages_command = "<leader>n"
-let g:jedi#completions_command = "<C-Space>"
-let g:jedi#rename_command = "<leader>r"
-let g:jedi#popup_select_first = 0
-let g:jedi#completions_enabled = 1
+" " " jedi-vim
+" let g:jedi#goto_command = "<leader>d"
+" let g:jedi#goto_assignments_command = "<leader>g"
+" let g:jedi#goto_definitions_command = ""
+" let g:jedi#documentation_command = "K"
+" let g:jedi#usages_command = "<leader>n"
+" let g:jedi#completions_command = "<C-Space>"
+" let g:jedi#rename_command = "<leader>r"
+" let g:jedi#popup_select_first = 0
+" let g:jedi#completions_enabled = 1
 
 
 " highlight pythonSelf ctermfg=174 guifg=#6094DB cterm=bold gui=bold
