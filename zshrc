@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/samurai/.oh-my-zsh"
+export ZSH="/$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -10,6 +10,7 @@ export ZSH="/Users/samurai/.oh-my-zsh"
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 # ZSH_THEME="spaceship"
 ZSH_THEME="robbyrussell"
+#ZSH_THEME="gentoo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -122,16 +123,12 @@ alias unset_brew_no_auto_update="unset HOMEBREW_NO_AUTO_UPDATE && echo 'Auto upd
 
 
 function link_brew_python3() {
-    if command -v brew 1>/dev/null 2>&1
-    then
+    if command -v brew 1>/dev/null 2>&1; then
         p=$(brew --cellar python)
-        if [ -e $p ]
-        then
-            for i in $(ls $p)
-            do
+        if [ -e $p ]; then
+            for i in $(ls $p); do
                 ln -s $p/$i/ $PYENV_ROOT/versions/$i-brew
-                if [ $? -eq 0 ]
-                then
+                if [ $? -eq 0 ]; then
                     echo "$i linked to pyenv!"
                 fi
             done
@@ -147,37 +144,39 @@ files=(
     /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 )
 
-for i in $files
-do
-    if [ -f $i ]
-    then
+for i in $files; do
+    if [ -f $i ]; then
         source $i
     fi
 done
 
 
-if command -v pyenv 1>/dev/null 2>&1
-then
+if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
 fi
 
 
-if command -v pyenv-virtualenv-init 1>/dev/null 2>&1
-then
+if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then
     eval "$(pyenv virtualenv-init -)"
 fi
 
 
-if command -v docker-machine 1>/dev/null 2>&1
-then
-    if [ "$(docker-machine status 2>/dev/null)" = "Running" ]
-    then
-        eval "$(docker-machine env)"
-    fi
+if command -v docker 1>/dev/null 2>&1; then
+	if command -v docker-machine 1>/dev/null 2>&1; then
+		if [ "$(docker-machine status 2>/dev/null)" = "Running" ]; then
+			eval "$(docker-machine env)"
+		fi
+	else
+		export DOCKER_HOST=tcp://192.168.210.7:2375
+	fi
 fi
 
 
-if command -v pipenv 1>/dev/null 2>&1
-then
+if command -v pipenv 1>/dev/null 2>&1; then
     export PIPENV_VENV_IN_PROJECT=yes
+fi
+
+
+if command -v dosbox 1>/dev/null 2>&1; then
+    alias dosbox="dosbox -conf ~/.dotfiles/dosbox.conf"
 fi
