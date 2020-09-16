@@ -8,9 +8,7 @@ export ZSH="/$HOME/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# ZSH_THEME="spaceship"
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="gentoo"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -100,83 +98,80 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
+#-----------------------------------------------------
+#
 # Personal settings
+#
+#-----------------------------------------------------
+if [[ "$(umask)" == "000" ]]; then
+    umask 022
+fi
+
 export LC_ALL=en_US.UTF-8
 
 # ZSH_THEME="spaceship"
 
-plugins=(git node yarn themes autojump)
-
-export MANPATH=/usr/local/man:$MANPATH
+export PIPENV_VENV_IN_PROJECT=yes
 export PYENV_ROOT=$HOME/.pyenv
 export PATH=$PYENV_ROOT/bin:$PATH
 
-alias reset_launchpad="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
-alias set_proxy="export ALL_PROXY=socks5://127.0.0.1:1086 && echo 'Proxy is on!'"
-alias unset_proxy="unset ALL_PROXY && echo 'Proxy is off!'"
 
-alias tmux="tmux -2 -f ~/.dotfiles/tmux.conf"
-
-alias set_brew_no_auto_update="export HOMEBREW_NO_AUTO_UPDATE=1 && echo 'Auto update is off!'"
-alias unset_brew_no_auto_update="unset HOMEBREW_NO_AUTO_UPDATE && echo 'Auto update is on!'"
+plugins=(git node yarn autojump)
 
 
-function link_brew_python3() {
-    if command -v brew 1>/dev/null 2>&1; then
-        p=$(brew --cellar python)
-        if [ -e $p ]; then
-            for i in $(ls $p); do
-                ln -s $p/$i/ $PYENV_ROOT/versions/$i-brew
-                if [ $? -eq 0 ]; then
-                    echo "$i linked to pyenv!"
-                fi
-            done
-        fi
-    else
-        echo "Homebrew is not installed!"
-    fi
-}
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
+
+
+[[ -d $HOME/.local/bin ]] && [[ "$PATH" != *"$HOME/.local/bin"* ]] && export PATH=$HOME/.local/bin:$PATH
+
+
+#[[ -d /usr/local/man ]] && export MANPATH=/usr/local/man:$MANPATH
+
+
+alias launchpad_reset="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
+alias dosbox="dosbox -conf ~/.dotfiles/dosbox.conf"
+
+alias proxy_on="export ALL_PROXY=socks5://127.0.0.1:1080 && echo 'Proxy is on!'"
+alias proxy_off="unset ALL_PROXY && echo 'Proxy is off!'"
+
+
+alias brew_auto_update_on="unset HOMEBREW_NO_AUTO_UPDATE && echo 'Auto update is on!'"
+alias brew_auto_update_off="export HOMEBREW_NO_AUTO_UPDATE=1 && echo 'Auto update is off!'"
+
+alias zshconfig="vim ~/.zshrc"
+alias ohmyzsh="vim ~/.oh-my-zsh"
+
+alias cnpm="npm --registry=https://registry.npm.taobao.org \
+	--cache=$HOME/.npm/.cache/cnpm \
+	--disturl=https://npm.taobao.org/dist \
+	--userconfig=$HOME/.cnpmrc"
+
+alias sudo="sudo "
 
 
 files=(
     /usr/local/etc/profile.d/autojump.sh
+    /etc/profile.d/autojump.sh
     /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 )
 
 for i in $files; do
-    if [ -f $i ]; then
+    if [ -e $i ]; then
         source $i
     fi
 done
 
 
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-fi
-
-
-if command -v pyenv-virtualenv-init 1>/dev/null 2>&1; then
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-
 if command -v docker 1>/dev/null 2>&1; then
-	if command -v docker-machine 1>/dev/null 2>&1; then
-		if [ "$(docker-machine status 2>/dev/null)" = "Running" ]; then
-			eval "$(docker-machine env)"
-		fi
-	else
-		export DOCKER_HOST=tcp://192.168.210.7:2375
-	fi
+    if command -v docker-machine 1>/dev/null 2>&1; then
+        if [ "$(docker-machine status 2>/dev/null)" = "Running" ]; then
+            eval "$(docker-machine env)"
+        fi
+    else
+        export DOCKER_HOST=tcp://192.168.210.7:2375
+    fi
 fi
+# sudo timedatectl set-ntp true
+# sudo hwclock --utc
 
-
-if command -v pipenv 1>/dev/null 2>&1; then
-    export PIPENV_VENV_IN_PROJECT=yes
-fi
-
-
-if command -v dosbox 1>/dev/null 2>&1; then
-    alias dosbox="dosbox -conf ~/.dotfiles/dosbox.conf"
-fi

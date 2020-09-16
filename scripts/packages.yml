@@ -1,0 +1,121 @@
+packages:
+  common:
+    - docker
+    - htop
+    - mosh
+    - nasm
+    - gdb
+    - ctags
+    - cmake
+    - zsh-syntax-highlighting
+
+  # ubuntu or wsl
+  ubuntu:
+
+  archlinux:
+    aur:
+      - pyenv-virtualenv
+      - netease-cloud-music
+      - visual-studio-code-bin
+      #- ccl
+      #- woeusb
+      # - rxvt-unicode-truecolor
+      # - urxvt-resize-font-git
+
+    pacman:
+      - base-devel
+      - net-tools
+      - traceroute
+      - ntfs-3g
+      - i3status
+      - shadowsocks-libev
+      - kcptun
+      - feh
+      - openssh
+      - xorg
+      - linux-zen
+      # wayland
+      - sway
+      # i3 transparent window
+      # - i3-gaps picom xorg-xinit
+      # status bar
+      - conky
+      # grabbing keys program for x
+      #- xbindkeys
+      # power manager
+      - xfce4-power-manager
+      # clipboard
+      - xclip
+      # input method
+      - fcitx
+      - fcitx-sunpinyin
+      - fcitx-configtool
+      # dmenu and alternative
+      - dmenu
+      - rofi
+      # terminal
+      - alacritty
+      #  sakura
+      # sound
+      - alsa-utils
+      - pamixer
+      # notification
+      - dunst
+      # font
+      - ttf-dejavu
+      - wqy-zenhei
+      - wqy-microhei
+      - ttf-font-awesome
+      # ACPI battery icon
+      #- cbatticon
+      # input devices
+      - libinput
+      # apps
+      # - electronic-wechat
+      #- xfce4-appfinder
+      - bochs
+      - yarn
+      - neofetch
+      #- mpd
+      #- ncmpcpp
+      # apps for ifuse
+      - usbmuxd
+      - libplist
+      - libimobiledevice
+      # database gui manage tool
+      - dbeaver
+      # pdf
+      #- okular
+      # file manager
+      #- thunar
+      #- nnn
+      - chromium
+      # trace system and library call
+      - strace
+      - ltrace
+      # ##########################
+      #
+      # archlinuxcn
+      #
+      # ##########################
+      # circuit
+      - logisim
+      # brightness control
+      #- brightnessctlg
+      # change wallpaper
+      #- nitrogeng
+      #- typora
+      - racket
+      - bochs
+      - pyenv-virtualenv
+
+  macos:
+    - node
+    - tmux
+    - golang
+    - neovim
+    - gnu-sed
+    - autojump
+    - bochs
+    - pyenv-virtualenv
+    #- proxychains-ng

@@ -18,30 +18,30 @@ set scrolloff=1 laststatus=2
 let mapleader=','
 
 " set showmatch
-set cursorline
-set ruler number
-set hlsearch incsearch
+set cursorline ruler number hlsearch incsearch
 
-if !system('command -v nasm > /dev/null')
+if !system('command -v nasm > /dev/null 2>&1')
     let g:asmsyntax = 'nasm'
 endif
 
-
-if has('nvim') || has('gui_macvim')
-    if !has('termguicolors')
-        set termguicolors
-    endif
+if has('termguicolors')
+    set termguicolors
 endif
 
-if has('nvim')
-endif
+
+"if has('nvim') || has('gui_macvim')
+"    if !has('termguicolors')
+"        set termguicolors
+"    endif
+"endif
 
 if has('gui_macvim')
     set pythonthreedll=~/.pyenv/versions/3.8.1/Python.framework/Versions/Current/Python
 elseif has('nvim')
-	let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
+    let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
 else
 endif
+
 
 " set lazyredraw
 
@@ -71,9 +71,10 @@ endif
 call plug#begin("~/.vim/plugged")
 
 
+
 " Plug '~/.vim/potion'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-" Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-commentary'
 " Plug 'Lokaltog/vim-easymotion'
 " Plug 'tpope/vim-surround'
 " Plug 'ctrlpvim/ctrlp.vim'
@@ -87,9 +88,10 @@ Plug 'vim-airline/vim-airline-themes'
 "
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'arcticicestudio/nord-vim'
-" ff Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" Plug 'ayu-theme/ayu-vim'
-" Plug 'rakr/vim-two-firewatch'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-two-firewatch'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'mhartington/oceanic-next'
 " Plug 'ajmwagar/vim-deus'
@@ -110,7 +112,7 @@ Plug 'arcticicestudio/nord-vim'
 " miscellaneous
 "
 " Plug 'tpope/vim-repeat'
-" Plug 'yggdroot/indentLine'
+Plug 'yggdroot/indentLine'
 "
 " Plug 'jmcantrell/vim-virtualenv'
 " " Plug 'bronson/vim-trailing-whitespace'
@@ -121,33 +123,37 @@ call plug#end()
 "
 " -*- Color scheme -*-
 "
+set background=dark
 if &termguicolors
-    " colorscheme two-firewatch
-    colorscheme nord
-    " colorscheme deus
-    " colorscheme ayu
-    " colorscheme OceanicNext
-    " colorscheme onehalflight
-    " colorscheme onehalfdark
+    "colorscheme two-firewatch
+    "colorscheme nord
+    "colorscheme deus
+    "let ayucolor="light"
+    "colorscheme ayu
+    "colorscheme PaperColor
+    colorscheme one
+
+    " colorscheme oceanicnext
+    "colorscheme onehalflight
 else
-    colorscheme PaperColor
-    set background=light
-	" highlight Normal guibg=NONE ctermbg=None
+    " colorscheme papercolor
+    " colorscheme nord
+    " highlight normal guibg=none ctermbg=none
 endif
 "
-" -*- Auto commands -*-
+" -*- auto commands -*-
 "
 augroup file_vimrc
     autocmd!
-    autocmd BufRead $MYVIMRC set softtabstop=4 expandtab textwidth=100
-    autocmd BufWritePre $MYVIMRC :%s/\s\+$//ge
-    autocmd BufWritePost $MYVIMRC :source $MYVIMRC
+    autocmd bufread .vimrc set softtabstop=4 expandtab textwidth=100
+    autocmd bufwritepre .vimrc :%s/\s\+$//ge
+    autocmd bufwritepost .vimrc exec "source " . $HOME . "/.vimrc" | :AirlineRefresh
 augroup end
 
 
 augroup filetype_shell
     autocmd!
-    autocmd FileType sh set softtabstop=4 expandtab
+    autocmd filetype sh set softtabstop=4 expandtab
 augroup end
 
 
@@ -158,23 +164,23 @@ augroup end
 
 augroup filetype_python
     autocmd!
-    autocmd FileType python set softtabstop=4 expandtab
-    autocmd FileType python map <leader>b oimport ipdb; ipdb.set_trace() # BREAKPOINT<C-c>
-    autocmd FileType python map <buffer> <F3> :wa<CR>:call RunProgramme()<CR>
+    autocmd filetype python set softtabstop=4 expandtab
+    autocmd filetype python map <leader>b oimport ipdb; ipdb.set_trace() # breakpoint<c-c>
+    autocmd filetype python map <buffer> <f3> :wa<cr>:call runprogramme()<cr>
 augroup end
 
 
 augroup filetype_html
     autocmd!
-    autocmd FileType html set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-    autocmd BufRead,BufWritePre *.html :normal! gg=G
-    autocmd FileType html nnoremap <buffer> <localleader>f Vatzf
+    autocmd filetype html set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+    autocmd bufread,bufwritepre *.html :normal! gg=g
+    autocmd filetype html nnoremap <buffer> <localleader>f vatzf
 augroup end
 
 
 augroup filetype_javascript
     autocmd!
-    autocmd FileType javascript set tabstop=2 shiftwidth=2 softtabstop=2
+    autocmd filetype javascript set tabstop=2 shiftwidth=2 softtabstop=2
 augroup end
 
 
@@ -200,8 +206,13 @@ noremap <down>  <nop>
 noremap <left>  <nop>
 noremap <right> <nop>
 
+noremap <up>    <nop>
+noremap <down>  <nop>
+noremap <left>  <nop>
+noremap <right> <nop>
 
-noremap gcc <nop>
+
+"noremap gcc <nop>
 
 " clear highlight
 nnoremap <leader><space> :noh<cr>
@@ -212,11 +223,17 @@ inoremap <C-[> <ESC>
 " list buffer
 nnoremap <leader>bl :buffers<cr>
 
-" buffer move
+" buffer navigation
 nnoremap [b :bprevious<CR>
 nnoremap ]b :bnext<CR>
 nnoremap [B :bfirst<CR>
 nnoremap ]B :blast<CR>
+
+" tab navigation
+nnoremap [t :tabprevious<CR>
+nnoremap ]t :tabnext<CR>
+nnoremap [T :tabfirst<CR>
+nnoremap ]T :tablast<CR>
 
 " quickfix
 " nnoremap toggle co :copen<CR>
@@ -286,9 +303,14 @@ nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
 nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 
 " prefious buffer
-nnoremap <c-h> :bp<CR>
+"nnoremap <c-h> :bp<CR>
 " next buffer
-nnoremap <c-l> :bn<CR>
+"nnoremap <c-l> :bn<CR>
+nnoremap <c-h> <c-w>h
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-l> <c-w>l
+"nnoremap <c-h> :exe "normal \<c-w>\<c-w>"
 
 nnoremap <buffer> Q x
 
@@ -377,11 +399,11 @@ endfunction
 
 
 function! FoldColumnToggle()
-	if &foldcolumn
-		setlocal foldcolumn=0
-	else
-		setlocal foldcolumn=4
-	endif
+    if &foldcolumn
+        setlocal foldcolumn=0
+    else
+        setlocal foldcolumn=4
+    endif
 endfunction
 
 " 2GV4$y == :2yank 1

@@ -3,3 +3,12 @@ oh-my-zsh/
 pyenv/
 solarized_xresources/
 __pycache__/
+
+config/fontconfig/
+config/fcitx/
+
+AUR/**/PKG
+AUR/**/pkg/
+AUR/**/*.zst
+AUR/**/*.dmg
+AUR/**/src/
