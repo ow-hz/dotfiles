@@ -89,17 +89,17 @@ function link_brew_python3() {
 
 
 function setup_environment() {
-	# set AUR and install AUR package management tool
+    # set AUR and install AUR package management tool
     if [[ $os_name == "Arch Linux" ]]; then
-		if [[ "$(cat /etc/pacman.conf | grep '\[archlinuxcn\]')" == "" ]]; then
-			sudo sed -i -e '$a \\n[archlinuxcn]' \
-				-e '$a SigLevel = Optional TrustedOnly' \
-				-e '$a Server = http://mirrors.163.com/archlinux-cn/$arch' /etc/pacman.conf
-			pacman -Syy --noconfirm
-			pacman -S archlinuxcn-keyring --noconfirm
-			pacman -S yay --noconfirm
-		fi
-	fi
+        if [[ "$(cat /etc/pacman.conf | grep '\[archlinuxcn\]')" == "" ]]; then
+            sudo sed -i -e '$a \\n[archlinuxcn]' \
+                -e '$a SigLevel = Optional TrustedOnly' \
+                -e '$a Server = http://mirrors.163.com/archlinux-cn/$arch' /etc/pacman.conf
+            pacman -Syy --noconfirm
+            pacman -S archlinuxcn-keyring --noconfirm
+            pacman -S yay --noconfirm
+        fi
+    fi
 }
 
 
@@ -486,18 +486,18 @@ function setup_zsh() {
 
 function install_vim() {
     if [[ "$(which vim)" != "/usr/local/bin/vim" ]]; then
-		[[ ! -e $SOURCE_CODE_FOLDER ]] && {
-			sudo mkdir -p $VIM_SOURCE_CODE_FOLDER
-		}
+        [[ ! -e $SOURCE_CODE_FOLDER ]] && {
+            sudo mkdir -p $VIM_SOURCE_CODE_FOLDER
+        }
 
-		if [[ ! -e $VIM_SOURCE_CODE_FOLDER/$VIM_PKG_NAME ]]; then
-			echo 
-		fi
+        if [[ ! -e $VIM_SOURCE_CODE_FOLDER/$VIM_PKG_NAME ]]; then
+            echo 
+        fi
 
-		
+        
         echo "Vim not found!"
         info "Downloading vim $VIM_VERSION..."
-		curl -sSL -o $VIM_PKG_NAME $VIM_DOWNLOAD_URL
+        curl -sSL -o $VIM_PKG_NAME $VIM_DOWNLOAD_URL
     fi
 
     if [[ ! -e /usr/local/lib/libpython3.so ]]; then
@@ -578,7 +578,7 @@ function install_packages() {
 function main() {
     setup_color
 
-	setup_environment
+    setup_environment
 
     #assert_run_as_root
 
@@ -648,13 +648,13 @@ function main() {
     }
 
 
-	setup_zsh
+    setup_zsh
 
     #setup_services
 
-	link_files
+    link_files
 
-	install_vim
+    install_vim
 
 
 }
