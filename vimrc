@@ -6,7 +6,7 @@ set nocompatible
 set encoding=utf-8
 set fileencodings=ucs-bom,utf-8,chinese
 
-set shiftwidth=4 tabstop=4
+"set shiftwidth=4 tabstop=4
 " set shiftwidth=4 tabstop=8 softtabstop=12 " 1 * tab(8) + 4 *space
 
 syntax on
