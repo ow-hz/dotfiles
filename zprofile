@@ -14,7 +14,10 @@ setup_mac() {
 	[ -x "${_brew}" ] && eval "$(${_brew} shellenv)"
 
 	# ruby
-	[ -d "$(brew --prefix)/opt/ruby/bin" ] && export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+	[ -d "$(brew --prefix)/opt/ruby/bin" ] \
+		&& export PATH="/opt/homebrew/opt/ruby/bin:$PATH" \
+		&& export GEM_HOME=$HOME/.gem \
+		&& export PATH=$GEM_HOME/bin:$PATH
 
 	# nvm
 	export NVM_DIR="$HOME/.nvm"
