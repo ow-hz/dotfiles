@@ -2,18 +2,23 @@
 " -*- General settings -*-
 "
 set nocompatible
-
 set encoding=utf-8
-set fileencodings=ucs-bom,utf-8,chinese
+set fileencodings=utf-8,gb2312,gb18030,gbk,ucs-bom,cp936,latin1
+set scrolloff=1
+set laststatus=2
+
+syntax on
+filetype plugin indent on
+
+" set showcmd
+" set showmode
+
 
 "set shiftwidth=4 tabstop=4
 " set shiftwidth=4 tabstop=8 softtabstop=12 " 1 * tab(8) + 4 *space
 
-syntax on
 set autoindent
-filetype plugin indent on
 
-set scrolloff=1 laststatus=2
 
 let mapleader=','
 
@@ -25,7 +30,7 @@ if !system('command -v nasm > /dev/null 2>&1')
 endif
 
 if has('termguicolors')
-    set termguicolors
+    " set termguicolors
 endif
 
 
@@ -72,7 +77,6 @@ call plug#begin("~/.vim/plugged")
 
 
 
-" Plug '~/.vim/potion'
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'tpope/vim-commentary'
 " Plug 'Lokaltog/vim-easymotion'
@@ -86,12 +90,12 @@ Plug 'vim-airline/vim-airline-themes'
 "
 " color theme
 "
-Plug 'NLKNguyen/papercolor-theme'
-Plug 'arcticicestudio/nord-vim'
-Plug 'sonph/onehalf', {'rtp': 'vim/'}
-Plug 'rakr/vim-one'
-Plug 'ayu-theme/ayu-vim'
-Plug 'rakr/vim-two-firewatch'
+" Plug 'NLKNguyen/papercolor-theme'
+" Plug 'arcticicestudio/nord-vim'
+" Plug 'sonph/onehalf', {'rtp': 'vim/'}
+" Plug 'rakr/vim-one'
+"`Plug 'ayu-theme/ayu-vim'
+" Plug 'rakr/vim-two-firewatch'
 " Plug 'cocopon/iceberg.vim'
 " Plug 'mhartington/oceanic-next'
 " Plug 'ajmwagar/vim-deus'
@@ -102,8 +106,8 @@ Plug 'rakr/vim-two-firewatch'
 "
 " git related
 "
-" Plug 'tpope/vim-fugitive'
-" Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
 " Plug 'Xuyuanp/nerdtree-git-plugin'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'honza/vim-snippets'
@@ -123,7 +127,7 @@ call plug#end()
 "
 " -*- Color scheme -*-
 "
-set background=dark
+" set background=dark
 if &termguicolors
     "colorscheme two-firewatch
     "colorscheme nord
@@ -131,7 +135,7 @@ if &termguicolors
     "let ayucolor="light"
     "colorscheme ayu
     "colorscheme PaperColor
-    colorscheme one
+    "colorscheme one
 
     " colorscheme oceanicnext
     "colorscheme onehalflight
@@ -154,11 +158,6 @@ augroup end
 augroup filetype_shell
     autocmd!
     autocmd filetype sh set softtabstop=4 expandtab
-augroup end
-
-
-augroup filetype_potion
-    autocmd!
 augroup end
 
 
