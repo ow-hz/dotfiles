@@ -90,19 +90,21 @@ Plug 'vim-airline/vim-airline-themes'
 "
 " color theme
 "
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'arcticicestudio/nord-vim'
-" Plug 'sonph/onehalf', {'rtp': 'vim/'}
-" Plug 'rakr/vim-one'
-"`Plug 'ayu-theme/ayu-vim'
-" Plug 'rakr/vim-two-firewatch'
-" Plug 'cocopon/iceberg.vim'
-" Plug 'mhartington/oceanic-next'
-" Plug 'ajmwagar/vim-deus'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'arcticicestudio/nord-vim'
+Plug 'sonph/onehalf', {'rtp': 'vim/'}
+Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-two-firewatch'
+Plug 'cocopon/iceberg.vim'
+Plug 'mhartington/oceanic-next'
+Plug 'ajmwagar/vim-deus'
 
 " Plug 'mattn/emmet-vim'
 " Plug 'scrooloose/syntastic'
 " Plug 'timothycrosley/isort'
+"
+Plug 'editorconfig/editorconfig-vim'
 "
 " git related
 "
@@ -147,55 +149,55 @@ endif
 "
 " -*- auto commands -*-
 "
-augroup file_vimrc
-    autocmd!
-    autocmd bufread .vimrc set softtabstop=4 expandtab textwidth=100
-    autocmd bufwritepre .vimrc :%s/\s\+$//ge
-    autocmd bufwritepost .vimrc exec "source " . $HOME . "/.vimrc" | :AirlineRefresh
-augroup end
+" augroup file_vimrc
+"     autocmd!
+"     autocmd bufread .vimrc set softtabstop=4 expandtab textwidth=100
+"     autocmd bufwritepre .vimrc :%s/\s\+$//ge
+"     autocmd bufwritepost .vimrc exec "source " . $HOME . "/.vimrc" | :AirlineRefresh
+" augroup end
 
 
-augroup filetype_shell
-    autocmd!
-    autocmd filetype sh set softtabstop=4 expandtab
-augroup end
+" augroup filetype_shell
+"     autocmd!
+"     autocmd filetype sh set softtabstop=4 expandtab
+" augroup end
 
 
-augroup filetype_python
-    autocmd!
-    autocmd filetype python set softtabstop=4 expandtab
-    autocmd filetype python map <leader>b oimport ipdb; ipdb.set_trace() # breakpoint<c-c>
-    autocmd filetype python map <buffer> <f3> :wa<cr>:call runprogramme()<cr>
-augroup end
+" augroup filetype_python
+"     autocmd!
+"     autocmd filetype python set softtabstop=4 expandtab
+"     autocmd filetype python map <leader>b oimport ipdb; ipdb.set_trace() # breakpoint<c-c>
+"     autocmd filetype python map <buffer> <f3> :wa<cr>:call runprogramme()<cr>
+" augroup end
 
 
-augroup filetype_html
-    autocmd!
-    autocmd filetype html set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
-    autocmd bufread,bufwritepre *.html :normal! gg=g
-    autocmd filetype html nnoremap <buffer> <localleader>f vatzf
-augroup end
+" augroup filetype_html
+"     autocmd!
+"     autocmd filetype html set shiftwidth=2 tabstop=2 softtabstop=2 expandtab
+"     autocmd bufread,bufwritepre *.html :normal! gg=g
+"     autocmd filetype html nnoremap <buffer> <localleader>f vatzf
+" augroup end
 
 
-augroup filetype_javascript
-    autocmd!
-    autocmd filetype javascript set tabstop=2 shiftwidth=2 softtabstop=2
-augroup end
+" augroup filetype_javascript
+"     autocmd!
+"     autocmd filetype javascript set tabstop=2 shiftwidth=2 softtabstop=2
+" augroup end
 
 
-augroup filetype_c
-    autocmd!
-augroup end
+" augroup filetype_c
+"     autocmd!
+" augroup end
 
 " autocmd BufEnter /home/myproj1/* setlocal tags+=/home/myproj1/tags
 
 "
 " -*- Auto commands && abbrevations -*-
 "
-augroup filetype_python
-    autocmd!
-    autocmd FileType python map <buffer> <F4> :wa<CR>:call RunProgramme()<CR>
-augroup end
+" augroup filetype_python
+"     autocmd!
+"     autocmd FileType python map <buffer> <F4> :wa<CR>:call RunProgramme()<CR>
+" augroup end
 
 "
 " -*- Key mappings -*-

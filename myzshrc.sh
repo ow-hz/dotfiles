@@ -28,7 +28,7 @@ eval "$(pyenv virtualenv-init -)"
 
 
 alias launchpad_reset="defaults write com.apple.dock ResetLaunchPad -bool true; killall Dock"
-alias dosbox="dosbox -conf ~/.dotfiles/dosbox.conf"
+# alias dosbox="dosbox -conf ~/.dotfiles/dosbox.conf"
 
 alias proxy_on="export ALL_PROXY=socks5://127.0.0.1:1080 && echo 'Proxy is on!'"
 alias proxy_off="unset ALL_PROXY && echo 'Proxy is off!'"
@@ -44,6 +44,8 @@ files=(
     /usr/local/etc/profile.d/autojump.sh
     /etc/profile.d/autojump.sh
     /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    /opt/homebrew/etc/profile.d/autojump.sh
 )
 
 for i in $files; do
