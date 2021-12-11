@@ -7,10 +7,11 @@ brew install nvm \
 	pyenv \
 	pyenv-virtualenv \
 	ruby \
-	sdl2 \
 	tmux \
+	lua \
+	lsof \
+	mycli \
 	qemu \
-	tldr \
 	autojump \
 	zsh-syntax-highlighting \
 	minimal-racket
