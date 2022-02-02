@@ -12,9 +12,11 @@ brew install nvm \
 	lsof \
 	mycli \
 	qemu \
+	ddclient \
+	podman \
+	nmap \
 	autojump \
-	zsh-syntax-highlighting \
-	minimal-racket
+	zsh-syntax-highlighting
 
 
 # curl -fsSLO https://github.com/neovim/neovim/releases/download/stable/nvim-macos.tar.gz

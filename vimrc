@@ -34,18 +34,18 @@ if has('termguicolors')
 endif
 
 
-"if has('nvim') || has('gui_macvim')
-"    if !has('termguicolors')
-"        set termguicolors
-"    endif
-"endif
-
-if has('gui_macvim')
-    set pythonthreedll=~/.pyenv/versions/3.8.1/Python.framework/Versions/Current/Python
-elseif has('nvim')
-    let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
-else
+if has('nvim') || has('gui_macvim')
+    if !has('termguicolors')
+        set termguicolors
+    endif
 endif
+
+" if has('gui_macvim')
+"     " set pythonthreedll=~/.pyenv/versions/3.8.1/Python.framework/Versions/Current/Python
+" elseif has('nvim')
+"     " let g:python3_host_prog = glob('~/.pyenv/versions/neovim/bin/python')
+" else
+" endif
 
 
 " set lazyredraw
@@ -307,10 +307,10 @@ nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 "nnoremap <c-h> :bp<CR>
 " next buffer
 "nnoremap <c-l> :bn<CR>
-nnoremap <c-h> <c-w>h
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-l> <c-w>l
+" nnoremap <c-h> <c-w>h
+" nnoremap <c-j> <c-w>j
+" nnoremap <c-k> <c-w>k
+" nnoremap <c-l> <c-w>l
 "nnoremap <c-h> :exe "normal \<c-w>\<c-w>"
 
 nnoremap <buffer> Q x
@@ -329,7 +329,7 @@ nnoremap <leader>f :call FoldColumnToggle()<cr>
 nnoremap <leader>Q :call QuickFixToggle()<cr>
 nnoremap <leader>q :call CloseWindow()<cr>
 
-let g:quickfix_is_open = 0
+" let g:quickfix_is_open = 0
 
 "
 " -*- User defined functions -*-
