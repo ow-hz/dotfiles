@@ -5,6 +5,7 @@ brew install nvm \
 	nasm \
 	mosh \
 	pyenv \
+	pipenv \
 	pyenv-virtualenv \
 	ruby \
 	tmux \
