@@ -5,7 +5,6 @@ brew install nvm \
 	nasm \
 	mosh \
 	pyenv \
-	pipenv \
 	pyenv-virtualenv \
 	ruby \
 	tmux \
@@ -17,6 +16,9 @@ brew install nvm \
 	podman \
 	nmap \
 	autojump \
+	gnu-tar \
+	gnu-sed \
+	grep \
 	zsh-syntax-highlighting
 
 
