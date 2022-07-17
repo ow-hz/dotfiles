@@ -134,3 +134,6 @@ gnu grep
 gnu gnu-sed
 gnu gnu-tar
 gnu gnu-which
+
+if command -v tmux &> /dev/null; then
+fi

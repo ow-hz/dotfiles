@@ -130,19 +130,20 @@ call plug#end()
 " -*- Color scheme -*-
 "
 " set background=dark
-if &termguicolors
+if has('termguicolors')
     "colorscheme two-firewatch
     "colorscheme nord
     "colorscheme deus
     "let ayucolor="light"
     "colorscheme ayu
-    "colorscheme PaperColor
+    colorscheme PaperColor
     "colorscheme one
 
     " colorscheme oceanicnext
     "colorscheme onehalflight
 else
     " colorscheme papercolor
+    colorscheme PaperColor
     " colorscheme nord
     " highlight normal guibg=none ctermbg=none
 endif
